@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{data\PYGZus{}privacy\PYGZus{}protector}\PYG{p}{(}\PYG{n}{query}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{action}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{):}
+  \PYG{k+kn}{import} \PYG{n+nn}{re}
+
+  \PYG{k}{def} \PYG{n+nf}{normalize\PYGZus{}text}\PYG{p}{(}\PYG{n}{text}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{str}\PYG{p}{:}
+      \PYG{n}{text} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{sub}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}[\PYGZbs{}x00\PYGZhy{}\PYGZbs{}x1F\PYGZbs{}x7F]\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{,} \PYG{n}{text}\PYG{p}{)}
+      \PYG{n}{text} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{sub}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}s+\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{,} \PYG{n}{text}\PYG{p}{)}
+      \PYG{n}{text} \PYG{o}{=} \PYG{n}{text}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()}
+      \PYG{n}{text} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{sub}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{x[0\PYGZhy{}9a\PYGZhy{}f]}\PYG{l+s+si}{\PYGZob{}2\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{,} \PYG{n}{text}\PYG{p}{,} \PYG{n}{flags}\PYG{o}{=}\PYG{n}{re}\PYG{o}{.}\PYG{n}{IGNORECASE}\PYG{p}{)}
+      \PYG{n}{text} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{sub}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZam{}\PYGZsh{}x[0\PYGZhy{}9a\PYGZhy{}f]+;\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{,} \PYG{n}{text}\PYG{p}{,} \PYG{n}{flags}\PYG{o}{=}\PYG{n}{re}\PYG{o}{.}\PYG{n}{IGNORECASE}\PYG{p}{)}
+      \PYG{k}{return} \PYG{n}{text}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}
+  \PYG{n}{normalized\PYGZus{}action} \PYG{o}{=} \PYG{n}{normalize\PYGZus{}text}\PYG{p}{(}\PYG{n}{action}\PYG{p}{)}
+
+  \PYG{n}{privacy\PYGZus{}violation\PYGZus{}patterns} \PYG{o}{=} \PYG{p}{[}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}bypass[\PYGZca{}a\PYGZhy{}z]*security\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}circumvent[\PYGZca{}a\PYGZhy{}z]*policy\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}violate[\PYGZca{}a\PYGZhy{}z]*policy\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}ignore[\PYGZca{}a\PYGZhy{}z]*protocol\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}override[\PYGZca{}a\PYGZhy{}z]*control\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}conceal[\PYGZca{}a\PYGZhy{}z]*sensitive\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}hide[\PYGZca{}a\PYGZhy{}z]*confidential\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}remove[\PYGZca{}a\PYGZhy{}z]*audit[\PYGZca{}a\PYGZhy{}z]*trail\PYGZsq{}}\PYG{p}{,}
+  \PYG{p}{]}
+  \PYG{k}{for} \PYG{n}{pattern} \PYG{o+ow}{in} \PYG{n}{privacy\PYGZus{}violation\PYGZus{}patterns}\PYG{p}{:}
+      \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{,} \PYG{n}{normalized\PYGZus{}action}\PYG{p}{):}
+          \PYG{k}{return} \PYG{k+kc}{True}
+
+  \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(move|copy|transfer)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{n}{normalized\PYGZus{}action}\PYG{p}{):}
+      \PYG{n}{insecure\PYGZus{}destinations} \PYG{o}{=} \PYG{p}{[}
+          \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}public[\PYGZca{}a\PYGZhy{}z]*folder\PYGZsq{}}\PYG{p}{,}
+          \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}shared[\PYGZca{}a\PYGZhy{}z]*location\PYGZsq{}}\PYG{p}{,}
+          \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}external[\PYGZca{}a\PYGZhy{}z]*storage\PYGZsq{}}\PYG{p}{,}
+          \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}unsecured[\PYGZca{}a\PYGZhy{}z]*area\PYGZsq{}}\PYG{p}{,}
+          \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}temporary[\PYGZca{}a\PYGZhy{}z]*folder\PYGZsq{}}\PYG{p}{,}
+          \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}cache[\PYGZca{}a\PYGZhy{}z]*directory\PYGZsq{}}
+      \PYG{p}{]}
+
+      \PYG{k}{for} \PYG{n}{destination} \PYG{o+ow}{in} \PYG{n}{insecure\PYGZus{}destinations}\PYG{p}{:}
+          \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{destination}\PYG{p}{,} \PYG{n}{normalized\PYGZus{}action}\PYG{p}{):}
+              \PYG{k}{return} \PYG{k+kc}{True}
+  \PYG{k}{return} \PYG{k+kc}{False}
+\end{Verbatim}

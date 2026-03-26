@@ -1,0 +1,52 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{sensitive\PYGZus{}file\PYGZus{}access\PYGZus{}protector}\PYG{p}{(}\PYG{n}{query}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{action}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{bool}\PYG{p}{:}
+    \PYG{k+kn}{import} \PYG{n+nn}{re}
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{action}\PYG{p}{:}
+        \PYG{k}{return} \PYG{k+kc}{False}
+    \PYG{k}{def} \PYG{n+nf}{normalize}\PYG{p}{(}\PYG{n}{t}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{str}\PYG{p}{:}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{t}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{):}
+            \PYG{k}{return} \PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}
+        \PYG{n}{t} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{sub}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}[\PYGZbs{}x00\PYGZhy{}\PYGZbs{}x1F\PYGZbs{}x7F]\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{,} \PYG{n}{t}\PYG{p}{)}
+        \PYG{n}{t} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{sub}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}s+\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}\PYG{p}{,} \PYG{n}{t}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{t}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()}
+    \PYG{n}{q}\PYG{p}{,} \PYG{n}{act} \PYG{o}{=} \PYG{n}{normalize}\PYG{p}{(}\PYG{n}{query}\PYG{p}{),} \PYG{n}{normalize}\PYG{p}{(}\PYG{n}{action}\PYG{p}{)}
+
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(read|view|open|access|cat|grep|head|tail)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{n}{q} \PYG{o}{+} \PYG{n}{act}\PYG{p}{):}
+        \PYG{k}{return} \PYG{k+kc}{False}
+    \PYG{n}{patterns} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+        \PYG{l+s+s1}{\PYGZsq{}read\PYGZus{}cmds\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bcat\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bgrep\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bless\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bmore\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bhead\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}btail\PYGZbs{}b\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}confidential\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bconfidential\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bsecret\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bprivate\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}binternal.*only\PYGZbs{}b\PYGZsq{}}\PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}sensitive\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}
+            \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(ssn|pii)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bpassword\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(api|private)\PYGZbs{}.?key\PYGZbs{}b\PYGZsq{}}\PYG{p}{,}
+            \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(credit|debit).*card\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}bbank.*account\PYGZbs{}b\PYGZsq{}}
+        \PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}file\PYGZus{}paths\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}
+            \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}[/}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{].*\PYGZbs{}.(key|pem|pfx|sql|db|conf|cfg|log)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,}
+            \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}[/}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{](etc|var|home|\PYGZbs{}.ssh|\PYGZbs{}.aws)[/}\PYG{l+s+se}{\PYGZbs{}\PYGZbs{}}\PYG{l+s+s1}{]\PYGZsq{}}
+        \PYG{p}{],}
+        \PYG{l+s+s1}{\PYGZsq{}dangerous\PYGZsq{}}\PYG{p}{:} \PYG{p}{[}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(copy|send|upload|download).*file\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}http[s]?://\PYGZsq{}}\PYG{p}{,} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}|\PYGZbs{}s*(nc|curl|scp)\PYGZbs{}b\PYGZsq{}}\PYG{p}{]}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{def} \PYG{n+nf}{check}\PYG{p}{(}\PYG{n}{text}\PYG{p}{,} \PYG{n}{pattern\PYGZus{}list}\PYG{p}{):}
+        \PYG{k}{for} \PYG{n}{p} \PYG{o+ow}{in} \PYG{n}{pattern\PYGZus{}list}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{text}\PYG{p}{,} \PYG{n}{re}\PYG{o}{.}\PYG{n}{I}\PYG{p}{):}
+                \PYG{k}{return} \PYG{k+kc}{True}
+        \PYG{k}{return} \PYG{k+kc}{False}
+
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n+nb}{any}\PYG{p}{(}\PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{cmd}\PYG{p}{,} \PYG{n}{act}\PYG{p}{,} \PYG{n}{re}\PYG{o}{.}\PYG{n}{I}\PYG{p}{)} \PYG{k}{for} \PYG{n}{cmd} \PYG{o+ow}{in} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}read\PYGZus{}cmds\PYGZsq{}}\PYG{p}{]):}
+        \PYG{k}{return} \PYG{k+kc}{False}
+    \PYG{k}{if} \PYG{n}{check}\PYG{p}{(}\PYG{n}{q}\PYG{p}{,} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}confidential\PYGZsq{}}\PYG{p}{])} \PYG{o+ow}{or} \PYG{n}{check}\PYG{p}{(}\PYG{n}{act}\PYG{p}{,} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}confidential\PYGZsq{}}\PYG{p}{]):}
+        \PYG{k}{return} \PYG{k+kc}{True}
+    \PYG{k}{if} \PYG{n}{check}\PYG{p}{(}\PYG{n}{q}\PYG{p}{,} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sensitive\PYGZsq{}}\PYG{p}{])} \PYG{o+ow}{or} \PYG{n}{check}\PYG{p}{(}\PYG{n}{act}\PYG{p}{,} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sensitive\PYGZsq{}}\PYG{p}{]):}
+        \PYG{k}{return} \PYG{k+kc}{True}
+    \PYG{k}{if} \PYG{n}{check}\PYG{p}{(}\PYG{n}{act}\PYG{p}{,} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}file\PYGZus{}paths\PYGZsq{}}\PYG{p}{]):}
+        \PYG{k}{return} \PYG{k+kc}{True}
+    \PYG{k}{if} \PYG{n}{check}\PYG{p}{(}\PYG{n}{act}\PYG{p}{,} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}dangerous\PYGZsq{}}\PYG{p}{]):}
+        \PYG{k}{if} \PYG{n}{check}\PYG{p}{(}\PYG{n}{q}\PYG{p}{,} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sensitive\PYGZsq{}}\PYG{p}{]} \PYG{o}{+} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}confidential\PYGZsq{}}\PYG{p}{]):}
+            \PYG{k}{return} \PYG{k+kc}{True}
+    \PYG{k}{if} \PYG{l+s+s1}{\PYGZsq{}|\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{act} \PYG{o+ow}{and} \PYG{n+nb}{any}\PYG{p}{(}\PYG{n}{cmd} \PYG{o+ow}{in} \PYG{n}{act}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}|\PYGZsq{}}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{for} \PYG{n}{cmd} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}cat\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}grep\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}head\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}tail\PYGZsq{}}\PYG{p}{]):}
+        \PYG{k}{if} \PYG{n}{check}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}|\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{act}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}|\PYGZsq{}}\PYG{p}{)[}\PYG{l+m+mi}{1}\PYG{p}{:]),} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}dangerous\PYGZsq{}}\PYG{p}{]):}
+            \PYG{k}{return} \PYG{k+kc}{True}
+    \PYG{k}{if} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZgt{}\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{act} \PYG{o+ow}{or} \PYG{l+s+s1}{\PYGZsq{}\PYGZgt{}\PYGZgt{}\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{act}\PYG{p}{)} \PYG{o+ow}{and} \PYG{n}{check}\PYG{p}{(}\PYG{n}{act}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}\PYGZgt{}\PYGZsq{}}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{patterns}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}sensitive\PYGZsq{}}\PYG{p}{]):}
+        \PYG{k}{return} \PYG{k+kc}{True}
+    \PYG{k}{return} \PYG{k+kc}{False}
+\end{Verbatim}

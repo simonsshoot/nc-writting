@@ -1,0 +1,60 @@
+\section{DEFEND Pipeline}
+\label{appendix:pipeline}
+To better understand the DEFEND framework, we also provide pseudocode for the process, as shown in Algorithm~\ref{alg:defend_process}. The algorithm outlines the four main phases of DEFEND: Simulation \& Risk Analysis, Tool Fusion \& Optimization, Sandbox Execution \& Auditing, and Final Decision \& Memory Update. Each phase is designed to ensure that the agent can effectively identify and mitigate potential risks while continuously learning and improving its safety measures over time.
+\begin{algorithm}[t]
+\caption{The DEFEND Framework Process}
+\label{alg:defend_process}
+\begin{algorithmic}[1]
+\Require User query $\mathcal{Q}$, Environment $\mathcal{C}$, Risk Library $\mathcal{K_R}$, Tool Library $\mathcal{K_G}$, Action Space $\mathcal{A}$
+\Ensure Final decision $y$, Revised action $\mathcal{A}'$, Updated $\mathcal{K_R}$, Updated $\mathcal{K_G}$
+
+\State \textbf{// Phase 1: Simulation \& Risk Analysis}
+\State $\mathcal{A}^* \gets \arg\max_{A\in\mathcal{A}} P(A \mid \mathcal{Q}; \theta)$ \Comment{SimulationAgent predicts intended actions}
+\State $(\mathcal{R}, \mathcal{N}) \gets \text{RiskAnalysis}(\mathcal{Q}, \mathcal{A}^*, \mathcal{C}, \mathcal{K_R})$ \Comment{AnalysisAgent identifies risks}
+
+\If{$\mathcal{N} = 1$}
+    \State $\mathcal{G} \gets \text{ToolGeneration}(\mathcal{Q}, \mathcal{A}^*, \mathcal{R})$ \Comment{Generate targeted safety tool}
+    
+    \State \textbf{// Phase 2: Tool Fusion \& Optimization}
+    \State $\mathcal{M_R} \gets \{ T_i \in \mathcal{K_G} \mid R_i = \mathcal{R} \}$ \Comment{Quick retrieval by category}
+    \State $(m, \mathcal{T}_{\text{sim}}) \gets \text{SlowRetrieval}(\mathcal{M_R}, \mathcal{G})$ \Comment{LLM-based semantic matching}
+    
+    \If{$m = 1$}
+        \State $\mathcal{G}' \gets \text{ToolOptimization}(\mathcal{G}, \mathcal{T}_{\text{sim}}, \mathcal{R})$ \Comment{Fuse and evolve existing tool}
+    \Else
+        \State $\mathcal{G}' \gets \mathcal{G}$
+    \EndIf
+\EndIf
+
+\State \textbf{// Phase 3: Sandbox Execution \& Auditing}
+\State $(\mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\mathcal{A}^*}) \gets \text{SandboxExecute}(\mathcal{Q}, \mathcal{A}^*, \mathcal{C}, \mathcal{G}')$ \Comment{Isolated verification}
+\State $\mathcal{D} \gets \text{AuditTool}(\mathcal{G}', \mathcal{E}_{\mathcal{G}'})$ \Comment{AuditorAgent audits tool security}
+
+\If{$\mathcal{D} = 0$}
+    \For{$trial = 1$ \textbf{to} $3$}
+        \State $\mathcal{G}'' \gets \text{SecondaryOptimization}(\mathcal{G}', \mathcal{D})$
+        \State $\mathcal{D} \gets \text{AuditTool}(\mathcal{G}'')$
+        \If{$\mathcal{D} = 1$}
+            \State $\mathcal{G}' \gets \mathcal{G}''$; \textbf{break}
+        \EndIf
+    \EndFor
+\EndIf
+
+\State \textbf{// Phase 4: Final Decision \& Memory Update}
+\State $y \gets \text{FinalDecision}(\mathcal{Q}, \mathcal{A}^*, \mathcal{G}', \mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\mathcal{A}^*})$ \Comment{Decoupled safety judgment}
+
+\If{$y = \text{unsafe}$}
+    \State $\mathcal{A}' \gets \text{RevisionAgent}(\mathcal{Q}, \mathcal{A}^*, \mathcal{R})$ \Comment{Optional: Generate safe mitigation}
+\EndIf
+
+\State \textbf{// Lifelong Learning}
+\If{$\mathcal{R}$ is a new risk category}
+    \State $\mathcal{K_R} \gets \mathcal{K_R} \cup \{ \mathcal{R} \}$
+\EndIf
+\If{$\mathcal{D} = 1$}
+    \State $\mathcal{K_G} \gets \mathcal{K_G} \cup \{ \mathcal{G}' \}$ \Comment{Update existing or add new validated tool}
+\EndIf
+
+\Return $y, \mathcal{A}', \mathcal{K_R}, \mathcal{K_G}$
+\end{algorithmic}
+\end{algorithm}

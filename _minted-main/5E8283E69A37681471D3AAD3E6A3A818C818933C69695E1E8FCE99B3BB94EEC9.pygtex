@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{sensitive\PYGZus{}file\PYGZus{}access\PYGZus{}protector}\PYG{p}{(}\PYG{n}{query}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{action}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{bool}\PYG{p}{:}
+  \PYG{k+kn}{import} \PYG{n+nn}{re}
+
+  \PYG{n}{q} \PYG{o}{=} \PYG{n}{query}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}
+  \PYG{n}{act} \PYG{o}{=} \PYG{n}{action}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}
+
+  \PYG{n}{file\PYGZus{}cmds} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(cat|grep|less|head|tail)\PYGZbs{}b\PYGZsq{}}
+  \PYG{n}{sensitive\PYGZus{}patterns} \PYG{o}{=} \PYG{p}{[}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(confidential|secret|private)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(credit.*card|bank.*account|ssn|password)\PYGZbs{}b\PYGZsq{}}
+  \PYG{p}{]}
+  \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{file\PYGZus{}cmds}\PYG{p}{,} \PYG{n}{act}\PYG{p}{):}
+      \PYG{k}{for} \PYG{n}{pattern} \PYG{o+ow}{in} \PYG{n}{sensitive\PYGZus{}patterns}\PYG{p}{:}
+          \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{,} \PYG{n}{q}\PYG{p}{)} \PYG{o+ow}{or} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{,} \PYG{n}{act}\PYG{p}{):}
+              \PYG{k}{return} \PYG{k+kc}{True}
+  \PYG{k}{return} \PYG{k+kc}{False}
+\end{Verbatim}

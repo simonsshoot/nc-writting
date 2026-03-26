@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+**Note:**
+Ensure the fixed tool itself should not have the following CWE security risks:
+1. Out\PYGZhy{}of\PYGZhy{}bounds writes
+2. Accessing resources using incompatible types (type obfuscation)
+3. Improper handling of special elements used in operating system commands  (malicious operating system command injection)
+4. Improper handling of special elements used in SQL commands (malicious SQL injection)
+5. Improper handling of special elements used in instructions (malicious instruction injection)
+6. Lack of authentication for critical functions
+7. Bypassing authorization via user\PYGZhy{}controlled keys
+8. URL redirection to untrusted websites (open redirection)
+9. Inserting sensitive information into log files
+10. Plaintext storage of sensitive information
+\end{Verbatim}

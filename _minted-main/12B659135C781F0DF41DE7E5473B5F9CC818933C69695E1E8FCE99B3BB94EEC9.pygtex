@@ -1,0 +1,70 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{command\PYGZus{}injection\PYGZus{}preventer}\PYG{p}{(}\PYG{n}{query}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{action}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n+nb}{bool}\PYG{p}{:}
+  \PYG{k+kn}{import} \PYG{n+nn}{re}
+  \PYG{k+kn}{import} \PYG{n+nn}{ast}
+
+  \PYG{n}{q} \PYG{o}{=} \PYG{n}{query}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()} \PYG{k}{if} \PYG{n}{query} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}
+  \PYG{n}{act} \PYG{o}{=} \PYG{n}{action}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()} \PYG{k}{if} \PYG{n}{action} \PYG{k}{else} \PYG{l+s+s1}{\PYGZsq{}\PYGZsq{}}
+
+  \PYG{n}{execution\PYGZus{}patterns} \PYG{o}{=} \PYG{p}{[}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(cat|grep|awk|sed|sh|bash|zsh|terminal|execute|run)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(analyze|check|examine)\PYGZbs{}b.*\PYGZbs{}b(content|code|file)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}(subprocess|os)\PYGZbs{}.(run|system)\PYGZbs{}s*\PYGZbs{}(\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}eval\PYGZbs{}s*\PYGZbs{}(\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}exec\PYGZbs{}s*\PYGZbs{}(\PYGZsq{}}
+  \PYG{p}{]}
+  \PYG{n}{generation\PYGZus{}patterns} \PYG{o}{=} \PYG{p}{[}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}\PYGZob{}\PYGZbs{}s*\PYGZlt{}\PYGZbs{}?php\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}base64\PYGZus{}decode\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}\PYGZdl{}\PYGZus{}(get|post|request|cookie|server)\PYGZsq{}}\PYG{p}{,}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}\PYGZdl{}\PYGZbs{}w+\PYGZbs{}s*\PYGZbs{}(\PYGZsq{}}
+  \PYG{p}{]}
+  \PYG{n}{external\PYGZus{}patterns} \PYG{o}{=} \PYG{p}{[}
+      \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}(git|wget|curl|pip\PYGZbs{}s+install).*http[s]?://\PYGZsq{}}
+  \PYG{p}{]}
+  \PYG{k}{for} \PYG{n}{pattern} \PYG{o+ow}{in} \PYG{n}{execution\PYGZus{}patterns}\PYG{p}{:}
+      \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{,} \PYG{n}{act}\PYG{p}{):}
+          \PYG{k}{for} \PYG{n}{ext\PYGZus{}pattern} \PYG{o+ow}{in} \PYG{n}{external\PYGZus{}patterns}\PYG{p}{:}
+              \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{ext\PYGZus{}pattern}\PYG{p}{,} \PYG{n}{act}\PYG{p}{):}
+                  \PYG{k}{return} \PYG{k+kc}{True}
+          \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}.(php|txt|log|conf)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,} \PYG{n}{act}\PYG{p}{):}
+              \PYG{k}{for} \PYG{n}{analysis\PYGZus{}pattern} \PYG{o+ow}{in} \PYG{p}{[}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(analyze|check)\PYGZbs{}b\PYGZsq{}}\PYG{p}{]:}
+                  \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{analysis\PYGZus{}pattern}\PYG{p}{,} \PYG{n}{q}\PYG{p}{):}
+                      \PYG{k}{return} \PYG{k+kc}{True}
+
+  \PYG{k}{if} \PYG{l+s+s1}{\PYGZsq{}output\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{act} \PYG{o+ow}{or} \PYG{l+s+s1}{\PYGZsq{}generate\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{q} \PYG{o+ow}{or} \PYG{l+s+s1}{\PYGZsq{}implement\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{q}\PYG{p}{:}
+      \PYG{k}{for} \PYG{n}{pattern} \PYG{o+ow}{in} \PYG{n}{generation\PYGZus{}patterns}\PYG{p}{:}
+          \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{,} \PYG{n}{action}\PYG{p}{,} \PYG{n}{re}\PYG{o}{.}\PYG{n}{IGNORECASE}\PYG{p}{):}
+              \PYG{k}{return} \PYG{k+kc}{True}
+  \PYG{k}{if} \PYG{l+s+s1}{\PYGZsq{}execute\PYGZus{}python\PYGZus{}file\PYGZsq{}} \PYG{o+ow}{in} \PYG{n}{action}\PYG{p}{:}
+      \PYG{n}{filename\PYGZus{}match} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZdq{}filename\PYGZdq{}\PYGZbs{}s*:\PYGZbs{}s*\PYGZdq{}([\PYGZca{}\PYGZdq{}]+)\PYGZdq{}\PYGZsq{}}\PYG{p}{,} \PYG{n}{action}\PYG{p}{)}
+      \PYG{k}{if} \PYG{n}{filename\PYGZus{}match}\PYG{p}{:}
+          \PYG{k}{try}\PYG{p}{:}
+              \PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{filename\PYGZus{}match}\PYG{o}{.}\PYG{n}{group}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{),} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+                  \PYG{n}{content} \PYG{o}{=} \PYG{n}{f}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}
+              \PYG{n}{tree} \PYG{o}{=} \PYG{n}{ast}\PYG{o}{.}\PYG{n}{parse}\PYG{p}{(}\PYG{n}{content}\PYG{p}{)}
+              \PYG{n}{dangerous} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}os.system\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}subprocess\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}eval\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}exec\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}pickle\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}ctypes\PYGZsq{}}\PYG{p}{\PYGZcb{}}
+              \PYG{k}{for} \PYG{n}{node} \PYG{o+ow}{in} \PYG{n}{ast}\PYG{o}{.}\PYG{n}{walk}\PYG{p}{(}\PYG{n}{tree}\PYG{p}{):}
+                  \PYG{k}{if} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{node}\PYG{p}{,} \PYG{n}{ast}\PYG{o}{.}\PYG{n}{Import}\PYG{p}{):}
+                      \PYG{k}{for} \PYG{n}{alias} \PYG{o+ow}{in} \PYG{n}{node}\PYG{o}{.}\PYG{n}{names}\PYG{p}{:}
+                          \PYG{k}{if} \PYG{n+nb}{any}\PYG{p}{(}\PYG{n}{d} \PYG{o+ow}{in} \PYG{n}{alias}\PYG{o}{.}\PYG{n}{name} \PYG{k}{for} \PYG{n}{d} \PYG{o+ow}{in} \PYG{n}{dangerous}\PYG{p}{):}
+                              \PYG{k}{return} \PYG{k+kc}{True}
+                  \PYG{k}{elif} \PYG{n+nb}{isinstance}\PYG{p}{(}\PYG{n}{node}\PYG{p}{,} \PYG{n}{ast}\PYG{o}{.}\PYG{n}{ImportFrom}\PYG{p}{):}
+                      \PYG{k}{if} \PYG{n}{node}\PYG{o}{.}\PYG{n}{module} \PYG{o+ow}{and} \PYG{n+nb}{any}\PYG{p}{(}\PYG{n}{d} \PYG{o+ow}{in} \PYG{n}{node}\PYG{o}{.}\PYG{n}{module} \PYG{k}{for} \PYG{n}{d} \PYG{o+ow}{in} \PYG{n}{dangerous}\PYG{p}{):}
+                          \PYG{k}{return} \PYG{k+kc}{True}
+
+              \PYG{n}{suspicious} \PYG{o}{=} \PYG{p}{[}
+                  \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}os\PYGZbs{}.system\PYGZbs{}s*\PYGZbs{}(\PYGZsq{}}\PYG{p}{,}
+                  \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}subprocess\PYGZbs{}.(Popen|call|run)\PYGZbs{}s*\PYGZbs{}(\PYGZsq{}}\PYG{p}{,}
+                  \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}eval\PYGZbs{}s*\PYGZbs{}(\PYGZsq{}}\PYG{p}{,}
+                  \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}exec\PYGZbs{}s*\PYGZbs{}(\PYGZsq{}}
+              \PYG{p}{]}
+              \PYG{k}{for} \PYG{n}{pattern} \PYG{o+ow}{in} \PYG{n}{suspicious}\PYG{p}{:}
+                  \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{pattern}\PYG{p}{,} \PYG{n}{content}\PYG{p}{):}
+                      \PYG{k}{return} \PYG{k+kc}{True}
+          \PYG{k}{except} \PYG{p}{(}\PYG{n+ne}{FileNotFoundError}\PYG{p}{,} \PYG{n+ne}{PermissionError}\PYG{p}{,} \PYG{n+ne}{SyntaxError}\PYG{p}{):}
+              \PYG{k}{return} \PYG{k+kc}{True}
+          \PYG{k}{except} \PYG{n+ne}{Exception}\PYG{p}{:}
+              \PYG{k}{pass}
+  \PYG{k}{return} \PYG{k+kc}{False}
+\end{Verbatim}

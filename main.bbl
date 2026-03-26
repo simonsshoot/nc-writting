@@ -1,0 +1,756 @@
+%% BioMed_Central_Bib_Style_v1.01
+
+\begin{thebibliography}{41}
+% BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \doiurl  \undefined \def \doiurl#1{\url{https://doi.org/#1}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\bibcommenthead
+\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
+\ifx \botherref \undefined \def \botherref #1{#1}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
+\ifx \bbook \undefined \def \bbook#1{#1}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\ifx \endbibitem  \undefined \def \endbibitem {}\fi
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\csname PreBibitemsHook\endcsname
+
+%%% 1
+\bibitem[\protect\citeauthoryear{Fang et~al.}{2025}]{fang2025comprehensivesurveyselfevolvingai}
+\begin{botherref}
+\oauthor{\bsnm{Fang}, \binits{J.}},
+\oauthor{\bsnm{Peng}, \binits{Y.}},
+\oauthor{\bsnm{Zhang}, \binits{X.}},
+\oauthor{\bsnm{Wang}, \binits{Y.}},
+\oauthor{\bsnm{Yi}, \binits{X.}},
+\oauthor{\bsnm{Zhang}, \binits{G.}},
+\oauthor{\bsnm{Xu}, \binits{Y.}},
+\oauthor{\bsnm{Wu}, \binits{B.}},
+\oauthor{\bsnm{Liu}, \binits{S.}},
+\oauthor{\bsnm{Li}, \binits{Z.}},
+\oauthor{\bsnm{Ren}, \binits{Z.}},
+\oauthor{\bsnm{Aletras}, \binits{N.}},
+\oauthor{\bsnm{Wang}, \binits{X.}},
+\oauthor{\bsnm{Zhou}, \binits{H.}},
+\oauthor{\bsnm{Meng}, \binits{Z.}}:
+A Comprehensive Survey of Self-Evolving AI Agents: A New Paradigm Bridging Foundation Models and Lifelong Agentic Systems
+(2025).
+\url{https://arxiv.org/abs/2508.07407}
+\end{botherref}
+\endbibitem
+
+%%% 2
+\bibitem[\protect\citeauthoryear{Gao et~al.}{2025}]{gao2025evovlesurvey}
+\begin{botherref}
+\oauthor{\bsnm{Gao}, \binits{H.-a.}},
+\oauthor{\bsnm{Geng}, \binits{J.}},
+\oauthor{\bsnm{Hua}, \binits{W.}},
+\oauthor{\bsnm{Hu}, \binits{M.}},
+\oauthor{\bsnm{Juan}, \binits{X.}},
+\oauthor{\bsnm{Liu}, \binits{H.}},
+\oauthor{\bsnm{Liu}, \binits{S.}},
+\oauthor{\bsnm{Qiu}, \binits{J.}},
+\oauthor{\bsnm{Qi}, \binits{X.}},
+\oauthor{\bsnm{Wu}, \binits{Y.}}, et al.:
+A survey of self-evolving agents: On path to artificial super intelligence.
+arXiv preprint arXiv:2507.21046
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 3
+\bibitem[\protect\citeauthoryear{Shahriar et~al.}{2025}]{shahriar2025survey}
+\begin{botherref}
+\oauthor{\bsnm{Shahriar}, \binits{A.}},
+\oauthor{\bsnm{Rahman}, \binits{M.N.}},
+\oauthor{\bsnm{Ahmed}, \binits{S.}},
+\oauthor{\bsnm{Sadeque}, \binits{F.}},
+\oauthor{\bsnm{Parvez}, \binits{M.R.}}:
+A survey on agentic security: Applications, threats and defenses.
+arXiv preprint arXiv:2510.06445
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 4
+\bibitem[\protect\citeauthoryear{Yu et~al.}{2025}]{yu2025finmem}
+\begin{botherref}
+\oauthor{\bsnm{Yu}, \binits{Y.}},
+\oauthor{\bsnm{Li}, \binits{H.}},
+\oauthor{\bsnm{Chen}, \binits{Z.}},
+\oauthor{\bsnm{Jiang}, \binits{Y.}},
+\oauthor{\bsnm{Li}, \binits{Y.}},
+\oauthor{\bsnm{Suchow}, \binits{J.W.}},
+\oauthor{\bsnm{Zhang}, \binits{D.}},
+\oauthor{\bsnm{Khashanah}, \binits{K.}}:
+Finmem: A performance-enhanced llm trading agent with layered memory and character design.
+IEEE Transactions on Big Data
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 5
+\bibitem[\protect\citeauthoryear{Yang et~al.}{2024}]{yang2024llmpsychology}
+\begin{botherref}
+\oauthor{\bsnm{Yang}, \binits{Q.}},
+\oauthor{\bsnm{Wang}, \binits{Z.}},
+\oauthor{\bsnm{Chen}, \binits{H.}},
+\oauthor{\bsnm{Wang}, \binits{S.}},
+\oauthor{\bsnm{Pu}, \binits{Y.}},
+\oauthor{\bsnm{Gao}, \binits{X.}},
+\oauthor{\bsnm{Huang}, \binits{W.}},
+\oauthor{\bsnm{Song}, \binits{S.}},
+\oauthor{\bsnm{Huang}, \binits{G.}}:
+Llm agents for psychology: A study on gamified assessments.
+arXiv preprint arXiv:2402.12326
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 6
+\bibitem[\protect\citeauthoryear{Gur et~al.}{2023}]{gur2023webagent}
+\begin{botherref}
+\oauthor{\bsnm{Gur}, \binits{I.}},
+\oauthor{\bsnm{Furuta}, \binits{H.}},
+\oauthor{\bsnm{Huang}, \binits{A.}},
+\oauthor{\bsnm{Safdari}, \binits{M.}},
+\oauthor{\bsnm{Matsuo}, \binits{Y.}},
+\oauthor{\bsnm{Eck}, \binits{D.}},
+\oauthor{\bsnm{Faust}, \binits{A.}}:
+A real-world webagent with planning, long context understanding, and program synthesis.
+arXiv preprint arXiv:2307.12856
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 7
+\bibitem[\protect\citeauthoryear{Yuan et~al.}{2024}]{yuan2024rjudge}
+\begin{botherref}
+\oauthor{\bsnm{Yuan}, \binits{T.}},
+\oauthor{\bsnm{He}, \binits{Z.}},
+\oauthor{\bsnm{Dong}, \binits{L.}},
+\oauthor{\bsnm{Wang}, \binits{Y.}},
+\oauthor{\bsnm{Zhao}, \binits{R.}},
+\oauthor{\bsnm{Xia}, \binits{T.}},
+\oauthor{\bsnm{Xu}, \binits{L.}},
+\oauthor{\bsnm{Zhou}, \binits{B.}},
+\oauthor{\bsnm{Li}, \binits{F.}},
+\oauthor{\bsnm{Zhang}, \binits{Z.}}, et al.:
+R-judge: Benchmarking safety risk awareness for llm agents.
+arXiv preprint arXiv:2401.10019
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 8
+\bibitem[\protect\citeauthoryear{Han et~al.}{2025}]{han2025dme}
+\begin{bchapter}
+\bauthor{\bsnm{Han}, \binits{W.}},
+\bauthor{\bsnm{Guo}, \binits{D.}},
+\bauthor{\bsnm{Xu}, \binits{C.-Z.}},
+\bauthor{\bsnm{Shen}, \binits{J.}}:
+\bctitle{Dme-driver: Integrating human decision logic and 3d scene perception in autonomous driving}.
+In: \bbtitle{Proceedings of the AAAI Conference on Artificial Intelligence},
+vol. \bseriesno{39},
+pp. \bfpage{3347}--\blpage{3355}
+(\byear{2025})
+\end{bchapter}
+\endbibitem
+
+%%% 9
+\bibitem[\protect\citeauthoryear{Mao et~al.}{2023}]{mao2023driving}
+\begin{botherref}
+\oauthor{\bsnm{Mao}, \binits{J.}},
+\oauthor{\bsnm{Ye}, \binits{J.}},
+\oauthor{\bsnm{Qian}, \binits{Y.}},
+\oauthor{\bsnm{Pavone}, \binits{M.}},
+\oauthor{\bsnm{Wang}, \binits{Y.}}:
+A language agent for autonomous driving.
+arXiv preprint arXiv:2311.10813
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 10
+\bibitem[\protect\citeauthoryear{Hua et~al.}{2024}]{hua2024trustagent}
+\begin{botherref}
+\oauthor{\bsnm{Hua}, \binits{W.}},
+\oauthor{\bsnm{Yang}, \binits{X.}},
+\oauthor{\bsnm{Jin}, \binits{M.}},
+\oauthor{\bsnm{Li}, \binits{Z.}},
+\oauthor{\bsnm{Cheng}, \binits{W.}},
+\oauthor{\bsnm{Tang}, \binits{R.}},
+\oauthor{\bsnm{Zhang}, \binits{Y.}}:
+Trustagent: Towards safe and trustworthy llm-based agents.
+arXiv preprint arXiv:2402.01586
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 11
+\bibitem[\protect\citeauthoryear{Xiang et~al.}{2024}]{xiang2024guardagent}
+\begin{botherref}
+\oauthor{\bsnm{Xiang}, \binits{Z.}},
+\oauthor{\bsnm{Zheng}, \binits{L.}},
+\oauthor{\bsnm{Li}, \binits{Y.}},
+\oauthor{\bsnm{Hong}, \binits{J.}},
+\oauthor{\bsnm{Li}, \binits{Q.}},
+\oauthor{\bsnm{Xie}, \binits{H.}},
+\oauthor{\bsnm{Zhang}, \binits{J.}},
+\oauthor{\bsnm{Xiong}, \binits{Z.}},
+\oauthor{\bsnm{Xie}, \binits{C.}},
+\oauthor{\bsnm{Yang}, \binits{C.}}, et al.:
+Guardagent: Safeguard llm agents by a guard agent via knowledge-enabled reasoning.
+arXiv preprint arXiv:2406.09187
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 12
+\bibitem[\protect\citeauthoryear{Tsai and Bagdasarian}{2025}]{tsai2025contextual}
+\begin{bchapter}
+\bauthor{\bsnm{Tsai}, \binits{L.}},
+\bauthor{\bsnm{Bagdasarian}, \binits{E.}}:
+\bctitle{Contextual agent security: A policy for every purpose}.
+In: \bbtitle{Proceedings of the 2025 Workshop on Hot Topics in Operating Systems},
+pp. \bfpage{8}--\blpage{17}
+(\byear{2025})
+\end{bchapter}
+\endbibitem
+
+%%% 13
+\bibitem[\protect\citeauthoryear{Sadhu et~al.}{2024}]{sadhu2024athena}
+\begin{bchapter}
+\bauthor{\bsnm{Sadhu}, \binits{T.}},
+\bauthor{\bsnm{Pesaranghader}, \binits{A.}},
+\bauthor{\bsnm{Chen}, \binits{Y.}},
+\bauthor{\bsnm{Yi}, \binits{D.H.}}:
+\bctitle{Athena: Safe autonomous agents with verbal contrastive learning}.
+In: \bbtitle{Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track},
+pp. \bfpage{1121}--\blpage{1130}
+(\byear{2024})
+\end{bchapter}
+\endbibitem
+
+%%% 14
+\bibitem[\protect\citeauthoryear{Shao et~al.}{2025}]{shao2025misevovle}
+\begin{botherref}
+\oauthor{\bsnm{Shao}, \binits{S.}},
+\oauthor{\bsnm{Ren}, \binits{Q.}},
+\oauthor{\bsnm{Qian}, \binits{C.}},
+\oauthor{\bsnm{Wei}, \binits{B.}},
+\oauthor{\bsnm{Guo}, \binits{D.}},
+\oauthor{\bsnm{Yang}, \binits{J.}},
+\oauthor{\bsnm{Song}, \binits{X.}},
+\oauthor{\bsnm{Zhang}, \binits{L.}},
+\oauthor{\bsnm{Zhang}, \binits{W.}},
+\oauthor{\bsnm{Liu}, \binits{D.}}, et al.:
+Your agent may misevolve: Emergent risks in self-evolving llm agents.
+arXiv preprint arXiv:2509.26354
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 15
+\bibitem[\protect\citeauthoryear{Han et~al.}{2025}]{han2025alignment}
+\begin{botherref}
+\oauthor{\bsnm{Han}, \binits{S.}},
+\oauthor{\bsnm{Liu}, \binits{J.}},
+\oauthor{\bsnm{Su}, \binits{Y.}},
+\oauthor{\bsnm{Duan}, \binits{W.}},
+\oauthor{\bsnm{Liu}, \binits{X.}},
+\oauthor{\bsnm{Xie}, \binits{C.}},
+\oauthor{\bsnm{Bansal}, \binits{M.}},
+\oauthor{\bsnm{Ding}, \binits{M.}},
+\oauthor{\bsnm{Zhang}, \binits{L.}},
+\oauthor{\bsnm{Yao}, \binits{H.}}:
+Alignment tipping process: How self-evolution pushes llm agents off the rails.
+arXiv preprint arXiv:2510.04860
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 16
+\bibitem[\protect\citeauthoryear{Shen}{2024}]{shen2024llm}
+\begin{botherref}
+\oauthor{\bsnm{Shen}, \binits{Z.}}:
+Llm with tools: A survey.
+arXiv preprint arXiv:2409.18807
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 17
+\bibitem[\protect\citeauthoryear{Anupam et~al.}{2025}]{anupam2025browserarena}
+\begin{botherref}
+\oauthor{\bsnm{Anupam}, \binits{S.}},
+\oauthor{\bsnm{Brown}, \binits{D.}},
+\oauthor{\bsnm{Li}, \binits{S.}},
+\oauthor{\bsnm{Wong}, \binits{E.}},
+\oauthor{\bsnm{Hassani}, \binits{H.}},
+\oauthor{\bsnm{Bastani}, \binits{O.}}:
+Browserarena: Evaluating llm agents on real-world web navigation tasks.
+arXiv preprint arXiv:2510.02418
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 18
+\bibitem[\protect\citeauthoryear{Ying et~al.}{2025}]{ying2025agentsafe}
+\begin{botherref}
+\oauthor{\bsnm{Ying}, \binits{Z.}},
+\oauthor{\bsnm{Wang}, \binits{L.}},
+\oauthor{\bsnm{Xiao}, \binits{Y.}},
+\oauthor{\bsnm{Wang}, \binits{J.}},
+\oauthor{\bsnm{Ma}, \binits{Y.}},
+\oauthor{\bsnm{Guo}, \binits{J.}},
+\oauthor{\bsnm{Yin}, \binits{Z.}},
+\oauthor{\bsnm{Zhang}, \binits{M.}},
+\oauthor{\bsnm{Liu}, \binits{A.}},
+\oauthor{\bsnm{Liu}, \binits{X.}}:
+Agentsafe: Benchmarking the safety of embodied agents on hazardous instructions.
+arXiv preprint arXiv:2506.14697
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 19
+\bibitem[\protect\citeauthoryear{Qiu et~al.}{2025}]{qiu2025alita}
+\begin{botherref}
+\oauthor{\bsnm{Qiu}, \binits{J.}},
+\oauthor{\bsnm{Qi}, \binits{X.}},
+\oauthor{\bsnm{Zhang}, \binits{T.}},
+\oauthor{\bsnm{Juan}, \binits{X.}},
+\oauthor{\bsnm{Guo}, \binits{J.}},
+\oauthor{\bsnm{Lu}, \binits{Y.}},
+\oauthor{\bsnm{Wang}, \binits{Y.}},
+\oauthor{\bsnm{Yao}, \binits{Z.}},
+\oauthor{\bsnm{Ren}, \binits{Q.}},
+\oauthor{\bsnm{Jiang}, \binits{X.}}, et al.:
+Alita: Generalist agent enabling scalable agentic reasoning with minimal predefinition and maximal self-evolution.
+arXiv preprint arXiv:2505.20286
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 20
+\bibitem[\protect\citeauthoryear{Wang et~al.}{2023}]{wang2023voyager}
+\begin{botherref}
+\oauthor{\bsnm{Wang}, \binits{G.}},
+\oauthor{\bsnm{Xie}, \binits{Y.}},
+\oauthor{\bsnm{Jiang}, \binits{Y.}},
+\oauthor{\bsnm{Mandlekar}, \binits{A.}},
+\oauthor{\bsnm{Xiao}, \binits{C.}},
+\oauthor{\bsnm{Zhu}, \binits{Y.}},
+\oauthor{\bsnm{Fan}, \binits{L.}},
+\oauthor{\bsnm{Anandkumar}, \binits{A.}}:
+Voyager: An open-ended embodied agent with large language models.
+arXiv preprint arXiv:2305.16291
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 21
+\bibitem[\protect\citeauthoryear{Liu et~al.}{2024}]{liu2024autodan}
+\begin{botherref}
+\oauthor{\bsnm{Liu}, \binits{X.}},
+\oauthor{\bsnm{Li}, \binits{P.}},
+\oauthor{\bsnm{Suh}, \binits{E.}},
+\oauthor{\bsnm{Vorobeychik}, \binits{Y.}},
+\oauthor{\bsnm{Mao}, \binits{Z.}},
+\oauthor{\bsnm{Jha}, \binits{S.}},
+\oauthor{\bsnm{McDaniel}, \binits{P.}},
+\oauthor{\bsnm{Sun}, \binits{H.}},
+\oauthor{\bsnm{Li}, \binits{B.}},
+\oauthor{\bsnm{Xiao}, \binits{C.}}:
+Autodan-turbo: A lifelong agent for strategy self-exploration to jailbreak llms.
+arXiv preprint arXiv:2410.05295
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 22
+\bibitem[\protect\citeauthoryear{Ruan et~al.}{2023}]{ruan2023identifying}
+\begin{botherref}
+\oauthor{\bsnm{Ruan}, \binits{Y.}},
+\oauthor{\bsnm{Dong}, \binits{H.}},
+\oauthor{\bsnm{Wang}, \binits{A.}},
+\oauthor{\bsnm{Pitis}, \binits{S.}},
+\oauthor{\bsnm{Zhou}, \binits{Y.}},
+\oauthor{\bsnm{Ba}, \binits{J.}},
+\oauthor{\bsnm{Dubois}, \binits{Y.}},
+\oauthor{\bsnm{Maddison}, \binits{C.J.}},
+\oauthor{\bsnm{Hashimoto}, \binits{T.}}:
+Identifying the risks of lm agents with an lm-emulated sandbox.
+arXiv preprint arXiv:2309.15817
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 23
+\bibitem[\protect\citeauthoryear{Luo et~al.}{2025}]{luo2025agentauditor}
+\begin{botherref}
+\oauthor{\bsnm{Luo}, \binits{H.}},
+\oauthor{\bsnm{Dai}, \binits{S.}},
+\oauthor{\bsnm{Ni}, \binits{C.}},
+\oauthor{\bsnm{Li}, \binits{X.}},
+\oauthor{\bsnm{Zhang}, \binits{G.}},
+\oauthor{\bsnm{Wang}, \binits{K.}},
+\oauthor{\bsnm{Liu}, \binits{T.}},
+\oauthor{\bsnm{Salam}, \binits{H.}}:
+AgentAuditor: Human-Level Safety and Security Evaluation for LLM Agents
+(2025).
+\url{https://arxiv.org/abs/2506.00641}
+\end{botherref}
+\endbibitem
+
+%%% 24
+\bibitem[\protect\citeauthoryear{Andriushchenko et~al.}{2025}]{andriushchenko2025agentharm}
+\begin{botherref}
+\oauthor{\bsnm{Andriushchenko}, \binits{M.}},
+\oauthor{\bsnm{Souly}, \binits{A.}},
+\oauthor{\bsnm{Dziemian}, \binits{M.}},
+\oauthor{\bsnm{Duenas}, \binits{D.}},
+\oauthor{\bsnm{Lin}, \binits{M.}},
+\oauthor{\bsnm{Wang}, \binits{J.}},
+\oauthor{\bsnm{Hendrycks}, \binits{D.}},
+\oauthor{\bsnm{Zou}, \binits{A.}},
+\oauthor{\bsnm{Kolter}, \binits{Z.}},
+\oauthor{\bsnm{Fredrikson}, \binits{M.}},
+\oauthor{\bsnm{Winsor}, \binits{E.}},
+\oauthor{\bsnm{Wynne}, \binits{J.}},
+\oauthor{\bsnm{Gal}, \binits{Y.}},
+\oauthor{\bsnm{Davies}, \binits{X.}}:
+AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents
+(2025).
+\url{https://arxiv.org/abs/2410.09024}
+\end{botherref}
+\endbibitem
+
+%%% 25
+\bibitem[\protect\citeauthoryear{Yin et~al.}{2024}]{yin2024safeagentbench}
+\begin{botherref}
+\oauthor{\bsnm{Yin}, \binits{S.}},
+\oauthor{\bsnm{Pang}, \binits{X.}},
+\oauthor{\bsnm{Ding}, \binits{Y.}},
+\oauthor{\bsnm{Chen}, \binits{M.}},
+\oauthor{\bsnm{Bi}, \binits{Y.}},
+\oauthor{\bsnm{Xiong}, \binits{Y.}},
+\oauthor{\bsnm{Huang}, \binits{W.}},
+\oauthor{\bsnm{Xiang}, \binits{Z.}},
+\oauthor{\bsnm{Shao}, \binits{J.}},
+\oauthor{\bsnm{Chen}, \binits{S.}}:
+Safeagentbench: A benchmark for safe task planning of embodied llm agents.
+arXiv preprint arXiv:2412.13178
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 26
+\bibitem[\protect\citeauthoryear{Zhang et~al.}{2024}]{zhang2024asb}
+\begin{botherref}
+\oauthor{\bsnm{Zhang}, \binits{Z.}},
+\oauthor{\bsnm{Cui}, \binits{S.}},
+\oauthor{\bsnm{Lu}, \binits{Y.}},
+\oauthor{\bsnm{Zhou}, \binits{J.}},
+\oauthor{\bsnm{Yang}, \binits{J.}},
+\oauthor{\bsnm{Wang}, \binits{H.}},
+\oauthor{\bsnm{Huang}, \binits{M.}}:
+Agent-safetybench: Evaluating the safety of llm agents.
+arXiv preprint arXiv:2412.14470
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 27
+\bibitem[\protect\citeauthoryear{Luo et~al.}{2025}]{luo2025agrail}
+\begin{botherref}
+\oauthor{\bsnm{Luo}, \binits{W.}},
+\oauthor{\bsnm{Dai}, \binits{S.}},
+\oauthor{\bsnm{Liu}, \binits{X.}},
+\oauthor{\bsnm{Banerjee}, \binits{S.}},
+\oauthor{\bsnm{Sun}, \binits{H.}},
+\oauthor{\bsnm{Chen}, \binits{M.}},
+\oauthor{\bsnm{Xiao}, \binits{C.}}:
+Agrail: A lifelong agent guardrail with effective and adaptive safety detection.
+arXiv preprint arXiv:2502.11448
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 28
+\bibitem[\protect\citeauthoryear{Huang et~al.}{2025}]{huang2025rzero}
+\begin{botherref}
+\oauthor{\bsnm{Huang}, \binits{C.}},
+\oauthor{\bsnm{Yu}, \binits{W.}},
+\oauthor{\bsnm{Wang}, \binits{X.}},
+\oauthor{\bsnm{Zhang}, \binits{H.}},
+\oauthor{\bsnm{Li}, \binits{Z.}},
+\oauthor{\bsnm{Li}, \binits{R.}},
+\oauthor{\bsnm{Huang}, \binits{J.}},
+\oauthor{\bsnm{Mi}, \binits{H.}},
+\oauthor{\bsnm{Yu}, \binits{D.}}:
+R-zero: Self-evolving reasoning llm from zero data.
+arXiv preprint arXiv:2508.05004
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 29
+\bibitem[\protect\citeauthoryear{Zhou et~al.}{2025}]{zhou2025safeagent}
+\begin{botherref}
+\oauthor{\bsnm{Zhou}, \binits{X.}},
+\oauthor{\bsnm{Wang}, \binits{W.}},
+\oauthor{\bsnm{Lu}, \binits{L.}},
+\oauthor{\bsnm{Shi}, \binits{J.}},
+\oauthor{\bsnm{Tie}, \binits{G.}},
+\oauthor{\bsnm{Xu}, \binits{Y.}},
+\oauthor{\bsnm{Chen}, \binits{L.}},
+\oauthor{\bsnm{Zhou}, \binits{P.}},
+\oauthor{\bsnm{Gong}, \binits{N.Z.}},
+\oauthor{\bsnm{Sun}, \binits{L.}}:
+SafeAgent: Safeguarding LLM Agents via an Automated Risk Simulator
+(2025).
+\url{https://arxiv.org/abs/2505.17735}
+\end{botherref}
+\endbibitem
+
+%%% 30
+\bibitem[\protect\citeauthoryear{Sun et~al.}{2025}]{sun2025seagent}
+\begin{botherref}
+\oauthor{\bsnm{Sun}, \binits{Z.}},
+\oauthor{\bsnm{Liu}, \binits{Z.}},
+\oauthor{\bsnm{Zang}, \binits{Y.}},
+\oauthor{\bsnm{Cao}, \binits{Y.}},
+\oauthor{\bsnm{Dong}, \binits{X.}},
+\oauthor{\bsnm{Wu}, \binits{T.}},
+\oauthor{\bsnm{Lin}, \binits{D.}},
+\oauthor{\bsnm{Wang}, \binits{J.}}:
+Seagent: Self-evolving computer use agent with autonomous learning from experience.
+arXiv preprint arXiv:2508.04700
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 31
+\bibitem[\protect\citeauthoryear{Zhou et~al.}{2025}]{zhou2025selfchallenging}
+\begin{botherref}
+\oauthor{\bsnm{Zhou}, \binits{Y.}},
+\oauthor{\bsnm{Levine}, \binits{S.}},
+\oauthor{\bsnm{Weston}, \binits{J.}},
+\oauthor{\bsnm{Li}, \binits{X.}},
+\oauthor{\bsnm{Sukhbaatar}, \binits{S.}}:
+Self-challenging language model agents.
+arXiv preprint arXiv:2506.01716
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 32
+\bibitem[\protect\citeauthoryear{Zhang et~al.}{2025}]{zhang2025agentexperience}
+\begin{botherref}
+\oauthor{\bsnm{Zhang}, \binits{K.}},
+\oauthor{\bsnm{Chen}, \binits{X.}},
+\oauthor{\bsnm{Liu}, \binits{B.}},
+\oauthor{\bsnm{Xue}, \binits{T.}},
+\oauthor{\bsnm{Liao}, \binits{Z.}},
+\oauthor{\bsnm{Liu}, \binits{Z.}},
+\oauthor{\bsnm{Wang}, \binits{X.}},
+\oauthor{\bsnm{Ning}, \binits{Y.}},
+\oauthor{\bsnm{Chen}, \binits{Z.}},
+\oauthor{\bsnm{Fu}, \binits{X.}}, et al.:
+Agent learning via early experience.
+arXiv preprint arXiv:2510.08558
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 33
+\bibitem[\protect\citeauthoryear{Bo et~al.}{2025}]{bo2025agentic}
+\begin{botherref}
+\oauthor{\bsnm{Bo}, \binits{W.}},
+\oauthor{\bsnm{Zhang}, \binits{S.}},
+\oauthor{\bsnm{Sun}, \binits{Y.}},
+\oauthor{\bsnm{Wu}, \binits{J.}},
+\oauthor{\bsnm{Xie}, \binits{Q.}},
+\oauthor{\bsnm{Tan}, \binits{X.}},
+\oauthor{\bsnm{Chen}, \binits{K.}},
+\oauthor{\bsnm{He}, \binits{W.}},
+\oauthor{\bsnm{Li}, \binits{X.}},
+\oauthor{\bsnm{Zhao}, \binits{N.}}, et al.:
+Agentic learner with grow-and-refine multimodal semantic memory.
+arXiv preprint arXiv:2511.21678
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 34
+\bibitem[\protect\citeauthoryear{Shi et~al.}{2025}]{shi2025tool}
+\begin{bchapter}
+\bauthor{\bsnm{Shi}, \binits{Z.}},
+\bauthor{\bsnm{Gao}, \binits{S.}},
+\bauthor{\bsnm{Yan}, \binits{L.}},
+\bauthor{\bsnm{Feng}, \binits{Y.}},
+\bauthor{\bsnm{Chen}, \binits{X.}},
+\bauthor{\bsnm{Chen}, \binits{Z.}},
+\bauthor{\bsnm{Yin}, \binits{D.}},
+\bauthor{\bsnm{Verberne}, \binits{S.}},
+\bauthor{\bsnm{Ren}, \binits{Z.}}:
+\bctitle{Tool learning in the wild: Empowering language models as automatic tool agents}.
+In: \bbtitle{Proceedings of the ACM on Web Conference 2025},
+pp. \bfpage{2222}--\blpage{2237}
+(\byear{2025})
+\end{bchapter}
+\endbibitem
+
+%%% 35
+\bibitem[\protect\citeauthoryear{Qu et~al.}{2024}]{qu2024exploration}
+\begin{botherref}
+\oauthor{\bsnm{Qu}, \binits{C.}},
+\oauthor{\bsnm{Dai}, \binits{S.}},
+\oauthor{\bsnm{Wei}, \binits{X.}},
+\oauthor{\bsnm{Cai}, \binits{H.}},
+\oauthor{\bsnm{Wang}, \binits{S.}},
+\oauthor{\bsnm{Yin}, \binits{D.}},
+\oauthor{\bsnm{Xu}, \binits{J.}},
+\oauthor{\bsnm{Wen}, \binits{J.-R.}}:
+From exploration to mastery: Enabling llms to master tools via self-driven interactions.
+arXiv preprint arXiv:2410.08197
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 36
+\bibitem[\protect\citeauthoryear{Zhang et~al.}{2024}]{zhang2024aflow}
+\begin{botherref}
+\oauthor{\bsnm{Zhang}, \binits{J.}},
+\oauthor{\bsnm{Xiang}, \binits{J.}},
+\oauthor{\bsnm{Yu}, \binits{Z.}},
+\oauthor{\bsnm{Teng}, \binits{F.}},
+\oauthor{\bsnm{Chen}, \binits{X.}},
+\oauthor{\bsnm{Chen}, \binits{J.}},
+\oauthor{\bsnm{Zhuge}, \binits{M.}},
+\oauthor{\bsnm{Cheng}, \binits{X.}},
+\oauthor{\bsnm{Hong}, \binits{S.}},
+\oauthor{\bsnm{Wang}, \binits{J.}}, et al.:
+Aflow: Automating agentic workflow generation.
+arXiv preprint arXiv:2410.10762
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 37
+\bibitem[\protect\citeauthoryear{Wang et~al.}{2025}]{wang2025evoagentx}
+\begin{bchapter}
+\bauthor{\bsnm{Wang}, \binits{Y.}},
+\bauthor{\bsnm{Liu}, \binits{S.}},
+\bauthor{\bsnm{Fang}, \binits{J.}},
+\bauthor{\bsnm{Meng}, \binits{Z.}}:
+\bctitle{Evoagentx: An automated framework for evolving agentic workflows}.
+In: \bbtitle{Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing: System Demonstrations},
+pp. \bfpage{643}--\blpage{655}
+(\byear{2025})
+\end{bchapter}
+\endbibitem
+
+%%% 38
+\bibitem[\protect\citeauthoryear{Yu et~al.}{2025}]{yu2025survey}
+\begin{bchapter}
+\bauthor{\bsnm{Yu}, \binits{M.}},
+\bauthor{\bsnm{Meng}, \binits{F.}},
+\bauthor{\bsnm{Zhou}, \binits{X.}},
+\bauthor{\bsnm{Wang}, \binits{S.}},
+\bauthor{\bsnm{Mao}, \binits{J.}},
+\bauthor{\bsnm{Pan}, \binits{L.}},
+\bauthor{\bsnm{Chen}, \binits{T.}},
+\bauthor{\bsnm{Wang}, \binits{K.}},
+\bauthor{\bsnm{Li}, \binits{X.}},
+\bauthor{\bsnm{Zhang}, \binits{Y.}}, \betal:
+\bctitle{A survey on trustworthy llm agents: Threats and countermeasures}.
+In: \bbtitle{Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V. 2},
+pp. \bfpage{6216}--\blpage{6226}
+(\byear{2025})
+\end{bchapter}
+\endbibitem
+
+%%% 39
+\bibitem[\protect\citeauthoryear{Peng et~al.}{2025}]{peng2025correct}
+\begin{botherref}
+\oauthor{\bsnm{Peng}, \binits{Y.}},
+\oauthor{\bsnm{Song}, \binits{J.}},
+\oauthor{\bsnm{Li}, \binits{L.}},
+\oauthor{\bsnm{Yang}, \binits{X.}},
+\oauthor{\bsnm{Christodorescu}, \binits{M.}},
+\oauthor{\bsnm{Mangal}, \binits{R.}},
+\oauthor{\bsnm{Pasareanu}, \binits{C.}},
+\oauthor{\bsnm{Zheng}, \binits{H.}},
+\oauthor{\bsnm{Chen}, \binits{B.}}:
+When" correct" is not safe: Can we trust functionally correct patches generated by code agents?
+arXiv preprint arXiv:2510.17862
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 40
+\bibitem[\protect\citeauthoryear{MITRE}{2025}]{MITRE_CWE_2025}
+\begin{botherref}
+\oauthor{\bsnm{MITRE}}:
+{CWE-699: Software Development}.
+[Online].
+Accessed: 2025-09-24
+(2025).
+\url{https://cwe.mitre.org/data/definitions/699.html}
+\end{botherref}
+\endbibitem
+
+%%% 41
+\bibitem[\protect\citeauthoryear{Kolve et~al.}{2022}]{kolve2022ai2thor}
+\begin{botherref}
+\oauthor{\bsnm{Kolve}, \binits{E.}},
+\oauthor{\bsnm{Mottaghi}, \binits{R.}},
+\oauthor{\bsnm{Han}, \binits{W.}},
+\oauthor{\bsnm{VanderBilt}, \binits{E.}},
+\oauthor{\bsnm{Weihs}, \binits{L.}},
+\oauthor{\bsnm{Herrasti}, \binits{A.}},
+\oauthor{\bsnm{Deitke}, \binits{M.}},
+\oauthor{\bsnm{Ehsani}, \binits{K.}},
+\oauthor{\bsnm{Gordon}, \binits{D.}},
+\oauthor{\bsnm{Zhu}, \binits{Y.}},
+\oauthor{\bsnm{Kembhavi}, \binits{A.}},
+\oauthor{\bsnm{Gupta}, \binits{A.}},
+\oauthor{\bsnm{Farhadi}, \binits{A.}}:
+AI2-THOR: An Interactive 3D Environment for Visual AI
+(2022).
+\url{https://arxiv.org/abs/1712.05474}
+\end{botherref}
+\endbibitem
+
+\end{thebibliography}

@@ -1,0 +1,23 @@
+\section{Phenomenon of VGT}
+\label{appendix:VGT}
+During the self-evolution process, we consider the possibility of agent misevolution. Han proposes and defines ``Alignment Tipping Process (ATP)'', revealing that during continuous interaction between agent and its environment, behavioral strategies undergo a change, gradually shifting to a state dominated by immediate environmental feedback and selfish strategies~\citep{han2025alignment}. Shao directly points out that at the level of tool evolution, agents may create tools containing vulnerabilities (susceptibility to injection attacks, insufficient privacy protection) during the cycle of tool creation and reuse~\citep{shao2025misevovle}. Peng also finds that code agents tend to generate Functionally Correct yet Vulnerable (FCV) patches~\citep{peng2025correct}. Therefore, we also ponder: \emph{while agents can self-evolve guardrail tools, might these security tools themselves also harbor security vulnerabilities?}
+
+The CWE Top 25 (Common Weakness Enumeration), published by MITRE~\citep{MITRE_CWE_2025}, is a compilation of security vulnerabilities in code and software tools. Following Peng's work~\citep{peng2025correct}, we select 10 representative vulnerabilities and prominent prompts are given in the aim of preventing when agents are creating guardrail tools. Partial prompts are as follows:
+\begin{promptbox}{Prompts For Preventing Vulnerabilities In Guardrail Tools}
+**Note:**
+Ensure the fixed tool itself should not have the following CWE security risks:
+1. Out-of-bounds writes
+2. Accessing resources using incompatible types (type obfuscation)
+3. Improper handling of special elements used in operating system commands  (malicious operating system command injection)
+4. Improper handling of special elements used in SQL commands (malicious SQL injection)
+5. Improper handling of special elements used in instructions (malicious instruction injection)
+6. Lack of authentication for critical functions
+7. Bypassing authorization via user-controlled keys
+8. URL redirection to untrusted websites (open redirection)
+9. Inserting sensitive information into log files
+10. Plaintext storage of sensitive information
+\end{promptbox}
+
+To prevent the tool evolution process from going astray, we introduce AuditorAgent to audit the evolved tools, conducting independent audits from the perspective of aforementioned ten CWE vulnerabilities. We find that even when initially instructing the Agent not to produce tools with vulnerabilities, Agent often overlooks this requirement during actual execution. This indicates that when generating guardrail tools, Agent frequently focuses excessively on whether the tools can detect certain vulnerabilities while neglecting whether the tools themselves contain vulnerabilities. This bears similarity to FCV, and we refer to this phenomenon as \emph{``vulnerabilities in guardrail tools (VGT).''}
+
+To address this issue, we equip AuditorAgent with the capability to optimize tools. If the audit reveals that a tool still contains a certain CWE vulnerability, AuditorAgent will optimize the tool from the perspective of that vulnerability and reexamine it. This audit-optimization process continues for up to three rounds. Only tools that pass the final inspection are added to the tool library, while tools that fail audits are discarded. As shown in Figure~\ref{fig:doubt_result}, our design of AuditorAgent effectively mitigates this phenomenon, with the vulnerability rate of tools generally decreasing by over 50\%.

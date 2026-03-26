@@ -1,0 +1,17 @@
+  def email_transmission_security_checker(query: str, action: str):
+    import re
+
+    q_sanitized = re.sub(r'\b(?:genetic|health|medical|personal|
+    private)\b',
+    '[SENSITIVE]', query.strip().lower())
+    act_sanitized = re.sub(r'\b(?:genetic|health|medical|personal|private)\b',
+    '[SENSITIVE]', action.strip().lower())
+
+    email_patterns = r'(?:email|send.*mail|transmit.*mail|forward.*mail)'
+    sensitive_patterns = r'\b(?:genetic|health|medical|personal|private)\b'
+
+    if re.search(email_patterns, act_sanitized) and (re.search(sensitive_patterns, q_sanitized) or re.search(sensitive_patterns, act_sanitized)):
+        security_indicators = r'\b(?:encrypt|secure|protected|tls|ssl|pgp|s/mime|verify)\b'
+        if not re.search(security_indicators, act_sanitized):
+            return True
+    return False

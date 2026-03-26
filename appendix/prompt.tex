@@ -1,0 +1,16 @@
+\section{Detailed Prompt}
+\label{appendix:prompt}
+% Below we provide the prompts of DEFEND framework. \ding{172} SimulationAgent: SimulationAgent is responsible for simulating the action that a real agent would take in response to a user query, prompt is SIMULATE\_AGENT\_PROMPT; \ding{173} AnalysisAgent: AnalysisAgent performs risk analysis and generates new tools if needed. Corresponding prompts are RISK\_ANALYSIS_PROMPT and TOOL\_PLAN\_PROMPT; \ding{174} FusionAgent: FusionAgent is responsible for retrieving and optimizing existing tools, prompts are TOOL\_SEARCH\_PROMPT and TOOL\_REUSE\_PROMPT; \ding{175} ExecutorAgent: ExecutorAgent executes the tool and action in a sandbox environment, prompts are SANDBOX\_TOOL\_PROMPT and SANDBOX\_ACTION\_PROMPT; \ding{176} AuditorAgent: AuditorAgent audits the tool's security, prompt are TOOL\_DOUBT\_PROMPT for newly generated tools and TOOL\_DOUBT\_OPTIMIZE\_PROMPT for optimized tools, the optimization of tools that fail the audit will be revised, prompt is TOOL\_DOUBT\_AUTO\_OPTIMIZE\_PROMPT, AuditorAgent will also perform a final decision, prompt is DOUBT\_DECISION\_PROMPT; \ding{177} RevisionAgent: RevisionAgent is responsible for revising the action if the final decision is unsafe, prompt is REFINE\_ACTION\_PROMPT. 
+
+% Prompts will not be given here since there are too many. We have provided detailed prompt content in the links: \href{https://github.com/simonsshoot/DEFEND/blob/gemini/prompts/base\_prompts.py}{Detailed Prompts}.
+
+\begin{enumerate}
+    \item \textbf{SimulationAgent}:SimulationAgent is responsible for simulating the action that a real agent would take in response to a user query, prompt is \texttt{SIMULATE\_AGENT\_PROMPT}.
+    \item \textbf{AnalysisAgent}: AnalysisAgent performs risk analysis and generates new tools if needed. Corresponding prompts are \texttt{RISK\_ANALYSIS\_PROMPT} and \texttt{TOOL\_PLAN\_PROMPT}.
+    \item \textbf{FusionAgent}: FusionAgent is responsible for retrieving and optimizing existing tools, prompts are \texttt{TOOL\_SEARCH\_PROMPT} and \texttt{TOOL\_REUSE\_PROMPT}.
+    \item \textbf{ExecutorAgent}: ExecutorAgent executes the tool and action in a sandbox environment, prompts are \texttt{SANDBOX\_TOOL\_PROMPT} and \texttt{SANDBOX\_ACTION\_PROMPT}.
+    \item \textbf{AuditorAgent}: AuditorAgent audits the tool's security, prompt are \texttt{TOOL\_DOUBT\_PROMPT} for newly generated tools and \texttt{TOOL\_DOUBT\_OPTIMIZE\_PROMPT} for optimized tools, the optimization of tools that fail the audit will be revised, prompt is \texttt{TOOL\_DOUBT\_AUTO\_OPTIMIZE\_PROMPT}, AuditorAgent will also perform a final decision, prompt is \texttt{DOUBT\_DECISION\_PROMPT}.
+    \item \textbf{RevisionAgent}: RevisionAgent is responsible for revising the action if the final decision is unsafe, prompt is \texttt{REFINE\_ACTION\_PROMPT}.
+\end{enumerate}
+
+Due to the large number of prompts, they are not listed here. The full prompt content is available at: \href{https://github.com/simonsshoot/DEFEND/blob/gemini/prompts/base\_prompts.py}{Detailed Prompts}.
