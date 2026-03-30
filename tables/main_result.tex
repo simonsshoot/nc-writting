@@ -1,0 +1,124 @@
+\begin{table*}[ht]
+\centering
+\caption{Results across three benchmarks and four backbone LLMs.
+\textbf{Bold} indicates the best, \underline{Underline} indicates the second.
+\textsuperscript{$\dagger$}ShieldAgent does not rely on a backbone LLM, its scores are identical across all groups.}
+\label{tab:main_results}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccccccc}
+\toprule
+&
+\multicolumn{4}{c}{\textbf{RJudge}} &
+\multicolumn{4}{c}{\textbf{AsseBench}} &
+\multicolumn{4}{c}{\textbf{AgentHarm}} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}\cmidrule(lr){10-13}
+\textbf{Method} &
+Acc & Prec & Rec & F1 &
+Acc & Prec & Rec & F1 &
+Acc & Prec & Rec & F1 \\
+\midrule
+
+% ── DeepSeek ──────────────────────────────────────────────────
+\multicolumn{13}{c}{\textit{Backbone LLM: DeepSeek}} \\[2pt]
+CoTSafe
+  & \underline{0.8091} & \underline{0.8575} & 0.7223 & 0.7815
+  & 0.6316 & 0.7629 & \underline{0.8578} & 0.7722
+  & 0.7666 & \underline{0.9007} & 0.5978 & 0.6915 \\
+ShieldAgent\textsuperscript{$\dagger$}
+  & 0.7863 & 0.7136 & \textbf{0.9934} & \underline{0.8318}
+  & 0.8046 & 0.8762 & 0.7532 & 0.8095
+  & 0.5286 & 0.6923 & 0.1029 & 0.1791 \\
+AGrail
+  & 0.5403 & 0.6488 & \underline{0.9168} & 0.7601
+  & \underline{0.8678} & \textbf{0.9213} & 0.8039 & \underline{0.8587}
+  & 0.6000 & 0.8214 & 0.3557 & 0.4964 \\
+GuardAgent
+  & 0.6935 & 0.7684 & 0.5037 & 0.6086
+  & 0.7259 & 0.6294 & \textbf{0.9240} & 0.7485
+  & \underline{0.7714} & 0.8992 & \underline{0.6114} & \underline{0.7281} \\
+\textbf{DEFEND}
+  & \textbf{0.9107} & \textbf{0.8982} & 0.9148 & \textbf{0.9065}
+  & \textbf{0.8868} & \underline{0.8974} & 0.8430 & \textbf{0.8690}
+  & \textbf{0.8800} & \textbf{0.9346} & \textbf{0.8171} & \textbf{0.8719} \\
+
+\midrule
+
+% ── GPT-4o ────────────────────────────────────────────────────
+\multicolumn{13}{c}{\textit{Backbone LLM: GPT-4o}} \\[2pt]
+CoTSafe
+  & 0.6786 & 0.7560 & 0.4704 & 0.5804
+  & 0.4663 & 0.4776 & 0.7328 & 0.5781
+  & 0.5857 & 0.6442 & \underline{0.3829} & \underline{0.4801} \\
+ShieldAgent\textsuperscript{$\dagger$}
+  & \underline{0.7863} & 0.7136 & \textbf{0.9934} & \underline{0.8318}
+  & \underline{0.8046} & 0.8762 & \underline{0.7532} & \underline{0.8095}
+  & 0.5286 & 0.6923 & 0.1029 & 0.1791 \\
+AGrail
+  & 0.5494 & 0.4889 & 0.4933 & 0.4910
+  & 0.6924 & \underline{0.9120} & 0.6344 & 0.7482
+  & \underline{0.5874} & \textbf{1.0000} & 0.1771 & 0.3009 \\
+GuardAgent
+  & 0.6848 & \underline{0.8571} & 0.4000 & 0.5455
+  & 0.6184 & 0.6086 & 0.6609 & 0.6336
+  & 0.5829 & \underline{0.8222} & 0.2114 & 0.3362 \\
+\textbf{DEFEND}
+  & \textbf{0.9002} & \textbf{0.9338} & \underline{0.8916} & \textbf{0.9123}
+  & \textbf{0.8633} & \textbf{0.9368} & \textbf{0.8420} & \textbf{0.8869}
+  & \textbf{0.8758} & \textbf{1.0000} & \textbf{0.8240} & \textbf{0.9035} \\
+
+\midrule
+
+% ── Claude ────────────────────────────────────────────────────
+\multicolumn{13}{c}{\textit{Backbone LLM: Claude}} \\[2pt]
+CoTSafe
+  & \underline{0.8634} & \underline{0.9288} & 0.7516 & 0.8309
+  & 0.7466 & 0.6967 & 0.8725 & 0.7746
+  & 0.6543 & \textbf{1.0000} & 0.3086 & 0.4718 \\
+ShieldAgent\textsuperscript{$\dagger$}
+  & 0.7863 & 0.7136 & \textbf{0.9934} & \underline{0.8318}
+  & 0.8046 & \underline{0.8762} & 0.7532 & \underline{0.8095}
+  & 0.5286 & 0.6923 & 0.1029 & 0.1791 \\
+AGrail
+  & 0.7916 & 0.7436 & \underline{0.8625} & 0.7987
+  & \underline{0.8152} & 0.7037 & \underline{0.9209} & 0.7981
+  & 0.5543 & 0.6479 & 0.2629 & 0.3741 \\
+GuardAgent
+  & 0.6856 & 0.7018 & 0.4513 & 0.5489
+  & 0.7143 & 0.6529 & \textbf{0.9314} & 0.7675
+  & \underline{0.7600} & 0.8897 & \underline{0.6437} & \underline{0.7467} \\
+\textbf{DEFEND}
+  & \textbf{0.8841} & \textbf{0.9349} & 0.8385 & \textbf{0.8841}
+  & \textbf{0.8802} & \textbf{0.9000} & 0.8529 & \textbf{0.8758}
+  & \textbf{0.8812} & \underline{0.9854} & \textbf{0.8272} & \textbf{0.8994} \\
+
+\midrule
+
+% ── Gemini ────────────────────────────────────────────────────
+\multicolumn{13}{c}{\textit{Backbone LLM: Gemini}} \\[2pt]
+CoTSafe
+  & \underline{0.8021} & 0.8520 & 0.7037 & 0.7703
+  & 0.6242 & 0.4863 & 0.8211 & 0.6107
+  & 0.7771 & 0.8392 & \underline{0.6857} & \underline{0.7547} \\
+ShieldAgent\textsuperscript{$\dagger$}
+  & 0.7863 & 0.7136 & \textbf{0.9934} & \underline{0.8318}
+  & 0.8046 & 0.8762 & 0.7532 & 0.8095
+  & 0.5286 & 0.6923 & 0.1029 & 0.1791 \\
+AGrail
+  & 0.7846 & \underline{0.9077} & 0.5801 & 0.7072
+  & \underline{0.8849} & \underline{0.9062} & 0.8352 & \underline{0.8692}
+  & 0.5457 & \underline{0.9000} & 0.1029 & 0.1846 \\
+GuardAgent
+  & 0.6968 & 0.7904 & 0.4889 & 0.6042
+  & 0.7234 & 0.6585 & \textbf{0.9265} & 0.7684
+  & \underline{0.8333} & \underline{0.9000} & 0.6171 & 0.7297 \\
+\textbf{DEFEND}
+  & \textbf{0.9255} & \textbf{0.9257} & \underline{0.9222} & \textbf{0.9240}
+  & \textbf{0.8874} & \textbf{0.9136} & \underline{0.8554} & \textbf{0.8834}
+  & \textbf{0.8886} & \textbf{0.9851} & \textbf{0.8468} & \textbf{0.9107} \\
+
+\bottomrule
+\end{tabular}%
+}
+\end{table*}

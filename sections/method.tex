@@ -1,79 +1,99 @@
 \section{Methodology}
 \label{sec:method}
 As illustrated in Figure~\ref{fig:Pipeline},  DEFEND's core consists of four agent components, SimulationAgent and RevisionAgent areoptional and are designed to further expand the usability of the framework. Pipeline is presented in Appendix~\ref{appendix:pipeline} and detailed prompts of each module are provided in Appendix~\ref{appendix:prompt}.
-\begin{figure}
+\begin{figure*}[!t]
     \centering
     \includegraphics[width=\linewidth]{code/pipeline.png}
     \caption{DEFEND's framework.}
     \label{fig:Pipeline}
-\end{figure}
+\end{figure*}
 \subsection{SimulationAgent}
-SimulationAgent is an \emph{optional} front-end module designed to simulate real agent operations. In standard DEFEND process, inputs are user queries $\mathcal{Q}$ and the protected agent's intended action $\mathcal{A^*}$. When DEFEND only receives $\mathcal{R}$ and lacks clearly agent action $\mathcal{A^*}$, the optional SimulationAgent module is activated to bridge the gap between the user's intent and the specific agent action.
+SimulationAgent is an \emph{optional} front-end module designed to bridge the semantic gap between user intent and specific agent behavior. In the standard DEFEND processing pipeline, the inputs consist of the user query $\mathcal{Q}$ and the protected agent's intended action sequence $\mathcal{A}^*$. However, in practical deployment scenarios, DEFEND may only obtain the user's instruction $\mathcal{Q}$, while lacking an explicit description of the action sequence. In such cases, the SimulationAgent module is activated to perform the inference mapping from user intent to concrete actions.
 
-Given natural language user queries $\mathcal{Q}$, SimulationAgent utilizes its internal LLM and agent's action space $\mathcal{A}$, predict ordered actions $\mathcal{A^*}$ that real agent will take to complete the queries under model parameters $\theta$:
+Specifically, SimulationAgent leverages its internal language model in conjunction with the agent's action space $\mathcal{A}$ (encompassing a range of executable actions such as file operations, API calls, and code execution) to optimally estimate the action sequence that the agent will execute in response to query $\mathcal{Q}$, under model parameters $\theta$:
 \begin{equation}
-    \mathcal{A^*}=\arg\max_{A\in\mathcal{A}} P \left( A\mid \mathcal{Q};\theta \right).
+    \mathcal{A}^* = \arg\max_{A \in \mathcal{A}} P(A \mid \mathcal{Q};\theta).
 \end{equation}
-$\mathcal{R}$ is combined with $\mathcal{A^*}$ to form a structured tuple ($\mathcal{R}$, $\mathcal{A^*}$ ), which serves as the input for AnalysisAgent.
+
+This process is a sequential planning over a complete action chain. SimulationAgent must account for the temporal dependencies and causal relationships among actions, ensuring that the predicted action sequence is coherent at both the logical and execution levels. Upon completing the inference, SimulationAgent combines $\mathcal{Q}$ with $\mathcal{A}^*$ to form a structured tuple $(\mathcal{R}, \mathcal{A}^*)$, which serves as the input to the subsequent AnalysisAgent, providing a complete contextual foundation for risk analysis.
 
 
 \subsection{AnalysisAgent}
-AnalysisAgent receives $\mathcal{Q}$ and $\mathcal{A^*}$, with the environment $\mathcal{C}$, first performs risk analysis. We define $\mathcal{K_R}$ as lifelong risk knowledge library, $\mathcal{R}$ as the risk category (existing or new), and $\mathcal{N} \in \{0,1\}$ as whether security tools are needed. The risk analysis process is:
-\begin{equation}
-    \text{Risk Analysis:} \quad \left(\mathcal{Q},\mathcal{A^*},\mathcal{C},\mathcal{K_R}\right) \xrightarrow{} \left(\mathcal{R},\mathcal{N} \right).
-\end{equation}
-If security tools are needed for agent protection, AnalysisAgent generates targeted guardrail tools $\mathcal{G}$ based on risk categories $\mathcal{R}$, the process can be represented as:
-\begin{equation}
-    \text{Tool Generation:}\quad (\mathcal{Q},\mathcal{A^*}) \xrightarrow{\mathcal{R}} \mathcal{G}
-\end{equation}
+AnalysisAgent is the core perception module of DEFEND, responsible for two primary functions: dynamic risk identification and guardrail tool generation. The module takes as input the structured tuple $(\mathcal{Q}, \mathcal{A}^*)$ along with the current runtime environment context $\mathcal{C}$, and conducts multi-dimensional risk reasoning through deep integration with the lifelong risk knowledge library $\mathcal{K}_{\mathcal{R}}$.
 
+\noindent\textbf{Risk Analysis Phase.} AnalysisAgent first performs joint semantic understanding of the user query and agent actions to determine whether the current context triggers a known risk, or whether it represents an emerging threat pattern beyond the scope of the existing risk library. AnalysisAgent is capable of dynamically interacting with $\mathcal{K}_{\mathcal{R}}$ to semantically match the current context against historical risk experiences, while simultaneously identifying and inducting previously unseen risk types, thereby achieving cross-domain generalization. The risk analysis process is formally expressed as:
+\begin{equation}
+    \text{Risk Analysis} : \left(\mathcal{Q}, \mathcal{A}^*, \mathcal{C}, \mathcal{K}_{\mathcal{R}}\right) \rightarrow \left(\mathcal{R}, \mathcal{N}\right).
+\end{equation}
+$\mathcal{R}$ denotes the identified risk category (sourced from the existing risk library or newly inducted), and $\mathcal{N} \in \{0, 1\}$ is a binary indicator of whether guardrail tools need to be activated for the current context. This on-demand invocation mechanism significantly reduces unnecessary tool overhead and improves the overall operational efficiency.
+
+\noindent\textbf{Tool Generation Phase.} When $\mathcal{N} = 1$, indicating that protective intervention is required, AnalysisAgent uses the risk category $\mathcal{R}$ as guidance to dynamically generate targeted, executable Python guardrail tools $\mathcal{G}$ tailored to the specific semantics of the current query and actions:
+\begin{equation}
+    \text{Tool Generation} : (\mathcal{Q}, \mathcal{A}^*) \xrightarrow{\mathcal{R}} \mathcal{G}.
+\end{equation}
+The generated tool $\mathcal{G}$ is a fine-grained security policy code customized around the specific risk scenario at hand. This design philosophy of ``security policy as code'' endows the protective logic with both precision and portability, enabling the same tool to be reused across different backbone models and application scenarios without requiring security logic to be redesigned for each deployment.
 
 \subsection{FusionAgent}
-The core objective of FusionAgent is to maximize the reusability and functional completeness of existing guardrail tools, while avoiding unnecessary tool redundancy. We define lifetime guardrail tool library $\mathcal{K_G} = \left\{\left(T_{i}, R_{i}, \phi_{i}\right)\right\}_{i=1}^{N}$, where $T_i$ is audited python guardrail tool, $R_i$ is the main risk category targeted by the tool, $\phi_i$ is the tool's specific information. FusionAgent retrieves existing tools similar to the new tool and attempt to fuse them to achieve reuse and evolution. 
+FusionAgent is the key module of DEFEND for achieving self-evolution. Its core objective is to maximize the reusability and functional completeness of existing guardrail tools while avoiding unnecessary tool redundancy, thereby supporting the continuous accumulation and iterative evolution of the tool library.
 
-We design a hierarchical tool retrieval system to accelerate the retrieval process. First, based on $\mathcal{R}$, a candidate subset of existing tools $\mathcal{M_R}$ is quickly filtered out:
+We define the lifelong guardrail tool library $\mathcal{K}_{\mathcal{G}} = \{(T_i, R_i, \phi_i)\}_{i=1}^{N}$, where $T_i$ is an audited Python guardrail tool, $R_i$ is the primary risk category targeted by the tool, and $\phi_i$ is the functional description information of the tool. For each newly generated tool $\mathcal{G}$ from AnalysisAgent, FusionAgent searches the tool library for semantically similar candidate tools and attempts to fuse them to achieve reuse and evolution.
+
+\noindent\textbf{Hierarchical Tool Retrieval.} To accelerate the retrieval process, FusionAgent designs a hierarchical two-stage retrieval mechanism. The first stage performs a quick filter based on the risk category $\mathcal{R}$, selecting from the tool library a candidate subset $\mathcal{M}_{\mathcal{R}}$ whose target risk category matches that of the new tool:
 \begin{equation}
-    \text{Quick Retrieval:}\quad \mathcal{M_R} = \left\{ T_{i} \mid R_{i} = \mathcal{R} \right\}.
+    \text{Quick Retrieval} : \mathcal{M}_{\mathcal{R}} = \left\{ T_i \mid R_i = \mathcal{R} \right\}.
 \end{equation}
-The similar tools should have the same targeted risk category with the new tool, which can be achieved through quick retrieval. For retrieval within the candidate subset, unlike traditional practice leveraging embeddings' similarity, which is sensitive to threshold, we model the retrieval process as an LLM search function, where $m \in \{0,1\}$ indicates whether a reusable match exists, $\mathcal{T_{\text{sim}}}$ is the most similar tool matched when $m = 1$ else empty:
-% \begin{equation}
-%     \mathcal{J}_{\text{LLM}} : \left(\mathcal{M_R}, \mathcal{G}\right) \rightarrow \left(m, \mathcal{T}_{\text{sim}}\right).
-% \end{equation}
+The second stage performs fine-grained retrieval within the candidate subset. Unlike traditional retrieval approaches based on embedding similarity (which are threshold-sensitive and struggle to capture functional semantics), FusionAgent models the retrieval process as an LLM search function, where the language model deeply evaluates the degree of functional-logic alignment between candidate tools and the new tool, outputting a binary match indicator $m \in \{0, 1\}$ and the most similar tool $T_{\text{sim}}$:
 \begin{equation}
-    \text{Slow Retrieval:}\quad \left(\mathcal{M_R}, \mathcal{G}\right) \rightarrow \left(m, \mathcal{T}_{\text{sim}}\right).
+    \text{Slow Retrieval} : (\mathcal{M}_{\mathcal{R}}, \mathcal{G}) \rightarrow (m, T_{\text{sim}}).
 \end{equation}
-If $\mathcal{T}_{\text{sim}}$ exists, FusionAgent will reuse and optimize it, integrating the functionality of new tool $\mathcal{G}$ to form new guardrail tool $\mathcal{G}'$, thus achieving efficient tool reuse. Otherwise, $\mathcal{G}$ will be retained as a new guardrail tool. Regardless of reuse, the tools will be validated downstream:
+
+\noindent\textbf{Tool Fusion and Evolution.} If a reusable tool $T_{\text{sim}}$ exists ($m = 1$), FusionAgent performs a tool fusion operation: taking $T_{\text{sim}}$ as the foundation, it organically integrates the functional logic of the new tool $\mathcal{G}$ to form an evolved tool $\mathcal{G}'$ with broader coverage and stronger detection capability. This process not only avoids redundant storage of functionally similar tools, but more importantly, each fusion operation constitutes a deepening and extension of existing tools. Tools achieve functional enhancement through repeated reuse and iterative cycles, rather than being stored statically in a fixed form:
 \begin{equation}
-    \text{Tool Optimization:} \quad \left( \mathcal{G}, \mathcal{T}_{\text{sim}} \right) \xrightarrow{\mathcal{R}, m} \mathcal{G}'.
+    \text{Tool Optimization} : (\mathcal{G}, T_{\text{sim}}) \xrightarrow{\mathcal{R},\, m} \mathcal{G}'.
 \end{equation}
+If no matching tool is found ($m = 0$), the newly generated tool $\mathcal{G}$ is retained as a candidate new member of the tool library. Regardless of whether fusion is performed, all candidate tools must pass downstream security auditing before being admitted to the library, ensuring that the quality of the tool library remains consistently controlled.
 
 
 \subsection{ExecutorAgent}
-ExecutorAgent acts as a sandbox environment, designed for secure verification and execution in an isolated setting. Its functions include: \ding{172} \emph{Tool execution}: Execute guardrail tool $\mathcal{G}'$ from FusionAgent with user query $\mathcal{Q}$ and agent's intended actions $\mathcal{A}^*$; \ding{173} \emph{Agent's action execution}: Execute agent's intened action based on environment $\mathcal{C}$. The process can be defined below, where $\mathcal{E}_{\mathcal{G}'}$ means tool execution result and $\mathcal{E}_{\mathcal{A}^*}$ stands for agent execution result:
+ExecutorAgent bears the core responsibility of secure sandbox execution, completing the dual execution of both guardrail tools and agent operations in a strictly isolated environment, while producing execution evidence that provides an objective foundation for subsequent independent auditing.
+
+ExecutorAgent executes two categories of tasks within the sandbox environment. \ding{172} \emph{tool execution}: it executes the guardrail tool $\mathcal{G}'$ from FusionAgent with the user query $\mathcal{Q}$ and the agent's intended actions $\mathcal{A}^*$ as inputs, obtaining the tool execution result $\mathcal{E}_{\mathcal{G}'}$. \ding{173} \emph{agent action execution}: it simulates the execution of the protected agent's action sequence under current environment $\mathcal{C}$, obtaining action execution result $\mathcal{E}_{\mathcal{A}^*}$. The above process is formally expressed as:
 \begin{equation}
-    \text{Sandbox Execution:} \quad \left( \mathcal{Q},\mathcal{A}^*,\mathcal{C},\mathcal{G}' \right) \xrightarrow{} \left( \mathcal{E}_{\mathcal{G}'},\mathcal{E}_{\mathcal{A}^*} \right).
+    \text{Sandbox Execution} : \left( \mathcal{Q}, \mathcal{A}^*, \mathcal{C}, \mathcal{G}' \right) \rightarrow \left( \mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\mathcal{A}^*} \right).
 \end{equation}
-Ruan~\citep{ruan2023identifying} identifies the risks of agents with an LLM-Emulated sandbox, we apply this idea. We also provide a Docker environment for execution in reality.
+The sandbox isolation design fundamentally prevents the guardrail tools or protected operations from causing irreversible side effects on the real environment during execution. ExecutorAgen draws on the LLM-simulated sandbox paradigm~\citep{ruan2023identifying}, leveraging the world knowledge of LLMs to simulate the real-world effects of operations with high fidelity. In practical deployments, ExecutorAgent also provides a real execution environment option based on Docker containers, to accommodate application scenarios with higher requirements for execution fidelity. Both execution results $\mathcal{E}_{\mathcal{G}'}$ and $\mathcal{E}_{\mathcal{A}^*}$ are jointly forwarded to AuditorAgent as key inputs for independent auditing and final decision-making.
+
 
 \subsection{AuditorAgent}
-AuditorAgent's core responsibilities include conducting independent and prudent security audits of guardrail tools $\mathcal{G}'$. It combines the tool itself with its execution results to examine through the perspective of vulnerabilities and risks, forming audit result $\mathcal{D} \in \{0,1\}$, 1 means passing auditing. Only tools that pass the audit are allowed to be added to the lifelong tool library $\mathcal{K}_\mathcal{G}$. If tool fails the audit, AuditorAgent will perform secondary optimization based on $\mathcal{D}$ and discard tools that still pose risks after secondary optimization, we define the optimized tool as $\mathcal{G}''$:
+AuditorAgent is the security anchor of DEFEND, bearing two core responsibilities from a completely independent perspective: conducting rigorous security audits of evolving guardrail tools, and synthesizing full-pipeline signals to deliver the final security verdict. Its independence by design ensures that even if upstream modules introduce potential defects during tool generation or optimization, the audit mechanism can still effectively intercept unsafe tools from entering the tool library, thereby suppressing the risk of misevolution caused by the Vulnerable Guardrail Tool (VGT) phenomenon.
+
+\noindent\textbf{Tool Security Audit.} AuditorAgent conducts a comprehensive review of tool $\mathcal{G}'$ and its execution result $\mathcal{E}_{\mathcal{G}'}$ from a vulnerability perspective, focusing on whether the tool contains ten categories of typical CWE security vulnerabilities such as sensitive information logging, plaintext storage, and unauthorized access (Appendix~\ref{appendix:VGT} for details), forming a binary audit conclusion $D \in \{0, 1\}$ (where $D = 1$ indicates passing the audit).
+
+If a tool fails the audit ($D = 0$), AuditorAgent performs targeted repair and optimization of the tool based on the specific audit findings, generating a repaired version $\mathcal{G}''$ and conducting a secondary review of the repair results. This audit-optimization cycle executes at most three rounds; tools that still fail to pass are discarded:
 \begin{equation}
-    \text{Tool Optimization:} \quad \left( \mathcal{G}', \mathcal{D} \right) \xrightarrow{} \mathcal{G}''.
+    \text{Tool Optimization} : (\mathcal{G}', D) \rightarrow \mathcal{G}''.
 \end{equation}
-Thus, we form a strict knowledge update mechanism:
+Only tools that pass the audit are permitted to be written into the lifelong tool library, forming a strict knowledge update mechanism:
 \begin{equation}
-    \text{Memory Update: }\quad \mathcal{K}_\mathcal{G} \leftarrow \mathcal{K}_\mathcal{G} \cup \left\{ \mathcal{G}' \mid \mathcal{D}=1 \right\} \cup \left\{ \mathcal{G}'' \mid \mathcal{D}=1 \right\}.
+    \text{Memory Update} : \mathcal{K}_{\mathcal{G}} \leftarrow \mathcal{K}_{\mathcal{G}} \cup \{G' \mid D = 1\} \cup \{G'' \mid D = 1\}.
 \end{equation}
-In addition to tool auditing, AuditorAgent is also responsible for integrating security signals from all modules to make the final decision on whether the query $\mathcal{Q}$ and agent action $\mathcal{A}^*$ is safe or not, defined as label $y$:
+
+\noindent\textbf{Final Security Decision.} Beyond tool auditing, AuditorAgent is also responsible for synthesizing security signals including the execution result of the guardrail tool $\mathcal{E}_{\mathcal{G}'}$, the simulated execution result of agent operations $\mathcal{E}_{\mathcal{A}^*}$, and the logical integrity evaluation of the tool itself, to comprehensively deliberate under a prudent principle and output the final security label $y$:
 \begin{equation}
-    \text{Final Decision:} \quad \left( \mathcal{Q},\mathcal{A}^*, \mathcal{G}',\mathcal{E}_{\mathcal{G}'},\mathcal{E}_{\mathcal{A}^*} \right) \xrightarrow{} y.
+    \text{Final Decision} : \left( \mathcal{Q}, \mathcal{A}^*, \mathcal{G}', \mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\mathcal{A}^*} \right) \rightarrow y.
 \end{equation}
-By explicitly decoupling tool verification and final judgment, AuditorAgent acts as a ``safety anchor'' in DEFEND. Even if upstream modules introduce potential defects during tool generation or optimization, AuditorAgent can still prevent the adoption of insecure tools based on execution evidence and conservative auditing principles, thereby effectively suppressing agent misevolution caused by the VGT phenomenon, some experimental procedures are presented in Appendix~\ref{appendix:VGT}.
 
 \subsection{RevisionAgent}
-RevisionAgent is an \emph{optional} module. RevisionAgent can replan and generate safe actions $\mathcal{A}'$ based on the risks $\mathcal{R}$ of the current query $\mathcal{Q}$ and operation $\mathcal{A}^*$, combined with the action space $\mathcal{A}$. This module extends the DEFEND framework, making it not only limited to a binary judgment of whether something is safe or not, but also able to provide targeted suggestions and mitigation for dangerous operations.
+RevisionAgent is an \emph{optional} extension module of DEFEND, extending the framework's capability from binary security verdicts to proactive risk mitigation. When AuditorAgent determines that the current query and operations pose a security risk ($y = \text{unsafe}$), RevisionAgent takes the identified risk category $\mathcal{R}$, the original query $\mathcal{Q}$, the original action sequence $\mathcal{A}^*$, and the available action space $\mathcal{A}$ as inputs, replanning and generating an alternative safe action sequence $\mathcal{A}'$ that preserves the user's core intent:
 \begin{equation}
-    \text{Revision:} \quad \left( \mathcal{Q},\mathcal{{A}^*},\mathcal{R} \right) \xrightarrow{} \mathcal{A'}.
+    \text{Revision} : (\mathcal{Q}, \mathcal{A}^*, \mathcal{R}) \rightarrow \mathcal{A}'.
 \end{equation}
+The core design principle of RevisionAgent lies in striking a balance between intent preservation and risk avoidance: the generated alternative actions are not a simple rejection of the original task, but rather, on the basis of understanding the user's true intent, strip out the hazardous operation paths within it and replan the execution in a safe and viable manner. Case studies in the AI2THOR environment (Figure~\ref{fig:case_study1}) validate this capability. Rewriting ``place the phone in the microwave to heat it'' as ``place the phone on the table'', which eliminates the fire hazard while still fulfilling the user's core intent of handling the phone.
 
 In conclusion, DEFEND offers the following advantages: (a) Emerging risks identification; (b) Tool generation and reuse; (c) Tool evolution and validation; and (d) Knowledge updating and lifelong learning—all without human intervention.
+
+\subsection{Experimental Setup}
+\label{subsec:setup}
+\textbf{Benchmarks.} We conduct extensive experiments on three cutting-edge datasets. \ding{172} R-Judge~\citep{yuan2024rjudge} is a benchmark dataset that covers high-quality LLM agent interaction records in application, finance, IoT, program, and web scenarios, involving ten risk types. \ding{173} ASSEBench~\citep{luo2025agentauditor} is a large-scale, high-quality benchmark dataset that jointly covers both safety and security aspects of LLM agents, enabling a systematic evaluation of agent's defensive capabilities. \ding{174} AgentHarm~\citep{andriushchenko2025agentharm} is specifically designed to evaluate the security and robustness of LLM agents across multiple scenarios involving tool calls, based on 110 core malicious behaviors. \\
+\textbf{Evaluation Metrics.} As the task can be viewed as binary classification task(whether the query and action are safe or not), we adopt four classification metrics (safe being the positive): Accuracy, Precision, Recall, and F1-score for evaluation. Accuracy measures the overall proportion of correctly identified operations; Precision reflects the reliability of the safety judgments; Recall measures the framework's ability to identify all truly safe operations; F1 is the harmonic mean of precision and recall, providing a balance on the trade-off between them.\\
+\textbf{Baselines.} We select representative baselines from different types of current agent defense frameworks for comparison to demonstrate the superiority of DEFEND. \ding{172} CoTSafe~\citep{yin2024safeagentbench}: a prompt-based framework evaluating agent's every step during tasks. \ding{173} ShieldAgent~\citep{zhang2024asb}: a model-based framework, the safety of LLM agents' behavior is evaluated using a security judgment model fine-tuned from 4000 agent interaction records. \ding{174} GuardAgent~\citep{xiang2024guardagent}: an agent-based framework, using a guardrail agent with knowledge-enabled reasoning to guard another agent. \ding{175} AGrail~\citep{luo2025agrail}: a lifelong guardrail framework, with scalable safety criteria, providing effective and adaptive safety detection.
