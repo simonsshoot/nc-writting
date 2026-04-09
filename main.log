@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.8)  28 MAR 2026 12:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.8)  7 APR 2026 21:33
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1038,12 +1038,6 @@ LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.52061> not available
 
 LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 189.
 (./sections/intros.tex
-<code/new_intro.png, id=155, 864.612pt x 296.088pt>
-File: code/new_intro.png Graphic file (type png)
-<use code/new_intro.png>
-Package pdftex.def Info: code/new_intro.png  used on input line 4.
-(pdftex.def)             Requested size: 372.0pt x 127.39215pt.
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1
@@ -1051,126 +1045,84 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 {g:/texlive/2024/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [2 <./code/new_intro.png>]
-Underfull \hbox (badness 2689) in paragraph at lines 16--17
-[]\OT1/cmr/m/n/10 We pro-pose DEFEND frame-work ($[]$ynamic Self-$[]$volution $[]$ramework for
- []
+ [2]) (./sections/results.tex
+<code/main_results.pdf, id=210, 797.28198pt x 671.7111pt>
+File: code/main_results.pdf Graphic file (type pdf)
+<use code/main_results.pdf>
+Package pdftex.def Info: code/main_results.pdf  used on input line 16.
+(pdftex.def)             Requested size: 372.0pt x 313.41862pt.
+<code/detail_domains.pdf, id=211, 442.47269pt x 297.019pt>
+File: code/detail_domains.pdf Graphic file (type pdf)
+<use code/detail_domains.pdf>
+Package pdftex.def Info: code/detail_domains.pdf  used on input line 38.
+(pdftex.def)             Requested size: 178.55841pt x 119.86148pt.
+<code/detail_ablation.pdf, id=212, 453.55612pt x 292.75648pt>
+File: code/detail_ablation.pdf Graphic file (type pdf)
+<use code/detail_ablation.pdf>
+Package pdftex.def Info: code/detail_ablation.pdf  used on input line 45.
+(pdftex.def)             Requested size: 178.55841pt x 115.2556pt.
 
-) (./sections/results.tex (./tables/main_result.tex
-LaTeX Font Info:    Calculating math sizes for size <7.0262> on input line 5.
-
-
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <3.51309> not available
-(Font)              size <5> substituted on input line 5.
-
-)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4]
-<code/reuse_result.pdf, id=229, 1679.07231pt x 826.90198pt>
+ [4 <./code/main_results.pdf> <./code/detail_domains.pdf> <./code/detail_ablation.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
+<code/reuse_result.pdf, id=430, 1679.07231pt x 826.90198pt>
 File: code/reuse_result.pdf Graphic file (type pdf)
 <use code/reuse_result.pdf>
-Package pdftex.def Info: code/reuse_result.pdf  used on input line 24.
+Package pdftex.def Info: code/reuse_result.pdf  used on input line 105.
 (pdftex.def)             Requested size: 372.0pt x 183.19336pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5 <./code/reuse_result.pdf>]
-<code/doubt_result.pdf, id=316, 1559.89207pt x 439.30626pt>
+ [6]
+<code/doubt_result.pdf, id=438, 737.88232pt x 196.93323pt>
 File: code/doubt_result.pdf Graphic file (type pdf)
 <use code/doubt_result.pdf>
-Package pdftex.def Info: code/doubt_result.pdf  used on input line 38.
-(pdftex.def)             Requested size: 372.0pt x 104.76532pt.
+Package pdftex.def Info: code/doubt_result.pdf  used on input line 119.
+(pdftex.def)             Requested size: 372.0pt x 99.2837pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6]
-<code/ablation_study.pdf, id=324, 639.61948pt x 498.47166pt>
-File: code/ablation_study.pdf Graphic file (type pdf)
-<use code/ablation_study.pdf>
-Package pdftex.def Info: code/ablation_study.pdf  used on input line 49.
-(pdftex.def)             Requested size: 186.0pt x 144.95619pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-[]\OT1/cmr/m/n/10 Results are shown in Figure [][]4[][].
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-\OT1/cmr/m/n/10 To demon-strate the neces-sity of
- []
-
-
-Underfull \hbox (badness 1286) in paragraph at lines 70--71
-\OT1/cmr/m/n/10 Remove Anal-y-sis-Agent, using pre-de-
- []
-
-
-Underfull \hbox (badness 2809) in paragraph at lines 70--71
-\OT1/cmr/m/n/10 with-out intro-duc-ing new risk cat-e-
- []
-
-
-Underfull \hbox (badness 2050) in paragraph at lines 70--71
-\OT1/cmr/m/n/10 Anal-y-sis-Agent directly passes newly
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 70--71
-\OT1/cmr/m/n/10 gen-er-ated tools to Execu-tor-A-gent
- []
-
-
-Underfull \hbox (badness 1147) in paragraph at lines 70--71
-\OT1/cmr/m/n/10 for exe-cu-tion; \U/pzd/m/n/10.03749 ® \OT1/cmr/m/n/10 Remove Audi-tor-A-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 72--73
-[]\OT1/cmr/m/n/10 After remov-ing Anal-y-sis-Agent,
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [7 <./code/doubt_result.pdf> <./code/ablation_study.pdf>]
-<code/case1.png, id=461, 651.087pt x 214.401pt>
+ [7 <./code/reuse_result.pdf>]
+<code/case1.png, id=529, 651.087pt x 214.401pt>
 File: code/case1.png Graphic file (type png)
 <use code/case1.png>
-Package pdftex.def Info: code/case1.png  used on input line 81.
+Package pdftex.def Info: code/case1.png  used on input line 134.
 (pdftex.def)             Requested size: 334.79773pt x 110.24925pt.
-<code/case2.png, id=462, 671.673pt x 213.306pt>
+<code/case2.png, id=531, 671.673pt x 213.306pt>
 File: code/case2.png Graphic file (type png)
 <use code/case2.png>
-Package pdftex.def Info: code/case2.png  used on input line 88.
+Package pdftex.def Info: code/case2.png  used on input line 141.
 (pdftex.def)             Requested size: 334.79773pt x 106.324pt.
-<code/case3.png, id=463, 671.673pt x 211.992pt>
+<code/case3.png, id=532, 671.673pt x 211.992pt>
 File: code/case3.png Graphic file (type png)
 <use code/case3.png>
-Package pdftex.def Info: code/case3.png  used on input line 95.
+Package pdftex.def Info: code/case3.png  used on input line 148.
 (pdftex.def)             Requested size: 334.79773pt x 105.66902pt.
-) (./sections/discussion.tex
+)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8]
+ [8 <./code/doubt_result.pdf>] (./sections/discussion.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9 <./code/case1.png> <./code/case2.png> <./code/case3.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10]) (./sections/method.tex
-<code/pipeline.png, id=486, 835.266pt x 391.791pt>
+ [10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11]) (./sections/method.tex
+<code/pipeline.png, id=573, 835.266pt x 391.791pt>
 File: code/pipeline.png Graphic file (type png)
 <use code/pipeline.png>
 Package pdftex.def Info: code/pipeline.png  used on input line 6.
 (pdftex.def)             Requested size: 372.0pt x 174.4929pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12 <./code/pipeline.png>]
@@ -1183,14 +1135,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15])
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
 
 Package hyperref Warning: Difference (3) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 202.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 210.
@@ -1295,11 +1246,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [29]) (./appendix/pipeline.tex
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 5.
-) (./appendix/realworld.tex)
-<code/new_framework.jpg, id=665, 1730.465pt x 854.19125pt>
+) (./appendix/realworld.tex) (./tables/main_result.tex
+LaTeX Font Info:    Calculating math sizes for size <7.0262> on input line 5.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <3.51309> not available
+(Font)              size <5> substituted on input line 5.
+
+)
+<code/new_framework.jpg, id=749, 1730.465pt x 854.19125pt>
 File: code/new_framework.jpg Graphic file (type jpg)
 <use code/new_framework.jpg>
-Package pdftex.def Info: code/new_framework.jpg  used on input line 15.
+Package pdftex.def Info: code/new_framework.jpg  used on input line 16.
 (pdftex.def)             Requested size: 372.0pt x 183.62148pt.
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1307,7 +1265,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [30 <./code/new_framework.jpg>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31] (./main.aux)
+ [31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -1318,21 +1279,21 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.48691pt have occurred.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3D092BAF2CE47D556FA08FD89061A129;3783.
+(rerunfilecheck)             Checksum: CAEFDC7BD124FFB9738990439FEF3D43;3782.
  ) 
 Here is how much of TeX's memory you used:
- 34901 strings out of 474116
- 705676 string characters out of 5741179
- 1966190 words of memory out of 5000000
- 56451 multiletter control sequences out of 15000+600000
+ 34910 strings out of 474116
+ 705977 string characters out of 5741179
+ 1972190 words of memory out of 5000000
+ 56459 multiletter control sequences out of 15000+600000
  582321 words of font info for 131 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
  93i,15n,99p,1999b,1161s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><g:/texlive/2024/texlive/2024/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (31 pages, 7686222 bytes).
+Output written on main.pdf (32 pages, 7494712 bytes).
 PDF statistics:
- 806 PDF objects out of 1000 (max. 8388607)
- 503 compressed objects within 6 object streams
- 124 named destinations out of 1000 (max. 500000)
- 426 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 895 PDF objects out of 1000 (max. 8388607)
+ 522 compressed objects within 6 object streams
+ 125 named destinations out of 1000 (max. 500000)
+ 431 words of extra memory for PDF output out of 10000 (max. 10000000)
 

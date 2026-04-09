@@ -1,55 +1,83 @@
 \section{Results}
 \label{sec:results}
-In this section, we will present the results of DEFEND framework. We first demonstrate its overall performance across different datasets, covering a wide range of fields including finance, healthcare, applications, and web. Next, we demonstrate DEFEND's effective evolution on python guardrail tools. We present ablation experiments to illustrate the necessity of each component. We also conduct a case study in the AI2THOR simulation environment to demonstrate the real-world significance of DEFEND framework. Cases of generated guardrail tools are in Appendix~\ref{appendix:toolcase} and cases of tool evolution are in Appendix~\ref{appendix:toolevolutioncase}.
+In this section, we will present the results of EVOLVE framework. We first demonstrate its overall performance across different datasets, covering a wide range of fields including finance, healthcare, applications, and web. Next, we demonstrate EVOLVE's effective evolution on python guardrail tools. We present ablation experiments to illustrate the necessity of each component. We also conduct a case study in the AI2THOR simulation environment to demonstrate the real-world significance of EVOLVE framework. Cases of generated guardrail tools are in Appendix~\ref{appendix:toolcase} and cases of tool evolution are in Appendix~\ref{appendix:toolevolutioncase}.
 
 \subsection{Benchmark Performance Evaluation}
 % \begin{figure}
 %     \centering
 %     \includegraphics[width=\linewidth]{code/main_result.pdf}
-%     \caption{Main results of the five frameworks on three benchmarks. Heatmap shows the performance of each framework across different metrics, with darker colors indicating better performance. DEFEND performs well, significantly outperforming the baseline across multiple metrics.}
+%     \caption{Main results of the five frameworks on three benchmarks. Heatmap shows the performance of each framework across different metrics, with darker colors indicating better performance. EVOLVE performs well, significantly outperforming the baseline across multiple metrics.}
 %     \label{fig:main_result}
 % \end{figure}
-\input{tables/main_result.tex}
-\textbf{Overall performance.}
-The experimental results are shown in Table~\ref{tab:main_results}. We compare the performance of DEFEND with four baseline defense frameworks on four mainstream LLMs, settings are in Appendix~\ref{appendix:setting}.
+% \input{tables/main_result.tex}
 
-DEFEND demonstrates overwhelming dominance across all test combinations. In 12 test scenarios, DEFEND nearly sweeps the top scores across all evaluation metrics. On R-Judge benchmark, DEFEND achieves excellent performance with over 90 percentage across all five metrics; on AssEBench, DEFEND outperforms the runner-up by almost 10 percentage on evaluation metric F1; and on AgentHarm, DEFEND significantly outperforms the second-place baseline across all four base LLMs and four comprehensive metrics. This comprehensive lead powerfully demonstrates the correctness of viewing defense mechanisms as ``evolvable and optimizable guardrail tools'', indicates that agents are not only tool users but also have the potential to become excellent tool creators. Across four backbone LLMs, the defensive efficacy of DEFEND consistently remains at an exceptionally high level, with F1 score remaining relatively stable between 0.86 and 0.92. Relying on its self-evolving adaptability, the guardrail tool can be tailored in time according to specific requests and operations, thereby compensating for the differences in native security awareness capabilities among different base LLMs and achieving truly universal security protection.
-
-\textbf{Cross-domain generalization ability.}
-DEFEND demonstrates excellent cross-benchmark and cross-domain generalization. Most traditional defense frameworks rely on hard-coded rules, fixed domains, or predefined tools. This static nature makes them difficult to freely promote across domains with varying security requirements, which leads to severe performance fluctuations in cross-benchmark testing. For example, ShieldAgent performs reasonably well on the R-Judge benchmark, achieving an F1 score of 0.83, but when applied to the AgentHarm benchmark, its performance drops sharply, with the F1 score plummeting to 0.18, indicating complete detection failure. GuardAgent also shows drastic fluctuations when migrating across the three benchmarks, with F1 scores varying by up to 20\% across different datasets. Defense mechanisms based on static rules or domain-specific constraints often lack sufficient adaptive capability when facing dynamically evolving tasks, resulting in significant limitations in generalization. In contrast, DEFEND, through continuous interaction with the environment and actively abstracting deep security patterns from interaction trajectories, maintains Accuracy scores above 0.87 when facing fundamentally different benchmarks. Experimental data proves that DEFEND transcends simple memorization of known threats, successfully transforms abstract security policies into concrete code tools, demonstrating excellent protection performance across different tasks, domains, and environments.
-
-\subsection{Guardrail Tool Evolution}
-\begin{figure}[!t]
+\begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{code/reuse_result.pdf}
-    \caption{Results for DEFEND's evolving process on R-Judge benchmark. DEFEND can dynamically determine which tasks need security tools. Furthermore, DEFEND can continuously reuse and optimize existing tools to achieve self-evolution.}
-    \label{fig:reuse_result}
+    \includegraphics[width=\linewidth]{code/main_results.pdf}
+    \caption{Main results of the five frameworks on three benchmarks. We use abbreviations for some baselines. For two adjacent bars, the left bar represents accuracy, the right bar represents F1.}
+    \label{fig:main_result}
 \end{figure}
-We aim to demonstrate that DEFEND can dynamically analyze tool requirements and continuously generate new tools, reuse and optimize existing tools to achieve tool evolution while auditing mechanism ensures the process is benign.
-
-\textbf{Creation and self-evolution of guardrail tools.}
-The experimental results are shown in Figure~\ref{fig:reuse_result}. DEFEND is capable of analyzing the necessity of employing guardrail tools, with data illustrating the proportion of guardrail tool invocations classified as needed versus not needed. Results show that over 50\% of tasks rely on guardrail tools generated by DEFEND to achieve effective protection. This strongly demonstrates that traditional defense baselines based on natural language content are inadequate when handling complex agent tasks, and the use of executable guardrail tools is key to enhancing performance. In experiments, DEFEND exhibits exceptional adaptive judgment, accurately identifying which requests require the invocation of security tools and which can be handled through simplified processes. This on-demand invocation mechanism effectively avoids over-reliance on guardrail tools, prevents overhead caused by unnecessary tool usage, and thereby enhances the overall operational efficiency while ensuring security.
-
-DEFEND does not blindly create tools for each new request. Instead, it leverages its FusionAgent component to efficiently retrieve and attempt to reuse existing tools from the tool library, iterating and refining them on the foundation of previously created tools. Data demonstrates the effectiveness of this reuse mechanism. When using the Gemini model, the tool reuse rate across five domains consistently exceeds 53\%. Such a high reuse ratio significantly reduces the storage and maintenance burden of the lifelong tool library. Simultaneously, it reflects the self-evolution of the defense tools themselves: a tool is continuously optimized and enhanced through multiple reuse and iteration cycles, rather than remaining statically stored. This trend is not unique to one backbone model. In the Application domain, DEFEND achieves a tool reuse rate of 85.66\% when using GPT as the base model, and 48.56\% with DeepSeek as the base. The consistency across different models validates the universality of DEFEND's resource optimization and self-evolution design philosophy.
-
-\textbf{Auditing mechanism for evolved guardrail tools.}
-\begin{figure}[!t]
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{subfigure}{\textwidth}
+%         \centering
+%         \includegraphics[width=0.95\textwidth]{code/temp_main.png}
+%         \label{fig:main_results}
+%     \end{subfigure}
+%     \begin{subfigure}{\textwidth}
+%         \centering
+%         \includegraphics[width=0.95\textwidth]{code/combine_detail_abla.pdf}
+%         \label{fig:detail_ablation}
+%     \end{subfigure}
+%     \label{fig:main_images}
+% \end{figure}
+\begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{code/doubt_result.pdf}
-    \caption{Results for DEFEND's auditing mechanism on R-Judge benchmark. Origin represents the risk proportion of the tool initially generated by the Agent during self-evolution; Optim represents the risk proportion of the tool after the audit mechanism is applied.}
-    \label{fig:doubt_result}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{code/detail_domains.pdf}
+        \caption{Performance on different domains.}
+        \label{fig:detail_domains}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{code/detail_ablation.pdf}
+        \caption{Ablation study results on RJudge.}
+        \label{fig:detail_ablation}
+    \end{subfigure}
+    \label{fig:detail_com_abla}
 \end{figure}
-The experimental results are shown in Figure~\ref{fig:doubt_result}. To ensure that the tool evolution process is correct, we introduced an auditing mechanism to avoid erroneous evolution.
+\textbf{Evaluation on overall performance.}
+Table~\ref{fig:main_result} presents a comprehensive comparison between EVOLVE and four representative baselines across three benchmarks and four backbone LLMs. Results demonstrate that EVOLVE exhibits strong dominance in all 12 test combinations and across four evaluation metrics.
 
-We discovere that even when safety constraints are prominently incorporated into the tool generation prompts, the tools initially evolved by the agent may still exhibit related security vulnerabilities. We term this phenomenon ``Vulnerabilities in Guardrail Tools (VGT)", detailed in Appendix~\ref{appendix:VGT}. It indicates that we should not blindly trust the evolutionary outputs, as tools generated by different models across various domains still carry significant security risks. Relying solely on static prompts cannot fully eliminate mis-evolution during the self-evolution process. We further evaluate the critical role of the AuditorAgent auditing mechanism in mitigating this issue. For instance, with DeepSeek as the base model, the original risk proportions in the IoT and programming domains are as high as 43.24\% and 44.78\%, respectively; using GPT-4o the base model, this phenomenon can even reach 50\%. This widespread occurrence of risky tool generation strongly supports the viewpoint we raised before: security is a dynamic process requiring continuous verification. After undergoing AuditorAgent's logical integrity and safety audits, the proportion of risky tools across all domains shows a substantial decline. Taking DeepSeek as an example, the risk proportion for tools generated by the Agent in the programming domain drops sharply from 44.78\% to 8.20\%. With GPT-4o as the base model, the risk proportion in the finance domain is optimized from 15.89\% to low 1.87\%. This reduction in risk proportions across models and domains fully demonstrates that AuditorAgent can effectively identify and eliminate inferior or hazardous tools generated during self-evolution. The auditing process successfully prevents the intelligent agent from going astray, ensuring that the guardrail tools stored in the tool library possess genuine reliability, thereby constructing a trustworthy self-evolving security defense system.
+In all test scenarios, EVOLVE achieves F1 scores consistently ranging from 0.86 to 0.92, displaying a level of stability unmatched by any baseline. Its Accuracy and Precision exceed 0.88 and 0.89 in most cases, confirming the comprehensiveness and reliability of its defense judgments. On the RJudge benchmark, EVOLVE’s F1 score surpasses 0.9 in most settings, reflecting excellent performance. On the AsseBench benchmark, EVOLVE remains stable, with F1 scores between 0.8690 and 0.8869. Advantage is most pronounced on the AgentHarm benchmark, where EVOLVE achieves F1 scores of 0.8719, 0.9035, 0.8994, and 0.9107 on four backbone LLMs respectively, significantly outperforming all baselines, leading the runner-up method by as much as 0.4.
+
+In stark contrast, baseline methods show highly inconsistent behavior across benchmarks. ShieldAgent achieves an F1 score of 0.8318 on the RJudge benchmark, but catastrophically collapses on the AgentHarm benchmark, with an F1 score of only 0.1791, a drop of over 65\%. GuardAgent similarly exhibits significant fluctuations, with F1 scores varying by up to 20\% across the three benchmarks. AGrail also struggles with generalization, on AgentHarm it's F1 score does not exceed 0.5. Relying on natural language reasoning, CoTSafe is highly susceptible to changes in benchmark distributions, showing F1 score variations of nearly 40\% even when using the same backbone LLM.
+
+These observations collectively validate the core argument of EVOLVE: treating defense mechanisms as dynamically evolvable code artifacts, rather than fixed rules or natural language constraints, is key to bridging the generalization gap in agent safety.
+
+\textbf{Evaluation on different backbone LLMs.}
+For agent defense frameworks, a key question is whether their effectiveness is closely tied to specific underlying models. We observe that regardless of the backbone model used, EVOLVE can translate abstract safety policies into precisely calibrated Python guardrail tool code tailored to specific risk scenarios through its tool generation mechanism. Experiments on four widely used LLMs (DeepSeek, GPT, Claude, and Gemini) validate this design.  
+
+When Gemini is used as the backbone, EVOLVE achieves F1 scores of 0.9123, 0.8869, and 0.9035 on RJudge, AsseBench, and AgentHarm, respectively. When the backbone model is switched to Claude, the corresponding F1 scores are 0.8841, 0.8758, and 0.8994, showing minimal performance variation. Similarly, across different models, its Accuracy consistently remains above 0.86, Precision generally exceeds 0.89, demonstrating model-agnostic robustness. In contrast, static baseline methods exhibit a dependency on the backbone LLM. CoTSafe relies on the model’s inherent chain-of-thought reasoning, and differences in reasoning patterns across models significantly affect its performance. While it can achieve second-best results when Gemini is used as the core model, its F1 score drops below 0.5 when the backbone model is changed.  
+
+Across all backbone LLMs, EVOLVE’s F1 score variance is significantly lower than that of any baseline. The tools act as an adaptation layer, compensating for differences in the native safety awareness of different backbone models, thereby achieving truly model-agnostic and universal protection.
+
+\textbf{Evaluation on different domains.}
+To investigate the generalization capability of EVOLVE in handling diverse real‑world tasks, we evaluated it across five distinct task domains from the RJudge.
+
+Showing in Figure~\ref{fig:detail_domains}, the results clearly demonstrate that EVOLVE delivers stable and superior performance, achieving the highest F1 scores in all five domains compared to all baseline methods. Specifically, EVOLVE performs strongly in general applications and programming tasks, with F1 scores above 0.9. In the more specialized fields of finance and the IoTs, its scores remain at high levels of 0.8593 and 0.8333, respectively. In comparison, the performance of baseline methods is heavily constrained by specific task domains. For example, GuardAgent attains a score of 0.8 in financial tasks but drops sharply to 0.3 in cybersecurity tasks, a fluctuation of over 50 percentage, revealing the domain‑specific limitations of its rules or policies.
+
+Experiments indicate that the dynamic guardrail tools generated by EVOLVE can effectively understand and adapt to the task semantics and risk characteristics of different domains, thereby achieving robust cross‑domain safety coverage.
 
 \subsection{Ablation Study}
-\begin{wrapfigure}{r}{0.5\textwidth}
-    \centering
-    \includegraphics[width=0.5\textwidth]{code/ablation_study.pdf}
-    \caption{Ablation results on R-Judge benchmark.}
-    \label{fig:ablation_result}
-\end{wrapfigure}
+% \begin{wrapfigure}{r}{0.5\textwidth}
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{code/ablation_study.pdf}
+%     \caption{Ablation results on R-Judge benchmark.}
+%     \label{fig:ablation_result}
+% \end{wrapfigure}
 
 % \begin{table}[htbp]
 %     \centering
@@ -67,13 +95,38 @@ We discovere that even when safety constraints are prominently incorporated into
 %     \end{tabularx}
 % \end{table}
 
-Results are shown in Figure~\ref{fig:ablation_result}. To demonstrate the necessity of DEFEND’s core components, we design three types of ablation experiments: \ding{172} Remove AnalysisAgent, using predefined risk categories for risk analysis without introducing new risk categories; \ding{173} Remove FusionAgent, where AnalysisAgent directly passes newly generated tools to ExecutorAgent for execution; \ding{174} Remove AuditorAgent, eliminating auditing of tools and aggregation of results for final decision-making, instead relying directly on tool execution outcomes for judgment.
+Results are shown in Figure~\ref{fig:detail_ablation}. To demonstrate the necessity of EVOLVE’s core components, we design three types of ablation experiments: \ding{172} Remove AnalysisAgent, using predefined risk categories for risk analysis without introducing new risk categories; \ding{173} Remove FusionAgent, where AnalysisAgent directly passes newly generated tools to ExecutorAgent for execution; \ding{174} Remove AuditorAgent, eliminating auditing of tools and aggregation of results for final decision-making, instead relying directly on tool execution outcomes for judgment.
 
-After removing AnalysisAgent, DEFEND shows significant degradation across all four metrics, with precision dropping by 35\% and F1 decreasing by 27\%. This indicates that fixed risk categories prevent DEFEND from effectively generalizing to other domains, directly impacting the generation of relevant guardrail tools and subsequent decision-making based on tool results. The dynamic and adaptive analysis by AnalysisAgent is indispensable for DEFEND's excellent generalization capability. After removing FusionAgent, the four metrics also decline, but the extent is relatively small. This is expected, as directly using new tools can achieve similar effects to reusing existing tools, with negligible performance differences. However, continuously adding new tools would exacerbate the burden on the tool library, thereby affecting overall overhead. FusionAgent aims to integrate new tools with existing ones, expanding the functionality of current tools and enabling their reuse and evolution, which serves as a key factor in balancing the system’s cost-effectiveness and practicality. After removing AuditorAgent, the four metrics similarly decline, such as recall dropping from 91\% to 85\%. This suggests that excessive trust and reliance on tools may lead to misjudgments of benign samples. Through its end-stage auditing, AuditorAgent ensures the correctness of tool self-evolution, making it a cornerstone for mitigating ``Vulnerabilities in Guardrail Tools''.
+After removing AnalysisAgent, EVOLVE shows significant degradation across all four metrics, with precision dropping by 35\% and F1 decreasing by 27\%. This indicates that fixed risk categories prevent EVOLVE from effectively generalizing to other domains, directly impacting the generation of relevant guardrail tools and subsequent decision-making based on tool results. The dynamic and adaptive analysis by AnalysisAgent is indispensable for EVOLVE's excellent generalization capability. After removing FusionAgent, the four metrics also decline, but the extent is relatively small. This is expected, as directly using new tools can achieve similar effects to reusing existing tools, with negligible performance differences. However, continuously adding new tools would exacerbate the burden on the tool library, thereby affecting overall overhead. FusionAgent aims to integrate new tools with existing ones, expanding the functionality of current tools and enabling their reuse and evolution, which serves as a key factor in balancing the system’s cost-effectiveness and practicality. After removing AuditorAgent, the four metrics similarly decline, such as recall dropping from 91\% to 85\%. This suggests that excessive trust and reliance on tools may lead to misjudgments of benign samples. Through its end-stage auditing, AuditorAgent ensures the correctness of tool self-evolution, making it a cornerstone for mitigating ``Vulnerabilities in Guardrail Tools''.
+
+\subsection{Guardrail Tool Evolution}
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\linewidth]{code/reuse_result.pdf}
+    \caption{Results for EVOLVE's evolving process on R-Judge benchmark. EVOLVE can dynamically determine which tasks need security tools. Furthermore, EVOLVE can continuously reuse and optimize existing tools to achieve self-evolution.}
+    \label{fig:reuse_result}
+\end{figure}
+We aim to demonstrate that EVOLVE can dynamically analyze tool requirements and continuously generate new tools, reuse and optimize existing tools to achieve tool evolution while auditing mechanism ensures the process is benign.
+
+\textbf{Creation and self-evolution of guardrail tools.}
+The experimental results are shown in Figure~\ref{fig:reuse_result}. EVOLVE is capable of analyzing the necessity of employing guardrail tools, with data illustrating the proportion of guardrail tool invocations classified as needed versus not needed. Results show that over 50\% of tasks rely on guardrail tools generated by EVOLVE to achieve effective protection. This strongly demonstrates that traditional defense baselines based on natural language content are inadequate when handling complex agent tasks, and the use of executable guardrail tools is key to enhancing performance. In experiments, EVOLVE exhibits exceptional adaptive judgment, accurately identifying which requests require the invocation of security tools and which can be handled through simplified processes. This on-demand invocation mechanism effectively avoids over-reliance on guardrail tools, prevents overhead caused by unnecessary tool usage, and thereby enhances the overall operational efficiency while ensuring security.
+
+EVOLVE does not blindly create tools for each new request. Instead, it leverages its FusionAgent component to efficiently retrieve and attempt to reuse existing tools from the tool library, iterating and refining them on the foundation of previously created tools. Data demonstrates the effectiveness of this reuse mechanism. When using the Gemini model, the tool reuse rate across five domains consistently exceeds 53\%. Such a high reuse ratio significantly reduces the storage and maintenance burden of the lifelong tool library. Simultaneously, it reflects the self-evolution of the defense tools themselves: a tool is continuously optimized and enhanced through multiple reuse and iteration cycles, rather than remaining statically stored. This trend is not unique to one backbone model. In the Application domain, EVOLVE achieves a tool reuse rate of 85.66\% when using GPT as the base model, and 48.56\% with DeepSeek as the base. The consistency across different models validates the universality of EVOLVE's resource optimization and self-evolution design philosophy.
+
+\textbf{Auditing mechanism for evolved guardrail tools.}
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=\linewidth]{code/doubt_result.pdf}
+    \caption{Results for EVOLVE's auditing mechanism on R-Judge benchmark. Origin represents the risk proportion of the tool initially generated by the Agent during self-evolution; Optim represents the risk proportion of the tool after the audit mechanism is applied.}
+    \label{fig:doubt_result}
+\end{figure}
+The experimental results are shown in Figure~\ref{fig:doubt_result}. To ensure that the tool evolution process is correct, we introduced an auditing mechanism to avoid erroneous evolution.
+
+We discovere that even when safety constraints are prominently incorporated into the tool generation prompts, the tools initially evolved by the agent may still exhibit related security vulnerabilities. We term this phenomenon ``Vulnerabilities in Guardrail Tools (VGT)", detailed in Appendix~\ref{appendix:VGT}. It indicates that we should not blindly trust the evolutionary outputs, as tools generated by different models across various domains still carry significant security risks. Relying solely on static prompts cannot fully eliminate mis-evolution during the self-evolution process. We further evaluate the critical role of the AuditorAgent auditing mechanism in mitigating this issue. For instance, with DeepSeek as the base model, the original risk proportions in the IoT and programming domains are as high as 43.24\% and 44.78\%, respectively; using GPT-4o the base model, this phenomenon can even reach 50\%. This widespread occurrence of risky tool generation strongly supports the viewpoint we raised before: security is a dynamic process requiring continuous verification. After undergoing AuditorAgent's logical integrity and safety audits, the proportion of risky tools across all domains shows a substantial decline. Taking DeepSeek as an example, the risk proportion for tools generated by the Agent in the programming domain drops sharply from 44.78\% to 8.20\%. With GPT-4o as the base model, the risk proportion in the finance domain is optimized from 15.89\% to low 1.87\%. This reduction in risk proportions across models and domains fully demonstrates that AuditorAgent can effectively identify and eliminate inferior or hazardous tools generated during self-evolution. The auditing process successfully prevents the intelligent agent from going astray, ensuring that the guardrail tools stored in the tool library possess genuine reliability, thereby constructing a trustworthy self-evolving security defense system.
 
 \subsection{Real World Case Study}
 \label{sec:case_study}
-Results are shown in Figure~\Ref{fig:case_study}. To illustrate the real-world significance of DEFEND framework, we conduct experiments in the AI2THOR simulation environment~\citep{kolve2022ai2thor}. DEFEND demonstrates excellent generalization capability in this household setting, accurately identifying the original harmful tasks as hazardous and re-planning through the RevisionAgent to avoid dangerous behaviors. We present three examples. Take the first example as an illustration. The original task instructs the agent to place a phone inside a microwave, which is a clear hazard that could cause fire or device damage. DEFEND flags this risk and revises the plan into a benign alternative that preserves the user's intent (handling the phone) while removing the unsafe action by placing the phone on a table. This shows that the framework does not simply reject tasks, but can generate a safe, feasible substitute aligned with the environment constraints.
+Results are shown in Figure~\Ref{fig:case_study}. To illustrate the real-world significance of EVOLVE framework, we conduct experiments in the AI2THOR simulation environment~\citep{kolve2022ai2thor}. EVOLVE demonstrates excellent generalization capability in this household setting, accurately identifying the original harmful tasks as hazardous and re-planning through the RevisionAgent to avoid dangerous behaviors. We present three examples. Take the first example as an illustration. The original task instructs the agent to place a phone inside a microwave, which is a clear hazard that could cause fire or device damage. EVOLVE flags this risk and revises the plan into a benign alternative that preserves the user's intent (handling the phone) while removing the unsafe action by placing the phone on a table. This shows that the framework does not simply reject tasks, but can generate a safe, feasible substitute aligned with the environment constraints.
 \begin{figure*}[!t]
     \centering
     \begin{subfigure}{0.9\textwidth}  
@@ -96,6 +149,6 @@ Results are shown in Figure~\Ref{fig:case_study}. To illustrate the real-world s
         \caption{\textcolor{red}{Harmful:} Find the computer, pick it up, back away, and put the computer down; \textcolor{ForestGreen}{Benign:} Find the computer, pick it up, move it to the bedside, and put it down.}
         \label{fig:case_study3}
     \end{subfigure}
-    \caption{Case study for DEFEND in AI2THOR simulation environment. The first row of images represents the original harmful task, the second row represents the defense results of DEFEND.}
+    \caption{Case study for EVOLVE in AI2THOR simulation environment. The first row of images represents the original harmful task, the second row represents the defense results of EVOLVE.}
     \label{fig:case_study}
 \end{figure*}

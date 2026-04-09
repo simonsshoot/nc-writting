@@ -13,7 +13,7 @@ df.iloc[:, 0] = df.iloc[:, 0].replace(["none", "None"], np.nan).ffill()
 llms_list = ["DeepSeek", "GPT-4o", "Claude", "Gemini"]
 benchmarks = ["Rjudge", "Assebench", "Agentharm"]
 metrics = ["Accuracy", "Precision", "Recall", "F1"]
-frameworks = ["CoTSafe", "ShieldAgent", "AGrail", "GuardAgent", "DEFEND"]
+frameworks = ["CoTSafe", "ShieldAgent", "AGrail", "GuardAgent", "EVOLVE"]
 
 # --- 2. 全局样式 ---
 plt.rcParams.update(
