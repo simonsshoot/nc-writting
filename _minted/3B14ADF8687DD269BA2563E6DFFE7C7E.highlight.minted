@@ -1,0 +1,15 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{email\PYGZus{}transmission\PYGZus{}security\PYGZus{}checker}\PYG{p}{(}\PYG{n}{query}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{action}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{):}
+  \PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{re}
+  \PYG{n}{q} \PYG{o}{=} \PYG{n}{query}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()}
+  \PYG{n}{act} \PYG{o}{=} \PYG{n}{action}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()}
+
+  \PYG{n}{email\PYGZus{}patterns} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}(email|send.*mail|transmit.*mail|forward.*mail)\PYGZsq{}}
+  \PYG{n}{sensitive\PYGZus{}patterns} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}(genetic|health|medical|personal|}
+  \PYG{n}{private}\PYG{p}{)}\PYG{l+s+s1}{\PYGZsq{}}
+  \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{email\PYGZus{}patterns}\PYG{p}{,} \PYG{n}{act}\PYG{p}{)} \PYG{o+ow}{and} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{sensitive\PYGZus{}patterns}\PYG{p}{,} \PYG{n}{q}\PYG{p}{):}
+      \PYG{c+c1}{\PYGZsh{} Look for security indicators}
+      \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}(encrypt|secure|tls|ssl|pgp|s\PYGZbs{}/mime|verif)\PYGZsq{}}\PYG{p}{,} \PYG{n}{act}\PYG{p}{):}
+          \PYG{k}{return} \PYG{k+kc}{True}
+  \PYG{k}{return} \PYG{k+kc}{False}
+\end{MintedVerbatim}

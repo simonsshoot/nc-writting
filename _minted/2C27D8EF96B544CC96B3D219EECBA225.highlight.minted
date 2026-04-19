@@ -1,0 +1,19 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{email\PYGZus{}transmission\PYGZus{}security\PYGZus{}checker}\PYG{p}{(}\PYG{n}{query}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{action}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{):}
+  \PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{re}
+
+  \PYG{n}{q\PYGZus{}sanitized} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{sub}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(?:genetic|health|medical|personal|}
+  \PYG{n}{private}\PYG{p}{)}\PYGZbs{}\PYG{l+s+sa}{b}\PYG{l+s+s1}{\PYGZsq{},}
+  \PYG{l+s+s1}{\PYGZsq{}[SENSITIVE]\PYGZsq{}}\PYG{p}{,} \PYG{n}{query}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{())}
+  \PYG{n}{act\PYGZus{}sanitized} \PYG{o}{=} \PYG{n}{re}\PYG{o}{.}\PYG{n}{sub}\PYG{p}{(}\PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(?:genetic|health|medical|personal|private)\PYGZbs{}b\PYGZsq{}}\PYG{p}{,}
+  \PYG{l+s+s1}{\PYGZsq{}[SENSITIVE]\PYGZsq{}}\PYG{p}{,} \PYG{n}{action}\PYG{o}{.}\PYG{n}{strip}\PYG{p}{()}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{())}
+
+  \PYG{n}{email\PYGZus{}patterns} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}(?:email|send.*mail|transmit.*mail|forward.*mail)\PYGZsq{}}
+  \PYG{n}{sensitive\PYGZus{}patterns} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(?:genetic|health|medical|personal|private)\PYGZbs{}b\PYGZsq{}}
+
+  \PYG{k}{if} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{email\PYGZus{}patterns}\PYG{p}{,} \PYG{n}{act\PYGZus{}sanitized}\PYG{p}{)} \PYG{o+ow}{and} \PYG{p}{(}\PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{sensitive\PYGZus{}patterns}\PYG{p}{,} \PYG{n}{q\PYGZus{}sanitized}\PYG{p}{)} \PYG{o+ow}{or} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{sensitive\PYGZus{}patterns}\PYG{p}{,} \PYG{n}{act\PYGZus{}sanitized}\PYG{p}{)):}
+      \PYG{n}{security\PYGZus{}indicators} \PYG{o}{=} \PYG{l+s+sa}{r}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}b(?:encrypt|secure|protected|tls|ssl|pgp|s/mime|verify)\PYGZbs{}b\PYGZsq{}}
+      \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{re}\PYG{o}{.}\PYG{n}{search}\PYG{p}{(}\PYG{n}{security\PYGZus{}indicators}\PYG{p}{,} \PYG{n}{act\PYGZus{}sanitized}\PYG{p}{):}
+          \PYG{k}{return} \PYG{k+kc}{True}
+  \PYG{k}{return} \PYG{k+kc}{False}
+\end{MintedVerbatim}

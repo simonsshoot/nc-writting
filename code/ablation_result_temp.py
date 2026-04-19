@@ -37,7 +37,7 @@ def draw_nonlinear_ablation():
     x = np.arange(len(labels))
 
     # Softer, desaturated academic palette
-    colors = ["#D7C470", "#7FAAC6", "#7FB49D", "#C98582"]
+    colors = ["#C9A830", "#4A8DB8", "#4DA882", "#C0605E"]
     markers = ["p", "s", "^", "D"]
 
     fig, ax = plt.subplots(figsize=(9, 7))
@@ -54,6 +54,16 @@ def draw_nonlinear_ablation():
     ax.set_yscale("function", functions=(forward, inverse))
 
     # Plot lines
+    # Per-point annotation offsets (dx, dy) in points to avoid overlap
+    # Series order: 0=AnalysisAgent, 1=FusionAgent, 2=AuditorAgent, 3=Full EVOLVE
+    # Metric order: 0=Accuracy, 1=Precision, 2=Recall, 3=F1-score
+    offsets = {
+        (0, 0): (0, -20), (0, 1): (0, -20), (0, 2): (0, -20), (0, 3): (0, -20),
+        (1, 0): (0, -20), (1, 1): (24, 10),  (1, 2): (24, -8), (1, 3): (0, -20),
+        (2, 0): (0, -20), (2, 1): (-24, -20), (2, 2): (0, -20), (2, 3): (0, -20),
+        (3, 0): (0, 13),  (3, 1): (0, 13),  (3, 2): (0, 13),  (3, 3): (0, 13),
+    }
+
     for i, (mode_name, data) in enumerate(dict_data.items()):
         is_full = "Full" in mode_name
         ax.plot(
@@ -71,13 +81,14 @@ def draw_nonlinear_ablation():
 
         # Value annotations
         for ix, val in enumerate(data):
+            dx, dy = offsets[(i, ix)]
             ax.annotate(
                 f"{val:.3f}",
                 xy=(ix, val),
-                xytext=(0, 7 if is_full else -11),
+                xytext=(dx, dy),
                 textcoords="offset points",
                 ha="center",
-                fontsize=11.5,
+                fontsize=16.5,
                 fontweight="bold",
                 color=colors[i],
             )
@@ -118,7 +129,7 @@ def draw_nonlinear_ablation():
     plt.tight_layout()
     plt.savefig("ablation.png", dpi=300, bbox_inches="tight")
     plt.savefig(
-        "ablation_study.pdf",
+        "ablation_study_temp.pdf",
         format="pdf",
         bbox_inches="tight",
         facecolor="white",

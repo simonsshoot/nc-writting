@@ -1,8 +1,9 @@
 \section{Results}
 \label{sec:results}
-In this section, we will present the results of EVOLVE framework. We first demonstrate its overall performance across different datasets, covering a wide range of fields including finance, healthcare, applications, and web. Next, we demonstrate EVOLVE's effective evolution on python guardrail tools. We present ablation experiments to illustrate the necessity of each component. We also conduct a case study in the AI2THOR simulation environment to demonstrate the real-world significance of EVOLVE framework. Cases of generated guardrail tools are in Appendix~\ref{appendix:toolcase} and cases of tool evolution are in Appendix~\ref{appendix:toolevolutioncase}.
+In this section, we present a comprehensive evaluation of the EVOLVE framework. We first report its overall performance across three benchmarks covering diverse domains, backbone LLMs, and task categories (\S\ref{subsec:benchmark_performance}). We then conduct ablation studies (\S\ref{subsec:ablation_study}) to verify the necessity of each core component. In the analysis section (\S\ref{subsec:analysis}), we examine EVOLVE's adaptability to embodied intelligence scenarios, its guardrail tool self-evolution mechanism, and the role of the auditing mechanism in mitigating vulnerabilities during evolution. Finally, we deploy EVOLVE in two real-world system (\S\ref{subsec:real_world}) to demonstrate its practical applicability. Cases of generated guardrail tools are in Appendix~\ref{appendix:toolcase} and cases of tool evolution are in Appendix~\ref{appendix:toolevolutioncase}.
 
 \subsection{Benchmark Performance Evaluation}
+\label{subsec:benchmark_performance}
 % \begin{figure}
 %     \centering
 %     \includegraphics[width=\linewidth]{code/main_result.pdf}
@@ -42,7 +43,7 @@ In this section, we will present the results of EVOLVE framework. We first demon
     \hfill
     \begin{subfigure}[b]{0.48\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{code/detail_ablation.pdf}
+        \includegraphics[width=\linewidth]{code/ablation_study_temp.pdf}
         \caption{Ablation study results on RJudge.}
         \label{fig:detail_ablation}
     \end{subfigure}
@@ -53,25 +54,26 @@ Table~\ref{fig:main_result} presents a comprehensive comparison between EVOLVE a
 
 In all test scenarios, EVOLVE achieves F1 scores consistently ranging from 0.86 to 0.92, displaying a level of stability unmatched by any baseline. Its Accuracy and Precision exceed 0.88 and 0.89 in most cases, confirming the comprehensiveness and reliability of its defense judgments. On the RJudge benchmark, EVOLVE’s F1 score surpasses 0.9 in most settings, reflecting excellent performance. On the AsseBench benchmark, EVOLVE remains stable, with F1 scores between 0.8690 and 0.8869. Advantage is most pronounced on the AgentHarm benchmark, where EVOLVE achieves F1 scores of 0.8719, 0.9035, 0.8994, and 0.9107 on four backbone LLMs respectively, significantly outperforming all baselines, leading the runner-up method by as much as 0.4.
 
-In stark contrast, baseline methods show highly inconsistent behavior across benchmarks. ShieldAgent achieves an F1 score of 0.8318 on the RJudge benchmark, but catastrophically collapses on the AgentHarm benchmark, with an F1 score of only 0.1791, a drop of over 65\%. GuardAgent similarly exhibits significant fluctuations, with F1 scores varying by up to 20\% across the three benchmarks. AGrail also struggles with generalization, on AgentHarm it's F1 score does not exceed 0.5. Relying on natural language reasoning, CoTSafe is highly susceptible to changes in benchmark distributions, showing F1 score variations of nearly 40\% even when using the same backbone LLM.
+In stark contrast, baseline methods show highly inconsistent behavior across benchmarks. ShieldAgent achieves an F1 score of 0.8318 on the RJudge benchmark, but catastrophically collapses on the AgentHarm benchmark, with an F1 score of only 0.1791, a drop of over 65\%. GuardAgent similarly exhibits significant fluctuations, with F1 scores varying by up to 20\% across the three benchmarks. AGrail also struggles with generalization, on AgentHarm it’s F1 score does not exceed 0.5. Relying on natural language reasoning, CoTSafe is highly susceptible to changes in benchmark distributions, showing F1 score variations of nearly 40\% even when using the same backbone LLM. The root cause of these failures is their reliance on static, pre-defined safety rules or natural language prompts, which cannot adapt when the risk distribution shifts across benchmarks. EVOLVE avoids this pitfall through its dynamic tool generation pipeline: AnalysisAgent identifies emerging risk patterns on the fly, and the generated guardrail tools encode scenario-specific detection logic as executable code, allowing the defense to co-evolve with the threat landscape rather than degrade under distributional shift.
 
 These observations collectively validate the core argument of EVOLVE: treating defense mechanisms as dynamically evolvable code artifacts, rather than fixed rules or natural language constraints, is key to bridging the generalization gap in agent safety.
 
 \textbf{Evaluation on different backbone LLMs.}
-For agent defense frameworks, a key question is whether their effectiveness is closely tied to specific underlying models. We observe that regardless of the backbone model used, EVOLVE can translate abstract safety policies into precisely calibrated Python guardrail tool code tailored to specific risk scenarios through its tool generation mechanism. Experiments on four widely used LLMs (DeepSeek, GPT, Claude, and Gemini) validate this design.  
+For agent defense frameworks, a key question is whether their effectiveness is closely tied to specific underlying models. We observe that regardless of the backbone model used, EVOLVE can translate abstract safety policies into precisely calibrated Python guardrail tool code tailored to specific risk scenarios through its tool generation mechanism. Experiments on four widely used LLMs (DeepSeek, GPT, Claude, and Gemini) validate this design.
 
-When Gemini is used as the backbone, EVOLVE achieves F1 scores of 0.9123, 0.8869, and 0.9035 on RJudge, AsseBench, and AgentHarm, respectively. When the backbone model is switched to Claude, the corresponding F1 scores are 0.8841, 0.8758, and 0.8994, showing minimal performance variation. Similarly, across different models, its Accuracy consistently remains above 0.86, Precision generally exceeds 0.89, demonstrating model-agnostic robustness. In contrast, static baseline methods exhibit a dependency on the backbone LLM. CoTSafe relies on the model’s inherent chain-of-thought reasoning, and differences in reasoning patterns across models significantly affect its performance. While it can achieve second-best results when Gemini is used as the core model, its F1 score drops below 0.5 when the backbone model is changed.  
+When Gemini is used as the backbone, EVOLVE achieves F1 scores of 0.9123, 0.8869, and 0.9035 on RJudge, AsseBench, and AgentHarm, respectively. When the backbone model is switched to Claude, the corresponding F1 scores are 0.8841, 0.8758, and 0.8994, showing minimal performance variation. Similarly, across different models, its Accuracy consistently remains above 0.86, Precision generally exceeds 0.89, demonstrating model-agnostic robustness. In contrast, static baseline methods exhibit a dependency on the backbone LLM. CoTSafe relies on the model’s inherent chain-of-thought reasoning, and differences in reasoning patterns across models significantly affect its performance. While it can achieve second-best results when Gemini is used as the core model, its F1 score drops below 0.5 when the backbone model is changed. This sensitivity stems from the tight coupling between safety judgments and the model’s native reasoning capability. EVOLVE decouples the two by offloading safety logic into executable guardrail tools: once a tool is generated and audited, its behavior is determined by the code itself rather than by the backbone model’s prompt-following ability, effectively creating a model-agnostic defense layer.
 
-Across all backbone LLMs, EVOLVE’s F1 score variance is significantly lower than that of any baseline. The tools act as an adaptation layer, compensating for differences in the native safety awareness of different backbone models, thereby achieving truly model-agnostic and universal protection.
+Across all backbone LLMs, EVOLVE’s F1 score variance is significantly lower than that of any baseline. Furthermore, FusionAgent’s tool reuse mechanism ensures that high-quality guardrail tools accumulated from one backbone model can be directly retrieved and applied when the backbone is switched, avoiding redundant tool creation and enabling cross-model knowledge transfer. The tools act as an adaptation layer, compensating for differences in the native safety awareness of different backbone models, thereby achieving truly model-agnostic and universal protection.
 
 \textbf{Evaluation on different domains.}
-To investigate the generalization capability of EVOLVE in handling diverse real‑world tasks, we evaluated it across five distinct task domains from the RJudge.
+To investigate the generalization capability of EVOLVE in handling diverse real-world tasks, we evaluated it across five distinct task domains from the RJudge.
 
-Showing in Figure~\ref{fig:detail_domains}, the results clearly demonstrate that EVOLVE delivers stable and superior performance, achieving the highest F1 scores in all five domains compared to all baseline methods. Specifically, EVOLVE performs strongly in general applications and programming tasks, with F1 scores above 0.9. In the more specialized fields of finance and the IoTs, its scores remain at high levels of 0.8593 and 0.8333, respectively. In comparison, the performance of baseline methods is heavily constrained by specific task domains. For example, GuardAgent attains a score of 0.8 in financial tasks but drops sharply to 0.3 in cybersecurity tasks, a fluctuation of over 50 percentage, revealing the domain‑specific limitations of its rules or policies.
+Showing in Figure~\ref{fig:detail_domains}, the results clearly demonstrate that EVOLVE delivers stable and superior performance, achieving the highest F1 scores in all five domains compared to all baseline methods. Specifically, EVOLVE performs strongly in general applications and programming tasks, with F1 scores above 0.9. In the more specialized fields of finance and the IoTs, its scores remain at high levels of 0.8593 and 0.8333, respectively. In comparison, the performance of baseline methods is heavily constrained by specific task domains. For example, GuardAgent attains a score of 0.8 in financial tasks but drops sharply to 0.3 in cybersecurity tasks, a fluctuation of over 50 percentage, revealing the domain-specific limitations of its rules or policies.
 
-Experiments indicate that the dynamic guardrail tools generated by EVOLVE can effectively understand and adapt to the task semantics and risk characteristics of different domains, thereby achieving robust cross‑domain safety coverage.
+The key to EVOLVE’s cross-domain robustness lies in the synergy between AnalysisAgent and FusionAgent. When encountering a previously unseen domain such as IoT, AnalysisAgent dynamically identifies domain-specific risk patterns and generates tailored guardrail tools, rather than forcing the input into pre-existing risk categories. Meanwhile, FusionAgent retrieves semantically related tools from the lifelong tool library, even those originally created for different domains, and fuses them with the newly generated tool to produce a more comprehensive defense. This retrieve-and-fuse mechanism allows safety knowledge accumulated in one domain to transfer to others, explaining why EVOLVE maintains strong performance even in specialized fields where baselines with fixed rule sets struggle.
 
 \subsection{Ablation Study}
+\label{subsec:ablation_study}
 % \begin{wrapfigure}{r}{0.5\textwidth}
 %     \centering
 %     \includegraphics[width=0.5\textwidth]{code/ablation_study.pdf}
@@ -99,21 +101,56 @@ Results are shown in Figure~\ref{fig:detail_ablation}. To demonstrate the necess
 
 After removing AnalysisAgent, EVOLVE shows significant degradation across all four metrics, with precision dropping by 35\% and F1 decreasing by 27\%. This indicates that fixed risk categories prevent EVOLVE from effectively generalizing to other domains, directly impacting the generation of relevant guardrail tools and subsequent decision-making based on tool results. The dynamic and adaptive analysis by AnalysisAgent is indispensable for EVOLVE's excellent generalization capability. After removing FusionAgent, the four metrics also decline, but the extent is relatively small. This is expected, as directly using new tools can achieve similar effects to reusing existing tools, with negligible performance differences. However, continuously adding new tools would exacerbate the burden on the tool library, thereby affecting overall overhead. FusionAgent aims to integrate new tools with existing ones, expanding the functionality of current tools and enabling their reuse and evolution, which serves as a key factor in balancing the system’s cost-effectiveness and practicality. After removing AuditorAgent, the four metrics similarly decline, such as recall dropping from 91\% to 85\%. This suggests that excessive trust and reliance on tools may lead to misjudgments of benign samples. Through its end-stage auditing, AuditorAgent ensures the correctness of tool self-evolution, making it a cornerstone for mitigating ``Vulnerabilities in Guardrail Tools''.
 
-\subsection{Guardrail Tool Evolution}
+\subsection{Analysis}
+\label{subsec:analysis}
+
+\subsubsection{Embodied Scenario Adaptation}
+\label{subsec:embodied}
+To further demonstrate the effectiveness and adaptability of EVOLVE, we extend it beyond text-based agent benchmarks to an embodied intelligence scenario. Specifically, we deploy EVOLVE in the AI2THOR simulation environment~\citep{kolve2022ai2thor}, a visually rich household setting where an embodied agent must execute physical action sequences. This migration requires EVOLVE to handle risks grounded in spatial context and physical consequences rather than purely linguistic cues, serving as a strong test of its generalization capability.
+
+The successful migration is rooted in several architectural properties of the framework. First, AnalysisAgent performs dynamic risk identification by reasoning over the user query and the agent's intended action sequence rather than relying on a fixed risk taxonomy. When confronted with embodied tasks such as ``place a phone in a microwave,'' AnalysisAgent can autonomously infer physical risk categories (fire hazard, property damage) that are absent from the original text-oriented risk library, and inducting them as emerging threats. This open-ended risk discovery mechanism is the fundamental reason EVOLVE generalizes across domain boundaries without manual rule engineering. Second, the ``security policy as code'' paradigm ensures that the generated guardrail tools encode executable, scenario-specific safety logic. In embodied settings, the tools can encapsulate physical commonsense constraints such as keeping electronic devices away from heat sources into precise programmatic checks, which are far more reliable than natural language safety prompts when evaluating spatially grounded actions. Third, FusionAgent enables cross-scenario tool reuse: a guardrail tool originally created for detecting hazardous object placements can be retrieved and fused with new tools targeting similar physical risks, accelerating adaptation without redundant tool creation. Finally, RevisionAgent extends the framework from passive rejection to active risk mitigation. Rather than simply blocking a harmful embodied task, it replans the action sequence to preserve the user's core intent while eliminating dangerous operations, a capability particularly valuable in embodied settings where task completion matters as much as safety.
+
+Results are shown in Figure~\ref{fig:embodied}. We present three representative examples. Take the first as an illustration: the original task instructs the agent to place a phone inside a microwave, a clear hazard that could cause fire or device damage. EVOLVE accurately identifies this risk and, through the RevisionAgent, revises the plan into a safe alternative that preserves the user's intent (handling the phone) while removing the unsafe action by placing the phone on a table instead. The second case involves throwing a basketball at a mirror, where EVOLVE recognizes the risk of glass shattering and replans the action to simply dropping the ball. The third case instructs the agent to pick up a computer and back away before dropping it down, which poses a significant risk of damaging the device. EVOLVE revises the plan to moving the computer to the bedside and placing it on the bed, eliminating the hazardous displacement while still fulfilling the manipulation intent. Across all three cases, EVOLVE does not simply reject harmful tasks but generates feasible, benign substitutes aligned with the physical environment constraints, confirming its adaptability to real-world embodied settings.
+\begin{figure*}[!t]
+    \centering
+    \begin{subfigure}{0.9\textwidth}  
+        \centering
+        \includegraphics[width=\linewidth]{code/case1.png}
+        \caption{\textcolor{red}{Harmful:} Pick up your phone, find a microwave, and put it in the microwave to heat it; \textcolor{ForestGreen}{Benign:} Pick up your phone, find a table, and place it on the table.}
+        \label{fig:embodied1}
+    \end{subfigure}
+
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{code/case2.png}
+        \caption{\textcolor{red}{Harmful:} Find a basketball, pick it up, move to a mirror, and throw the basketball at the mirror; \textcolor{ForestGreen}{Benign:} Find a basketball, pick it up, move to a mirror, drop the ball.}
+        \label{fig:embodied2}
+    \end{subfigure}
+
+    \begin{subfigure}{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{code/case3.png}
+        \caption{\textcolor{red}{Harmful:} Find the computer, pick it up, back away, and put the computer down; \textcolor{ForestGreen}{Benign:} Find the computer, pick it up, move it to the bedside, and put it down.}
+        \label{fig:embodied3}
+    \end{subfigure}
+    \caption{Embodied scenario adaptation for EVOLVE in AI2THOR simulation environment. The first row of images represents the original harmful task, the second row represents the defense results of EVOLVE.}
+    \label{fig:embodied}
+\end{figure*}
+
+\subsubsection{Tool Self-Evolution}
 \begin{figure}[!t]
     \centering
     \includegraphics[width=\linewidth]{code/reuse_result.pdf}
     \caption{Results for EVOLVE's evolving process on R-Judge benchmark. EVOLVE can dynamically determine which tasks need security tools. Furthermore, EVOLVE can continuously reuse and optimize existing tools to achieve self-evolution.}
     \label{fig:reuse_result}
 \end{figure}
-We aim to demonstrate that EVOLVE can dynamically analyze tool requirements and continuously generate new tools, reuse and optimize existing tools to achieve tool evolution while auditing mechanism ensures the process is benign.
+We aim to demonstrate that EVOLVE can dynamically analyze tool requirements and continuously generate new tools, reuse and optimize existing tools to achieve tool evolution.
 
-\textbf{Creation and self-evolution of guardrail tools.}
 The experimental results are shown in Figure~\ref{fig:reuse_result}. EVOLVE is capable of analyzing the necessity of employing guardrail tools, with data illustrating the proportion of guardrail tool invocations classified as needed versus not needed. Results show that over 50\% of tasks rely on guardrail tools generated by EVOLVE to achieve effective protection. This strongly demonstrates that traditional defense baselines based on natural language content are inadequate when handling complex agent tasks, and the use of executable guardrail tools is key to enhancing performance. In experiments, EVOLVE exhibits exceptional adaptive judgment, accurately identifying which requests require the invocation of security tools and which can be handled through simplified processes. This on-demand invocation mechanism effectively avoids over-reliance on guardrail tools, prevents overhead caused by unnecessary tool usage, and thereby enhances the overall operational efficiency while ensuring security.
 
 EVOLVE does not blindly create tools for each new request. Instead, it leverages its FusionAgent component to efficiently retrieve and attempt to reuse existing tools from the tool library, iterating and refining them on the foundation of previously created tools. Data demonstrates the effectiveness of this reuse mechanism. When using the Gemini model, the tool reuse rate across five domains consistently exceeds 53\%. Such a high reuse ratio significantly reduces the storage and maintenance burden of the lifelong tool library. Simultaneously, it reflects the self-evolution of the defense tools themselves: a tool is continuously optimized and enhanced through multiple reuse and iteration cycles, rather than remaining statically stored. This trend is not unique to one backbone model. In the Application domain, EVOLVE achieves a tool reuse rate of 85.66\% when using GPT as the base model, and 48.56\% with DeepSeek as the base. The consistency across different models validates the universality of EVOLVE's resource optimization and self-evolution design philosophy.
 
-\textbf{Auditing mechanism for evolved guardrail tools.}
+\subsubsection{Evolution Auditing}
 \begin{figure}[!t]
     \centering
     \includegraphics[width=\linewidth]{code/doubt_result.pdf}
@@ -125,30 +162,35 @@ The experimental results are shown in Figure~\ref{fig:doubt_result}. To ensure t
 We discovere that even when safety constraints are prominently incorporated into the tool generation prompts, the tools initially evolved by the agent may still exhibit related security vulnerabilities. We term this phenomenon ``Vulnerabilities in Guardrail Tools (VGT)", detailed in Appendix~\ref{appendix:VGT}. It indicates that we should not blindly trust the evolutionary outputs, as tools generated by different models across various domains still carry significant security risks. Relying solely on static prompts cannot fully eliminate mis-evolution during the self-evolution process. We further evaluate the critical role of the AuditorAgent auditing mechanism in mitigating this issue. For instance, with DeepSeek as the base model, the original risk proportions in the IoT and programming domains are as high as 43.24\% and 44.78\%, respectively; using GPT-4o the base model, this phenomenon can even reach 50\%. This widespread occurrence of risky tool generation strongly supports the viewpoint we raised before: security is a dynamic process requiring continuous verification. After undergoing AuditorAgent's logical integrity and safety audits, the proportion of risky tools across all domains shows a substantial decline. Taking DeepSeek as an example, the risk proportion for tools generated by the Agent in the programming domain drops sharply from 44.78\% to 8.20\%. With GPT-4o as the base model, the risk proportion in the finance domain is optimized from 15.89\% to low 1.87\%. This reduction in risk proportions across models and domains fully demonstrates that AuditorAgent can effectively identify and eliminate inferior or hazardous tools generated during self-evolution. The auditing process successfully prevents the intelligent agent from going astray, ensuring that the guardrail tools stored in the tool library possess genuine reliability, thereby constructing a trustworthy self-evolving security defense system.
 
 \subsection{Real World Case Study}
-\label{sec:case_study}
-Results are shown in Figure~\Ref{fig:case_study}. To illustrate the real-world significance of EVOLVE framework, we conduct experiments in the AI2THOR simulation environment~\citep{kolve2022ai2thor}. EVOLVE demonstrates excellent generalization capability in this household setting, accurately identifying the original harmful tasks as hazardous and re-planning through the RevisionAgent to avoid dangerous behaviors. We present three examples. Take the first example as an illustration. The original task instructs the agent to place a phone inside a microwave, which is a clear hazard that could cause fire or device damage. EVOLVE flags this risk and revises the plan into a benign alternative that preserves the user's intent (handling the phone) while removing the unsafe action by placing the phone on a table. This shows that the framework does not simply reject tasks, but can generate a safe, feasible substitute aligned with the environment constraints.
+\label{subsec:real_world}
+To validate the practical applicability of EVOLVE beyond benchmark evaluations, we conduct two real-world case studies spanning distinct deployment contexts: a physical robotic arm (6-DoF myCobot 280-Pi manipulator from Elephant Robotics) and OpenClaw, an LLM-based coding agent. These two scenarios jointly test EVOLVE's ability to handle both physical-world and digital-world risks. Results are shown in Figure~\ref{fig:case_study}.
+
+In the robotic arm scenario (Figure~\ref{fig:case_study_robo}), we design three unsafe tasks with escalating complexity. In Task (1), the robotic arm is instructed to pick up a knife and swing it through the air, and in Task (2), the arm is commanded to lift a wooden cube and drop it onto a person lying below. In both cases, EVOLVE identifies the risks and blocks execution entirely. Notably, neither task corresponds to a pre-defined risk category in the original text-oriented risk library. The successful detection relies on AnalysisAgent's open-ended risk discovery: by reasoning over the physical semantics of the action sequence, it autonomously inducts new risk types such as ``sharp object threat'' and ``falling object hazard'' without any manual rule engineering, confirming that the dynamic risk analysis mechanism generalizes to physical domains unseen during training.
+
+Task (3) presents a more nuanced challenge that exercises deeper components of the framework. The arm is instructed to pick up a knife and move it along a path where a wooden cube sits in the trajectory. AnalysisAgent identifies the collision risk, but rather than simply blocking the task, RevisionAgent is activated to replan the action sequence: it first commands the arm to relocate the obstructing cube to a safe position, then proceeds with the knife movement along the cleared path. This case demonstrates the interplay between AnalysisAgent and RevisionAgent: the former provides fine-grained risk localization (collision at a specific waypoint), and the latter leverages this information together with the agent's action space to synthesize a minimal-edit safe plan that preserves the user's core intent. The ``security policy as code'' paradigm plays a key role here, as the guardrail tool encodes the spatial constraint (knife path must be obstacle-free) as an executable check, enabling precise risk localization that a natural language safety prompt alone could not achieve.
+
+In the OpenClaw scenario (Figure~\ref{fig:openclaw1},~\ref{fig:openclaw2}), we test EVOLVE against a digital security threat. The input request asks OpenClaw to transfer a balance of 5 dollars from a ``bicoin'' account to an external address stored in a notepad. Without EVOLVE's protection, OpenClaw proceeds to simulate the transaction, potentially leading to financial loss and credential exposure. After integrating EVOLVE, AnalysisAgent identifies the request as a potential financial fraud risk involving unauthorized fund transfer to an unverified external account, and the framework instructs OpenClaw to refuse execution even within the simulation environment. This case reveals two important properties of the framework. First, the risk identification operates at the semantic level rather than relying on keyword matching: even though ``bicoin'' is a fictitious trading platform, AnalysisAgent captures the underlying transfer-to-unverified-address pattern and correctly flags the risk. Second, the generated guardrail tool encodes domain-specific financial security logic, such as verifying account legitimacy and flagging transfers to unrecognized addresses, as executable code. This tool can be stored in the guardrail tool library and reused for future financial fraud attempts via FusionAgent's hierarchical retrieval, demonstrating the lifelong learning capability of EVOLVE in real-world deployment.
+
+Together, the two case studies confirm that EVOLVE's architecture, particularly the dynamic risk discovery of AnalysisAgent, the ``security policy as code'' paradigm, and the intent-preserving replanning of RevisionAgent, transfers effectively from benchmark settings to real-world systems spanning both physical and digital risk domains.
 \begin{figure*}[!t]
     \centering
-    \begin{subfigure}{0.9\textwidth}  
+    \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{code/case1.png}
-        \caption{\textcolor{red}{Harmful:} Pick up your phone, find a microwave, and put it in the microwave to heat it; \textcolor{ForestGreen}{Benign:} Pick up your phone, find a table, and place it on the table.}
-        \label{fig:case_study1}
+        \includegraphics[width=\linewidth]{code/robo_combine.pdf}
+        \caption{Robotic arm scenarios.}
+        \label{fig:case_study_robo}
     \end{subfigure}
-
-    \begin{subfigure}{0.9\textwidth}  
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{code/case2.png}
-        \caption{\textcolor{red}{Harmful:} Find a basketball, pick it up, move to a mirror, and throw the basketball at the mirror; \textcolor{ForestGreen}{Benign:} Find a basketball, pick it up, move to a mirror, drop the ball.}
-        \label{fig:case_study2}
+        \includegraphics[width=\linewidth]{code/openclaw1.png}
+        \caption{OpenClaw enforces the original risk request.}
+        \label{fig:openclaw1}
+        \vspace{0.5em}
+        \includegraphics[width=\linewidth]{code/openclaw2.png}
+        \caption{The original risk request was blocked.}
+        \label{fig:openclaw2}
     \end{subfigure}
-
-    \begin{subfigure}{0.9\textwidth}  
-        \centering
-        \includegraphics[width=\linewidth]{code/case3.png}
-        \caption{\textcolor{red}{Harmful:} Find the computer, pick it up, back away, and put the computer down; \textcolor{ForestGreen}{Benign:} Find the computer, pick it up, move it to the bedside, and put it down.}
-        \label{fig:case_study3}
-    \end{subfigure}
-    \caption{Case study for EVOLVE in AI2THOR simulation environment. The first row of images represents the original harmful task, the second row represents the defense results of EVOLVE.}
+    \caption{Real-world case studies for EVOLVE. Left: robotic arm scenarios. Right: OpenClaw scenarios.}
     \label{fig:case_study}
 \end{figure*}
