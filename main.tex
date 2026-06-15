@@ -151,6 +151,40 @@
 \theoremstyle{thmstylethree}%
 \newtheorem{definition}{Definition}%
 
+\usepackage[perpage,symbol*]{footmisc}
+
+\DefineFNsymbols{circled}{{\ding{192}}{\ding{193}}{\ding{194}}
+{\ding{195}}{\ding{196}}{\ding{197}}{\ding{198}}{\ding{199}}{\ding{200}}{\ding{201}}}
+% \setfnsymbol{circled}
+
+\newcommand\myfootnotestyle[1]{\ifcase#1 \or \ding{182}\or \ding{183}\or
+\ding{184}\or \ding{185}\or \ding{186}\or \ding{187}%
+\or \ding{188}\or \ding{189}\or \ding{190}\or \ding{191}\else *\fi\relax}
+\newcommand{\ie}{\textit{i}.\textit{e}.}
+\newcommand{\eg}{\textit{e}.\textit{g}.} 
+\newcommand{\Tref}[1]{Tab.~\ref{#1}}
+\newcommand{\Eref}[1]{Eq.~(\ref{#1})}
+\newcommand{\Fref}[1]{Fig.~\ref{#1}}
+\newcommand{\Sref}[1]{Sec.~\ref{#1}}
+\newcommand{\Aref}[1]{Alg.~\ref{#1}}
+\newcommand{\etal}{\textit{et al}.}
+\newcommand{\el}{\textit{et al}.}
+\newcommand{\etc}{\textit{etc}.}
+\newcommand{\ul}{\underline}
+\newcommand{\tool}{\emph{RoboSafe}}
+
+
+\makeatletter
+\newenvironment{chapquote}[2][2em]
+  {\setlength{\@tempdima}{#1}%
+   \def\chapquote@author{#2}%
+   \parshape 1 \@tempdima \dimexpr\textwidth-2\@tempdima\relax%
+   \itshape}
+  {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
+\makeatother
+
+\raggedbottom
+
 \raggedbottom
 %%\unnumbered% uncomment this for unnumbered level heads
 
@@ -193,7 +227,9 @@
 
 \input{sections/discussion.tex}
 
-\input{sections/method.tex}
+% \input{sections/method.tex}
+
+\input{sections/methods_new.tex}
 
 \backmatter
 

@@ -1,6 +1,6 @@
 %% BioMed_Central_Bib_Style_v1.01
 
-\begin{thebibliography}{36}
+\begin{thebibliography}{67}
 % BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
 \ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
 \ifx \binits  \undefined \def \binits#1{#1}\fi
@@ -268,99 +268,58 @@ arXiv preprint arXiv:2510.06445
 \endbibitem
 
 %%% 14
-\bibitem[\protect\citeauthoryear{Cai et~al.}{2025}]{cai2025building}
-\begin{botherref}
-\oauthor{\bsnm{Cai}, \binits{Y.}},
-\oauthor{\bsnm{Hao}, \binits{Y.}},
-\oauthor{\bsnm{Zhou}, \binits{J.}},
-\oauthor{\bsnm{Yan}, \binits{H.}},
-\oauthor{\bsnm{Lei}, \binits{Z.}},
-\oauthor{\bsnm{Zhen}, \binits{R.}},
-\oauthor{\bsnm{Han}, \binits{Z.}},
-\oauthor{\bsnm{Yang}, \binits{Y.}},
-\oauthor{\bsnm{Li}, \binits{J.}},
-\oauthor{\bsnm{Pan}, \binits{Q.}}, et al.:
-Building self-evolving agents via experience-driven lifelong learning: A framework and benchmark.
-arXiv preprint arXiv:2508.19005
-(2025)
-\end{botherref}
+\bibitem[\protect\citeauthoryear{Boyd and Richerson}{1988}]{boyd1988culture}
+\begin{bbook}
+\bauthor{\bsnm{Boyd}, \binits{R.}},
+\bauthor{\bsnm{Richerson}, \binits{P.J.}}:
+\bbtitle{Culture and the Evolutionary Process}.
+\bpublisher{University of Chicago press}, \blocation{???}
+(\byear{1988})
+\end{bbook}
 \endbibitem
 
 %%% 15
-\bibitem[\protect\citeauthoryear{Shao et~al.}{2025}]{shao2025misevovle}
-\begin{botherref}
-\oauthor{\bsnm{Shao}, \binits{S.}},
-\oauthor{\bsnm{Ren}, \binits{Q.}},
-\oauthor{\bsnm{Qian}, \binits{C.}},
-\oauthor{\bsnm{Wei}, \binits{B.}},
-\oauthor{\bsnm{Guo}, \binits{D.}},
-\oauthor{\bsnm{Yang}, \binits{J.}},
-\oauthor{\bsnm{Song}, \binits{X.}},
-\oauthor{\bsnm{Zhang}, \binits{L.}},
-\oauthor{\bsnm{Zhang}, \binits{W.}},
-\oauthor{\bsnm{Liu}, \binits{D.}}, et al.:
-Your agent may misevolve: Emergent risks in self-evolving llm agents.
-arXiv preprint arXiv:2509.26354
-(2025)
-\end{botherref}
+\bibitem[\protect\citeauthoryear{Henrich}{2015}]{henrich2015secret}
+\begin{bchapter}
+\bauthor{\bsnm{Henrich}, \binits{J.}}:
+\bctitle{The secret of our success: How culture is driving human evolution, domesticating our species, and making us smarter}.
+In: \bbtitle{The Secret of Our Success}.
+\bpublisher{princeton University press}, \blocation{???}
+(\byear{2015})
+\end{bchapter}
 \endbibitem
 
 %%% 16
-\bibitem[\protect\citeauthoryear{Han et~al.}{2025}]{han2025alignment}
-\begin{botherref}
-\oauthor{\bsnm{Han}, \binits{S.}},
-\oauthor{\bsnm{Liu}, \binits{J.}},
-\oauthor{\bsnm{Su}, \binits{Y.}},
-\oauthor{\bsnm{Duan}, \binits{W.}},
-\oauthor{\bsnm{Liu}, \binits{X.}},
-\oauthor{\bsnm{Xie}, \binits{C.}},
-\oauthor{\bsnm{Bansal}, \binits{M.}},
-\oauthor{\bsnm{Ding}, \binits{M.}},
-\oauthor{\bsnm{Zhang}, \binits{L.}},
-\oauthor{\bsnm{Yao}, \binits{H.}}:
-Alignment tipping process: How self-evolution pushes llm agents off the rails.
-arXiv preprint arXiv:2510.04860
-(2025)
-\end{botherref}
+\bibitem[\protect\citeauthoryear{Weick and Sutcliffe}{2011}]{weick2011managing}
+\begin{bbook}
+\bauthor{\bsnm{Weick}, \binits{K.E.}},
+\bauthor{\bsnm{Sutcliffe}, \binits{K.M.}}:
+\bbtitle{Managing the Unexpected: Resilient Performance in an Age of Uncertainty}.
+\bpublisher{John Wiley \& Sons}, \blocation{???}
+(\byear{2011})
+\end{bbook}
 \endbibitem
 
 %%% 17
-\bibitem[\protect\citeauthoryear{Kolve et~al.}{2022}]{kolve2022ai2thor}
+\bibitem[\protect\citeauthoryear{Taleb et~al.}{2012}]{taleb2012things}
 \begin{botherref}
-\oauthor{\bsnm{Kolve}, \binits{E.}},
-\oauthor{\bsnm{Mottaghi}, \binits{R.}},
-\oauthor{\bsnm{Han}, \binits{W.}},
-\oauthor{\bsnm{VanderBilt}, \binits{E.}},
-\oauthor{\bsnm{Weihs}, \binits{L.}},
-\oauthor{\bsnm{Herrasti}, \binits{A.}},
-\oauthor{\bsnm{Deitke}, \binits{M.}},
-\oauthor{\bsnm{Ehsani}, \binits{K.}},
-\oauthor{\bsnm{Gordon}, \binits{D.}},
-\oauthor{\bsnm{Zhu}, \binits{Y.}},
-\oauthor{\bsnm{Kembhavi}, \binits{A.}},
-\oauthor{\bsnm{Gupta}, \binits{A.}},
-\oauthor{\bsnm{Farhadi}, \binits{A.}}:
-AI2-THOR: An Interactive 3D Environment for Visual AI
-(2022).
-\url{https://arxiv.org/abs/1712.05474}
+\oauthor{\bsnm{Taleb}, \binits{N.}}, et al.:
+Things that gain from disorder.
+New York City: Random House \& Penguin
+(2012)
 \end{botherref}
 \endbibitem
 
 %%% 18
-\bibitem[\protect\citeauthoryear{Ruan et~al.}{2023}]{ruan2023identifying}
+\bibitem[\protect\citeauthoryear{Argyris and Sch{\"o}n}{1997}]{argyris1997organizational}
 \begin{botherref}
-\oauthor{\bsnm{Ruan}, \binits{Y.}},
-\oauthor{\bsnm{Dong}, \binits{H.}},
-\oauthor{\bsnm{Wang}, \binits{A.}},
-\oauthor{\bsnm{Pitis}, \binits{S.}},
-\oauthor{\bsnm{Zhou}, \binits{Y.}},
-\oauthor{\bsnm{Ba}, \binits{J.}},
-\oauthor{\bsnm{Dubois}, \binits{Y.}},
-\oauthor{\bsnm{Maddison}, \binits{C.J.}},
-\oauthor{\bsnm{Hashimoto}, \binits{T.}}:
-Identifying the risks of lm agents with an lm-emulated sandbox.
-arXiv preprint arXiv:2309.15817
-(2023)
+\oauthor{\bsnm{Argyris}, \binits{C.}},
+\oauthor{\bsnm{Sch{\"o}n}, \binits{D.A.}}:
+Organizational learning: A theory of action perspective.
+Reis
+(77/78),
+345--348
+(1997)
 \end{botherref}
 \endbibitem
 
@@ -405,6 +364,115 @@ AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents
 \endbibitem
 
 %%% 21
+\bibitem[\protect\citeauthoryear{Liu et~al.}{2024}]{liu2024deepseek}
+\begin{botherref}
+\oauthor{\bsnm{Liu}, \binits{A.}},
+\oauthor{\bsnm{Feng}, \binits{B.}},
+\oauthor{\bsnm{Xue}, \binits{B.}},
+\oauthor{\bsnm{Wang}, \binits{B.}},
+\oauthor{\bsnm{Wu}, \binits{B.}},
+\oauthor{\bsnm{Lu}, \binits{C.}},
+\oauthor{\bsnm{Zhao}, \binits{C.}},
+\oauthor{\bsnm{Deng}, \binits{C.}},
+\oauthor{\bsnm{Zhang}, \binits{C.}},
+\oauthor{\bsnm{Ruan}, \binits{C.}}, et al.:
+Deepseek-v3 technical report.
+arXiv preprint arXiv:2412.19437
+(2024)
+\end{botherref}
+\endbibitem
+
+%%% 22
+\bibitem[\protect\citeauthoryear{Achiam et~al.}{2023}]{achiam2023gpt}
+\begin{botherref}
+\oauthor{\bsnm{Achiam}, \binits{J.}},
+\oauthor{\bsnm{Adler}, \binits{S.}},
+\oauthor{\bsnm{Agarwal}, \binits{S.}},
+\oauthor{\bsnm{Ahmad}, \binits{L.}},
+\oauthor{\bsnm{Akkaya}, \binits{I.}},
+\oauthor{\bsnm{Aleman}, \binits{F.L.}},
+\oauthor{\bsnm{Almeida}, \binits{D.}},
+\oauthor{\bsnm{Altenschmidt}, \binits{J.}},
+\oauthor{\bsnm{Altman}, \binits{S.}},
+\oauthor{\bsnm{Anadkat}, \binits{S.}}, et al.:
+Gpt-4 technical report.
+arXiv preprint arXiv:2303.08774
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 23
+\bibitem[\protect\citeauthoryear{Bai et~al.}{2022}]{bai2022constitutional}
+\begin{botherref}
+\oauthor{\bsnm{Bai}, \binits{Y.}},
+\oauthor{\bsnm{Kadavath}, \binits{S.}},
+\oauthor{\bsnm{Kundu}, \binits{S.}},
+\oauthor{\bsnm{Askell}, \binits{A.}},
+\oauthor{\bsnm{Kernion}, \binits{J.}},
+\oauthor{\bsnm{Jones}, \binits{A.}},
+\oauthor{\bsnm{Chen}, \binits{A.}},
+\oauthor{\bsnm{Goldie}, \binits{A.}},
+\oauthor{\bsnm{Mirhoseini}, \binits{A.}},
+\oauthor{\bsnm{McKinnon}, \binits{C.}}, et al.:
+Constitutional ai: Harmlessness from ai feedback.
+arXiv preprint arXiv:2212.08073
+(2022)
+\end{botherref}
+\endbibitem
+
+%%% 24
+\bibitem[\protect\citeauthoryear{Team et~al.}{2023}]{team2023gemini}
+\begin{botherref}
+\oauthor{\bsnm{Team}, \binits{G.}},
+\oauthor{\bsnm{Anil}, \binits{R.}},
+\oauthor{\bsnm{Borgeaud}, \binits{S.}},
+\oauthor{\bsnm{Alayrac}, \binits{J.-B.}},
+\oauthor{\bsnm{Yu}, \binits{J.}},
+\oauthor{\bsnm{Soricut}, \binits{R.}},
+\oauthor{\bsnm{Schalkwyk}, \binits{J.}},
+\oauthor{\bsnm{Dai}, \binits{A.M.}},
+\oauthor{\bsnm{Hauth}, \binits{A.}},
+\oauthor{\bsnm{Millican}, \binits{K.}}, et al.:
+Gemini: a family of highly capable multimodal models.
+arXiv preprint arXiv:2312.11805
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 25
+\bibitem[\protect\citeauthoryear{Kolve et~al.}{2022}]{kolve2022ai2thor}
+\begin{botherref}
+\oauthor{\bsnm{Kolve}, \binits{E.}},
+\oauthor{\bsnm{Mottaghi}, \binits{R.}},
+\oauthor{\bsnm{Han}, \binits{W.}},
+\oauthor{\bsnm{VanderBilt}, \binits{E.}},
+\oauthor{\bsnm{Weihs}, \binits{L.}},
+\oauthor{\bsnm{Herrasti}, \binits{A.}},
+\oauthor{\bsnm{Deitke}, \binits{M.}},
+\oauthor{\bsnm{Ehsani}, \binits{K.}},
+\oauthor{\bsnm{Gordon}, \binits{D.}},
+\oauthor{\bsnm{Zhu}, \binits{Y.}},
+\oauthor{\bsnm{Kembhavi}, \binits{A.}},
+\oauthor{\bsnm{Gupta}, \binits{A.}},
+\oauthor{\bsnm{Farhadi}, \binits{A.}}:
+AI2-THOR: An Interactive 3D Environment for Visual AI
+(2022).
+\url{https://arxiv.org/abs/1712.05474}
+\end{botherref}
+\endbibitem
+
+%%% 26
+\bibitem[\protect\citeauthoryear{Team}{2025}]{openclaw}
+\begin{botherref}
+\oauthor{\bsnm{Team}, \binits{O.}}:
+OpenClaw.
+\url{https://github.com/openclaw/openclaw}.
+Accessed: 2026-05-11
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 27
 \bibitem[\protect\citeauthoryear{Luo et~al.}{2025}]{luo2025agrail}
 \begin{botherref}
 \oauthor{\bsnm{Luo}, \binits{W.}},
@@ -420,7 +488,366 @@ arXiv preprint arXiv:2502.11448
 \end{botherref}
 \endbibitem
 
-%%% 22
+%%% 28
+\bibitem[\protect\citeauthoryear{Bendale and Boult}{2015}]{bendale2015towards}
+\begin{bchapter}
+\bauthor{\bsnm{Bendale}, \binits{A.}},
+\bauthor{\bsnm{Boult}, \binits{T.}}:
+\bctitle{Towards open world recognition}.
+In: \bbtitle{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+pp. \bfpage{1893}--\blpage{1902}
+(\byear{2015})
+\end{bchapter}
+\endbibitem
+
+%%% 29
+\bibitem[\protect\citeauthoryear{Lake et~al.}{2017}]{lake2017building}
+\begin{barticle}
+\bauthor{\bsnm{Lake}, \binits{B.M.}},
+\bauthor{\bsnm{Ullman}, \binits{T.D.}},
+\bauthor{\bsnm{Tenenbaum}, \binits{J.B.}},
+\bauthor{\bsnm{Gershman}, \binits{S.J.}}:
+\batitle{Building machines that learn and think like people}.
+\bjtitle{Behavioral and brain sciences}
+\bvolume{40},
+\bfpage{253}
+(\byear{2017})
+\end{barticle}
+\endbibitem
+
+%%% 30
+\bibitem[\protect\citeauthoryear{Parasuraman and Riley}{1997}]{parasuraman1997humans}
+\begin{barticle}
+\bauthor{\bsnm{Parasuraman}, \binits{R.}},
+\bauthor{\bsnm{Riley}, \binits{V.}}:
+\batitle{Humans and automation: Use, misuse, disuse, abuse}.
+\bjtitle{Human factors}
+\bvolume{39}(\bissue{2}),
+\bfpage{230}--\blpage{253}
+(\byear{1997})
+\end{barticle}
+\endbibitem
+
+%%% 31
+\bibitem[\protect\citeauthoryear{Weick and Sutcliffe}{2001}]{weick2001managing}
+\begin{bbook}
+\bauthor{\bsnm{Weick}, \binits{K.E.}},
+\bauthor{\bsnm{Sutcliffe}, \binits{K.M.}}:
+\bbtitle{Managing the Unexpected}
+vol. \bseriesno{9}.
+\bpublisher{San Francisco: Jossey-Bass}, \blocation{???}
+(\byear{2001})
+\end{bbook}
+\endbibitem
+
+%%% 32
+\bibitem[\protect\citeauthoryear{Gentner}{1983}]{gentner1983structure}
+\begin{barticle}
+\bauthor{\bsnm{Gentner}, \binits{D.}}:
+\batitle{Structure-mapping: A theoretical framework for analogy}.
+\bjtitle{Cognitive science}
+\bvolume{7}(\bissue{2}),
+\bfpage{155}--\blpage{170}
+(\byear{1983})
+\end{barticle}
+\endbibitem
+
+%%% 33
+\bibitem[\protect\citeauthoryear{Leveson}{2016}]{leveson2016engineering}
+\begin{bbook}
+\bauthor{\bsnm{Leveson}, \binits{N.G.}}:
+\bbtitle{Engineering a Safer World: Systems Thinking Applied to Safety}.
+\bpublisher{MIT press}, \blocation{???}
+(\byear{2016})
+\end{bbook}
+\endbibitem
+
+%%% 34
+\bibitem[\protect\citeauthoryear{Yuan et~al.}{2024}]{yuan2024ciper}
+\begin{bchapter}
+\bauthor{\bsnm{Yuan}, \binits{Y.}},
+\bauthor{\bsnm{Jiao}, \binits{W.}},
+\bauthor{\bsnm{Wang}, \binits{W.}},
+\bauthor{\bsnm{Huang}, \binits{J.-t.}},
+\bauthor{\bsnm{He}, \binits{P.}},
+\bauthor{\bsnm{Shi}, \binits{S.}},
+\bauthor{\bsnm{Tu}, \binits{Z.}}:
+\bctitle{Gpt-4 is too smart to be safe: Stealthy chat with llms via cipher}.
+In: \bbtitle{International Conference on Learning Representations},
+vol. \bseriesno{2024},
+pp. \bfpage{53902}--\blpage{53922}
+(\byear{2024})
+\end{bchapter}
+\endbibitem
+
+%%% 35
+\bibitem[\protect\citeauthoryear{Deng et~al.}{2023}]{deng2023jailbreaker}
+\begin{botherref}
+\oauthor{\bsnm{Deng}, \binits{G.}},
+\oauthor{\bsnm{Liu}, \binits{Y.}},
+\oauthor{\bsnm{Li}, \binits{Y.}},
+\oauthor{\bsnm{Wang}, \binits{K.}},
+\oauthor{\bsnm{Zhang}, \binits{Y.}},
+\oauthor{\bsnm{Li}, \binits{Z.}},
+\oauthor{\bsnm{Wang}, \binits{H.}},
+\oauthor{\bsnm{Zhang}, \binits{T.}},
+\oauthor{\bsnm{Liu}, \binits{Y.}}:
+Jailbreaker: Automated jailbreak across multiple large language model chatbots.
+arXiv preprint arXiv:2307.08715
+\textbf{10}
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 36
+\bibitem[\protect\citeauthoryear{Zeng et~al.}{2024}]{zeng2024pap}
+\begin{bchapter}
+\bauthor{\bsnm{Zeng}, \binits{Y.}},
+\bauthor{\bsnm{Lin}, \binits{H.}},
+\bauthor{\bsnm{Zhang}, \binits{J.}},
+\bauthor{\bsnm{Yang}, \binits{D.}},
+\bauthor{\bsnm{Jia}, \binits{R.}},
+\bauthor{\bsnm{Shi}, \binits{W.}}:
+\bctitle{How johnny can persuade llms to jailbreak them: Rethinking persuasion to challenge ai safety by humanizing llms}.
+In: \bbtitle{Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+pp. \bfpage{14322}--\blpage{14350}
+(\byear{2024})
+\end{bchapter}
+\endbibitem
+
+%%% 37
+\bibitem[\protect\citeauthoryear{Ding et~al.}{2024}]{ding2024renellm}
+\begin{bchapter}
+\bauthor{\bsnm{Ding}, \binits{P.}},
+\bauthor{\bsnm{Kuang}, \binits{J.}},
+\bauthor{\bsnm{Ma}, \binits{D.}},
+\bauthor{\bsnm{Cao}, \binits{X.}},
+\bauthor{\bsnm{Xian}, \binits{Y.}},
+\bauthor{\bsnm{Chen}, \binits{J.}},
+\bauthor{\bsnm{Huang}, \binits{S.}}:
+\bctitle{A wolf in sheep’s clothing: Generalized nested jailbreak prompts can fool large language models easily}.
+In: \bbtitle{Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+pp. \bfpage{2136}--\blpage{2153}
+(\byear{2024})
+\end{bchapter}
+\endbibitem
+
+%%% 38
+\bibitem[\protect\citeauthoryear{Pearce et~al.}{2025}]{pearce2025asleep}
+\begin{barticle}
+\bauthor{\bsnm{Pearce}, \binits{H.}},
+\bauthor{\bsnm{Ahmad}, \binits{B.}},
+\bauthor{\bsnm{Tan}, \binits{B.}},
+\bauthor{\bsnm{Dolan-Gavitt}, \binits{B.}},
+\bauthor{\bsnm{Karri}, \binits{R.}}:
+\batitle{Asleep at the keyboard? assessing the security of github copilot’s code contributions}.
+\bjtitle{Communications of the ACM}
+\bvolume{68}(\bissue{2}),
+\bfpage{96}--\blpage{105}
+(\byear{2025})
+\end{barticle}
+\endbibitem
+
+%%% 39
+\bibitem[\protect\citeauthoryear{Khoury et~al.}{2023}]{khoury2023secure}
+\begin{botherref}
+\oauthor{\bsnm{Khoury}, \binits{R.}},
+\oauthor{\bsnm{Avila}, \binits{A.R.}},
+\oauthor{\bsnm{Brunelle}, \binits{J.}},
+\oauthor{\bsnm{Camara}, \binits{B.M.}}:
+How secure is code generated by chatgpt?
+arXiv preprint arXiv:2304.09655
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 40
+\bibitem[\protect\citeauthoryear{Shao et~al.}{2025}]{shao2025misevovle}
+\begin{botherref}
+\oauthor{\bsnm{Shao}, \binits{S.}},
+\oauthor{\bsnm{Ren}, \binits{Q.}},
+\oauthor{\bsnm{Qian}, \binits{C.}},
+\oauthor{\bsnm{Wei}, \binits{B.}},
+\oauthor{\bsnm{Guo}, \binits{D.}},
+\oauthor{\bsnm{Yang}, \binits{J.}},
+\oauthor{\bsnm{Song}, \binits{X.}},
+\oauthor{\bsnm{Zhang}, \binits{L.}},
+\oauthor{\bsnm{Zhang}, \binits{W.}},
+\oauthor{\bsnm{Liu}, \binits{D.}}, et al.:
+Your agent may misevolve: Emergent risks in self-evolving llm agents.
+arXiv preprint arXiv:2509.26354
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 41
+\bibitem[\protect\citeauthoryear{Han et~al.}{2025}]{han2025alignment}
+\begin{botherref}
+\oauthor{\bsnm{Han}, \binits{S.}},
+\oauthor{\bsnm{Liu}, \binits{J.}},
+\oauthor{\bsnm{Su}, \binits{Y.}},
+\oauthor{\bsnm{Duan}, \binits{W.}},
+\oauthor{\bsnm{Liu}, \binits{X.}},
+\oauthor{\bsnm{Xie}, \binits{C.}},
+\oauthor{\bsnm{Bansal}, \binits{M.}},
+\oauthor{\bsnm{Ding}, \binits{M.}},
+\oauthor{\bsnm{Zhang}, \binits{L.}},
+\oauthor{\bsnm{Yao}, \binits{H.}}:
+Alignment tipping process: How self-evolution pushes llm agents off the rails.
+arXiv preprint arXiv:2510.04860
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 42
+\bibitem[\protect\citeauthoryear{MITRE}{2025}]{MITRE_CWE_2025}
+\begin{botherref}
+\oauthor{\bsnm{MITRE}}:
+{CWE-699: Software Development}.
+[Online].
+Accessed: 2025-09-24
+(2025).
+\url{https://cwe.mitre.org/data/definitions/699.html}
+\end{botherref}
+\endbibitem
+
+%%% 43
+\bibitem[\protect\citeauthoryear{}{2025}]{elephant}
+\begin{botherref}
+{Elephant Robotics}
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 44
+\bibitem[\protect\citeauthoryear{Anthropic}{2025}]{anthropic2025claude}
+\begin{botherref}
+\oauthor{\bsnm{Anthropic}}:
+The claude model card
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 45
+\bibitem[\protect\citeauthoryear{Tomasello}{2009}]{tomasello2009cultural}
+\begin{bbook}
+\bauthor{\bsnm{Tomasello}, \binits{M.}}:
+\bbtitle{The Cultural Origins of Human Cognition}.
+\bpublisher{Harvard university press}, \blocation{???}
+(\byear{2009})
+\end{bbook}
+\endbibitem
+
+%%% 46
+\bibitem[\protect\citeauthoryear{Senge et~al.}{1990}]{senge1990art}
+\begin{botherref}
+\oauthor{\bsnm{Senge}, \binits{P.M.}}, et al.:
+The art and practice of the learning organization.
+New York: Doubleday
+(1990)
+\end{botherref}
+\endbibitem
+
+%%% 47
+\bibitem[\protect\citeauthoryear{Woolley et~al.}{2010}]{woolley2010evidence}
+\begin{barticle}
+\bauthor{\bsnm{Woolley}, \binits{A.W.}},
+\bauthor{\bsnm{Chabris}, \binits{C.F.}},
+\bauthor{\bsnm{Pentland}, \binits{A.}},
+\bauthor{\bsnm{Hashmi}, \binits{N.}},
+\bauthor{\bsnm{Malone}, \binits{T.W.}}:
+\batitle{Evidence for a collective intelligence factor in the performance of human groups}.
+\bjtitle{science}
+\bvolume{330}(\bissue{6004}),
+\bfpage{686}--\blpage{688}
+(\byear{2010})
+\end{barticle}
+\endbibitem
+
+%%% 48
+\bibitem[\protect\citeauthoryear{Malone and Woolley}{2020}]{malone2020collective}
+\begin{barticle}
+\bauthor{\bsnm{Malone}, \binits{T.W.}},
+\bauthor{\bsnm{Woolley}, \binits{A.W.}}:
+\batitle{Collective intelligence}.
+\bjtitle{Cambridge handbook of intelligence}
+\bvolume{2},
+\bfpage{780}--\blpage{801}
+(\byear{2020})
+\end{barticle}
+\endbibitem
+
+%%% 49
+\bibitem[\protect\citeauthoryear{Hollnagel et~al.}{2006}]{hollnagel2006resilience}
+\begin{bbook}
+\bauthor{\bsnm{Hollnagel}, \binits{E.}},
+\bauthor{\bsnm{Woods}, \binits{D.D.}},
+\bauthor{\bsnm{Leveson}, \binits{N.}}:
+\bbtitle{Resilience Engineering: Concepts and Precepts}.
+\bpublisher{Ashgate Publishing, Ltd.}, \blocation{???}
+(\byear{2006})
+\end{bbook}
+\endbibitem
+
+%%% 50
+\bibitem[\protect\citeauthoryear{Nonaka}{1994}]{nonaka1994dynamic}
+\begin{barticle}
+\bauthor{\bsnm{Nonaka}, \binits{I.}}:
+\batitle{A dynamic theory of organizational knowledge creation}.
+\bjtitle{Organization science}
+\bvolume{5}(\bissue{1}),
+\bfpage{14}--\blpage{37}
+(\byear{1994})
+\end{barticle}
+\endbibitem
+
+%%% 51
+\bibitem[\protect\citeauthoryear{Shore and Wright}{2015}]{shore2015audit}
+\begin{barticle}
+\bauthor{\bsnm{Shore}, \binits{C.}},
+\bauthor{\bsnm{Wright}, \binits{S.}}:
+\batitle{Audit culture revisited: Rankings, ratings, and the reassembling of society}.
+\bjtitle{Current Anthropology}
+\bvolume{56}(\bissue{3}),
+\bfpage{421}--\blpage{444}
+(\byear{2015})
+\end{barticle}
+\endbibitem
+
+%%% 52
+\bibitem[\protect\citeauthoryear{Amodei et~al.}{2016}]{amodei2016concrete}
+\begin{botherref}
+\oauthor{\bsnm{Amodei}, \binits{D.}},
+\oauthor{\bsnm{Olah}, \binits{C.}},
+\oauthor{\bsnm{Steinhardt}, \binits{J.}},
+\oauthor{\bsnm{Christiano}, \binits{P.}},
+\oauthor{\bsnm{Schulman}, \binits{J.}},
+\oauthor{\bsnm{Man{\'e}}, \binits{D.}}:
+Concrete problems in ai safety.
+arXiv preprint arXiv:1606.06565
+(2016)
+\end{botherref}
+\endbibitem
+
+%%% 53
+\bibitem[\protect\citeauthoryear{Ruan et~al.}{2023}]{ruan2023identifying}
+\begin{botherref}
+\oauthor{\bsnm{Ruan}, \binits{Y.}},
+\oauthor{\bsnm{Dong}, \binits{H.}},
+\oauthor{\bsnm{Wang}, \binits{A.}},
+\oauthor{\bsnm{Pitis}, \binits{S.}},
+\oauthor{\bsnm{Zhou}, \binits{Y.}},
+\oauthor{\bsnm{Ba}, \binits{J.}},
+\oauthor{\bsnm{Dubois}, \binits{Y.}},
+\oauthor{\bsnm{Maddison}, \binits{C.J.}},
+\oauthor{\bsnm{Hashimoto}, \binits{T.}}:
+Identifying the risks of lm agents with an lm-emulated sandbox.
+arXiv preprint arXiv:2309.15817
+(2023)
+\end{botherref}
+\endbibitem
+
+%%% 54
 \bibitem[\protect\citeauthoryear{Huang et~al.}{2025}]{huang2025rzero}
 \begin{botherref}
 \oauthor{\bsnm{Huang}, \binits{C.}},
@@ -438,7 +865,7 @@ arXiv preprint arXiv:2508.05004
 \end{botherref}
 \endbibitem
 
-%%% 23
+%%% 55
 \bibitem[\protect\citeauthoryear{Zhou et~al.}{2025}]{zhou2025safeagent}
 \begin{botherref}
 \oauthor{\bsnm{Zhou}, \binits{X.}},
@@ -457,7 +884,7 @@ SafeAgent: Safeguarding LLM Agents via an Automated Risk Simulator
 \end{botherref}
 \endbibitem
 
-%%% 24
+%%% 56
 \bibitem[\protect\citeauthoryear{Sun et~al.}{2025}]{sun2025seagent}
 \begin{botherref}
 \oauthor{\bsnm{Sun}, \binits{Z.}},
@@ -474,7 +901,7 @@ arXiv preprint arXiv:2508.04700
 \end{botherref}
 \endbibitem
 
-%%% 25
+%%% 57
 \bibitem[\protect\citeauthoryear{Zhou et~al.}{2025}]{zhou2025selfchallenging}
 \begin{botherref}
 \oauthor{\bsnm{Zhou}, \binits{Y.}},
@@ -488,7 +915,7 @@ arXiv preprint arXiv:2506.01716
 \end{botherref}
 \endbibitem
 
-%%% 26
+%%% 58
 \bibitem[\protect\citeauthoryear{Zhang et~al.}{2025}]{zhang2025agentexperience}
 \begin{botherref}
 \oauthor{\bsnm{Zhang}, \binits{K.}},
@@ -507,7 +934,7 @@ arXiv preprint arXiv:2510.08558
 \end{botherref}
 \endbibitem
 
-%%% 27
+%%% 59
 \bibitem[\protect\citeauthoryear{Bo et~al.}{2025}]{bo2025agentic}
 \begin{botherref}
 \oauthor{\bsnm{Bo}, \binits{W.}},
@@ -526,7 +953,7 @@ arXiv preprint arXiv:2511.21678
 \end{botherref}
 \endbibitem
 
-%%% 28
+%%% 60
 \bibitem[\protect\citeauthoryear{Shi et~al.}{2025}]{shi2025tool}
 \begin{bchapter}
 \bauthor{\bsnm{Shi}, \binits{Z.}},
@@ -545,7 +972,7 @@ pp. \bfpage{2222}--\blpage{2237}
 \end{bchapter}
 \endbibitem
 
-%%% 29
+%%% 61
 \bibitem[\protect\citeauthoryear{Qu et~al.}{2024}]{qu2024exploration}
 \begin{botherref}
 \oauthor{\bsnm{Qu}, \binits{C.}},
@@ -562,7 +989,7 @@ arXiv preprint arXiv:2410.08197
 \end{botherref}
 \endbibitem
 
-%%% 30
+%%% 62
 \bibitem[\protect\citeauthoryear{Zhang et~al.}{2024}]{zhang2024aflow}
 \begin{botherref}
 \oauthor{\bsnm{Zhang}, \binits{J.}},
@@ -581,7 +1008,7 @@ arXiv preprint arXiv:2410.10762
 \end{botherref}
 \endbibitem
 
-%%% 31
+%%% 63
 \bibitem[\protect\citeauthoryear{Wang et~al.}{2025}]{wang2025evoagentx}
 \begin{bchapter}
 \bauthor{\bsnm{Wang}, \binits{Y.}},
@@ -595,7 +1022,7 @@ pp. \bfpage{643}--\blpage{655}
 \end{bchapter}
 \endbibitem
 
-%%% 32
+%%% 64
 \bibitem[\protect\citeauthoryear{Yu et~al.}{2025}]{yu2025survey}
 \begin{bchapter}
 \bauthor{\bsnm{Yu}, \binits{M.}},
@@ -615,7 +1042,7 @@ pp. \bfpage{6216}--\blpage{6226}
 \end{bchapter}
 \endbibitem
 
-%%% 33
+%%% 65
 \bibitem[\protect\citeauthoryear{Hua et~al.}{2024}]{hua2024trustagent}
 \begin{botherref}
 \oauthor{\bsnm{Hua}, \binits{W.}},
@@ -631,7 +1058,7 @@ arXiv preprint arXiv:2402.01586
 \end{botherref}
 \endbibitem
 
-%%% 34
+%%% 66
 \bibitem[\protect\citeauthoryear{Tsai and Bagdasarian}{2025}]{tsai2025contextual}
 \begin{bchapter}
 \bauthor{\bsnm{Tsai}, \binits{L.}},
@@ -643,7 +1070,7 @@ pp. \bfpage{8}--\blpage{17}
 \end{bchapter}
 \endbibitem
 
-%%% 35
+%%% 67
 \bibitem[\protect\citeauthoryear{Peng et~al.}{2025}]{peng2025correct}
 \begin{botherref}
 \oauthor{\bsnm{Peng}, \binits{Y.}},
@@ -658,18 +1085,6 @@ pp. \bfpage{8}--\blpage{17}
 When" correct" is not safe: Can we trust functionally correct patches generated by code agents?
 arXiv preprint arXiv:2510.17862
 (2025)
-\end{botherref}
-\endbibitem
-
-%%% 36
-\bibitem[\protect\citeauthoryear{MITRE}{2025}]{MITRE_CWE_2025}
-\begin{botherref}
-\oauthor{\bsnm{MITRE}}:
-{CWE-699: Software Development}.
-[Online].
-Accessed: 2025-09-24
-(2025).
-\url{https://cwe.mitre.org/data/definitions/699.html}
 \end{botherref}
 \endbibitem
 

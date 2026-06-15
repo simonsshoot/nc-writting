@@ -1,0 +1,144 @@
+\section{Method}
+  \label{sec:method}
+
+  \subsection{Datasets}
+  \label{sec:datasets}
+  We conduct extensive experiments on three cutting-edge benchmarks that collectively cover diverse agent interaction scenarios, risk types, and evaluation granularities.
+
+  \textbf{R-Judge}~\citep{yuan2024rjudge} is a benchmark designed to evaluate the safety risk awareness of LLM agents in interactive environments. It contains 569 high-quality, multi-turn agent interaction records spanning five application domains (application, finance, IoT, programming, and web) and covering 27 key risk scenarios across 10 risk types. Each record is annotated with safety labels and detailed risk descriptions, requiring the evaluator to judge whether the agent's behavioral trajectory introduces safety risks. Unlike content-level harmlessness benchmarks, R-Judge focuses on behavioral safety in open-ended agent scenarios, where risk awareness demands multi-dimensional reasoning over action sequences and environmental context. We use the complete dataset and conduct experiments across all five application domains.
+
+  \textbf{ASSEBench}~\citep{luo2025agentauditor} is the first benchmark designed to jointly evaluate both safety risks and security threats of LLM agents. It comprises 2,293 meticulously annotated interaction records across 29 application scenarios, covering 15 risk types that span both safety violations (e.g., harmful content generation, privacy leakage) and security threats (e.g., code injection, unauthorized access). A distinctive feature of ASSEBench is its dual judgment standard: strict and lenient. For handling ambiguous borderline cases, enabling more nuanced evaluation beyond binary safe/unsafe classification. The dataset captures agents' step-by-step actions and their environmental consequences, providing a systematic testbed for assessing defensive frameworks under realistic deployment conditions. We select the complete security subset under the Strict judgment standard for our experiments.
+
+  \textbf{AgentHarm}~\citep{andriushchenko2025agentharm} is specifically designed to evaluate the robustness of LLM agents against malicious task requests involving external tool calls. It consists of 110 explicitly malicious agent tasks (expandable to 440 with augmentations) across 11 harm categories including fraud, cybercrime, and harassment. Each task requires coherent multi-step execution involving tool calls, making it particularly challenging as the agent must maintain harmful intent across sequential operations rather than a single-turn response. AgentHarm evaluates both whether models refuse harmful agentic requests and whether jailbroken agents retain the capability to complete multi-step malicious tasks. We use the complete dataset for evaluation.
+
+  \textbf{Evaluation Metrics.} As the task can be viewed as a binary classification task (whether the query and action are safe or not), we adopt four classification metrics (safe being the positive): Accuracy, Precision, Recall, and F1-score for evaluation. Accuracy measures the overall proportion of correctly identified operations; Precision reflects the reliability of the safety judgments; Recall measures the framework's ability to identify all truly safe operations; F1 is the harmonic mean of precision and recall, providing a balance on the trade-off between them.
+
+  \textbf{Baselines.} We select representative baselines from different types of current agent defense frameworks for comparison to demonstrate the superiority of EVOLVE. \ding{172} CoTSafe~\citep{yin2024safeagentbench}: a prompt-based framework evaluating agent's every step during tasks. \ding{173} ShieldAgent~\citep{zhang2024asb}: a model-based framework, the safety of LLM agents' behavior is evaluated using a security judgment model fine-tuned from 4000 agent interaction records. \ding{174} GuardAgent~\citep{xiang2024guardagent}: an agent-based framework, using a guardrail agent with knowledge-enabled reasoning to guard another agent. \ding{175} AGrail~\citep{luo2025agrail}: a lifelong guardrail framework, with scalable safety criteria, providing effective and adaptive safety detection. We conduct experiments on four backbone LLMs with temperature set to 0: DeepSeek-V3.2~\citep{liu2024deepseek}, GPT-4o~\citep{achiam2023gpt}, Gemini-3-pro-preview~\citep{team2023gemini}, and Claude-sonnet-4-5~\citep{anthropic2025claude}. Random seed is set to 44. Baseline methods are implemented based on the same LLMs as EVOLVE for a fair comparison. ShieldAgent is fine-tuned on a Qwen model, so it does not require an API like other methods. Detailed prompts are introduced in Appendix~\ref{appendix:prompt}.
+
+  \subsection{Framework Overview}
+
+  The central premise of EVOLVE is that agent defense should not be a static artifact but a living, self-improving capability, one that mirrors the adaptive processes through which human societies develop resilience to novel and evolving threats.
+
+  Research in cultural evolution demonstrates that human knowledge systems grow robust not through fixed rule memorization, but through cumulative cycles of innovation, selective retention, and social transmission~\citep{boyd1988culture,henrich2015secret,tomasello2009cultural}. When a community encounters a new threat, individuals first \emph{identify} the novel risk through contextual reasoning grounded in prior experience; they then \emph{reuse} and adapt existing coping strategies rather than inventing solutions from scratch; critically, proposed responses undergo \emph{peer review} and institutional verification before being adopted as standard practice; and finally, strategies that prove inadequate are \emph{iteratively refined} through feedback loops until they meet the community's standards~\citep{argyris1997organizational,weick2011managing}. This four phase adaptive cycle: identification, reuse, verification, and refinement, has been independently documented across domains ranging from organizational learning theory~\citep{argyris1997organizational,senge1990art} to collective intelligence research~\citep{woolley2010evidence,malone2020collective} and resilience engineering~\citep{hollnagel2006resilience,taleb2012things}.
+
+  EVOLVE translates this human adaptive blueprint into a computational framework for agent security. We decompose the defense process into four coordinated stages, each corresponding to a well-established phase of human cumulative adaptation below.
+
+  \ding{182} \textbf{Generation: Threat Recognition and Knowledge Externalization}. Just as a human security analyst reasons about the nature of a new threat in context and codifies the finding into a reproducible protocol~\citep{weick2011managing,nonaka1994dynamic}, AnalysisAgent dynamically identifies emerging risks and externalizes each judgment into an executable guardrail tool, transforming tacit risk awareness into explicit, portable code artifacts.
+
+  \ding{183} \textbf{Reuse: Cumulative Cultural Inheritance}. Human expertise accumulates by recognizing structural similarities between new challenges and past solutions, then building upon existing knowledge rather than starting from scratch~\citep{henrich2015secret,boyd1988culture}. FusionAgent retrieves semantically related tools from a lifelong library and fuses them with newly generated ones, enabling each tool to become progressively more capable through iterative refinement, the computational analog of cumulative cultural evolution.
+
+  \ding{184} \textbf{Audit: Institutional Verification and Independent Oversight}. In human governance, newly proposed practices are not adopted on trust alone but must survive independent scrutiny: financial systems require external auditors, pharmaceutical development mandates clinical trials, and legal systems separate investigation from adjudication~\citep{taleb2012things,shore2015audit}. ExecutorAgent and AuditorAgent jointly realize this principle, producing execution evidence in an isolated sandbox and conducting independent security review before any tool is admitted to the defense library.
+
+  \ding{185} \textbf{Refinement: Corrective Learning and Adaptive Replanning}. Resilient organizations do not merely detect failures; they engage in double-loop learning that modifies underlying assumptions and strategies~\citep{argyris1997organizational,senge1990art}. When a tool fails audit, AuditorAgent performs targeted repair through iterative feedback cycles. When an action is deemed unsafe, RevisionAgent replans the execution to preserve intent while eliminating hazard, mirroring how safety engineers redesign workflows rather than simply halting production.
+
+  This design yields three structural advantages over existing static defense frameworks. First, by externalizing security knowledge into executable code rather than natural language rules or fixed classifiers, EVOLVE achieves both precision and portability: the same guardrail tool can transfer across application domains without redesign and protect different tasks. Second, the lifelong tool library enables genuine knowledge accumulation---each interaction potentially strengthens the defense system's capabilities, realizing the ``ratchet effect'' observed in human cultural evolution where knowledge builds upon itself rather than resetting~\citep{tomasello2009cultural}. Third, the mandatory audit stage prevents the well-documented failure mode of unchecked self-modification~\citep{amodei2016concrete}: evolution is not blindly trusted but continuously verified, ensuring that the system's adaptive trajectory remains aligned with safety objectives.
+
+  As illustrated in Figure~\ref{fig:Pipeline}, the four stages are realized by specialized agents that collectively form an autonomous closed loop from risk perception through tool evolution to trusted verification. Two optional modules, SimulationAgent and RevisionAgent, further extend the framework's applicability to scenarios where explicit action sequences are unavailable or where proactive risk mitigation beyond binary rejection is desired. Pipeline details are presented in Appendix~\ref{appendix:pipeline}.
+
+  \begin{figure*}[!t]
+      \centering
+      \includegraphics[width=\linewidth]{code/pipeline.png}
+      \caption{EVOLVE's framework. The four-stage pipeline---generation, reuse, audit, and refinement---mirrors the cumulative adaptive cycle through which human institutions develop resilience to evolving threats.}
+      \label{fig:Pipeline}
+  \end{figure*}
+
+  \subsection{Generation: Risk Identification and Tool Creation}
+
+  When a human security analyst encounters a new threat, the first step is not to apply a pre-existing rule, but to reason about the nature of the risk in context---drawing on prior experience while remaining open to
+  novel patterns~\citep{weick2011managing}. EVOLVE's generation stage mirrors this cognitive process. Rather than matching inputs against a fixed taxonomy, AnalysisAgent performs open-ended risk reasoning over the user
+  query $\mathcal{Q}$ and the agent's intended action sequence $\mathcal{A}^*$, dynamically interacting with a lifelong risk knowledge library $\mathcal{K}_{\mathcal{R}}$ to determine whether the current context triggers
+   a known risk or represents an emerging threat that must be inducted as a new category.
+
+  \noindent\textbf{Risk Analysis.} AnalysisAgent conducts joint semantic understanding of the query and actions to identify the risk category $\mathcal{R}$ and determine whether guardrail tool activation is necessary
+  ($\mathcal{N} \in \{0, 1\}$):
+  \begin{equation}
+      \text{Risk Analysis} : \left(\mathcal{Q}, \mathcal{A}^*, \mathcal{C}, \mathcal{K}_{\mathcal{R}}\right) \rightarrow \left(\mathcal{R}, \mathcal{N}\right).
+  \end{equation}
+
+  \noindent\textbf{Tool Generation.} When intervention is required ($\mathcal{N} = 1$), AnalysisAgent generates a targeted, executable Python guardrail tool $\mathcal{G}$ tailored to the specific risk scenario:
+  \begin{equation}
+      \text{Tool Generation} : (\mathcal{Q}, \mathcal{A}^*) \xrightarrow{\mathcal{R}} \mathcal{G}.
+  \end{equation}
+  This on-demand invocation mechanism parallels the human judgment of ``is this situation dangerous enough to warrant intervention?''---avoiding over-reliance on protective tools when the context is benign, while ensuring rapid response when genuine threats emerge. Just as a human expert codifies a newly discovered vulnerability into a reproducible detection script rather than an informal verbal warning, EVOLVE externalizes each risk judgment into a precise, portable, and reusable code artifact. This ensures that the same protective logic can transfer across different backbone models and application domains without redesign.
+
+  \noindent\textbf{SimulationAgent (Optional).} In deployment scenarios where only the user instruction $\mathcal{Q}$ is available without an explicit action sequence, SimulationAgent bridges this gap by inferring the
+  most likely action chain $\mathcal{A}^* = \arg\max_{A \in \mathcal{A}} P(A \mid \mathcal{Q};\theta)$, analogous to how a security reviewer mentally simulates what a system would do before assessing its safety.
+
+
+  \subsection{Reuse: Tool Retrieval and Evolutionary Fusion}
+
+  Human expertise accumulates not by solving every problem from scratch, but by recognizing structural similarities between new challenges and past solutions, then adapting existing knowledge to fit the new
+  context~\citep{henrich2015secret}. FusionAgent instantiates this principle of cumulative cultural evolution for guardrail tools. Rather than allowing the tool library to grow unboundedly with redundant entries,
+  FusionAgent actively searches for semantically related existing tools and fuses them with newly generated ones, enabling each tool to become progressively more capable through iterative refinement.
+
+  We define the lifelong guardrail tool library $\mathcal{K}_{\mathcal{G}} = \{(T_i, R_i, \phi_i)\}_{i=1}^{N}$, where $T_i$ is an audited guardrail tool, $R_i$ its target risk category, and $\phi_i$ its functional
+  description.
+
+  \noindent\textbf{Hierarchical Retrieval.} FusionAgent employs a two-stage retrieval mechanism that mirrors how experts first narrow the search space by domain, then perform deep comparison. The first stage filters by
+  risk category:
+  \begin{equation}
+      \text{Quick Retrieval} : \mathcal{M}_{\mathcal{R}} = \left\{ T_i \mid R_i = \mathcal{R} \right\}.
+  \end{equation}
+  The second stage uses the language model to evaluate functional-logic alignment between candidates and the new tool, outputting a match indicator $m \in \{0, 1\}$ and the most similar tool $T_{\text{sim}}$:
+  \begin{equation}
+      \text{Slow Retrieval} : (\mathcal{M}_{\mathcal{R}}, \mathcal{G}) \rightarrow (m, T_{\text{sim}}).
+  \end{equation}
+
+  \noindent\textbf{Tool Fusion.} When a reusable tool exists ($m = 1$), FusionAgent integrates the new tool's logic into the existing one, producing an evolved tool $\mathcal{G}'$ with broader coverage:
+  \begin{equation}
+      \text{Tool Fusion} : (\mathcal{G}, T_{\text{sim}}) \xrightarrow{\mathcal{R},\, m} \mathcal{G}'.
+  \end{equation}
+  This fusion process is the mechanism through which tools self-evolve: each reuse cycle deepens and extends existing tools rather than leaving them static. When no match is found ($m = 0$), the new tool is retained as a
+   candidate for the library. In both cases, downstream auditing must be passed before library admission, ensuring quality control over the evolutionary process.
+
+
+  \subsection{Audit: Sandboxed Execution and Independent Verification}
+
+  In human governance, trust is not granted by default but earned through independent oversight. Financial systems require external auditors; pharmaceutical development mandates independent clinical trials; legal systems
+   separate prosecution from adjudication~\citep{taleb2012things}. EVOLVE adopts the same principle: tools produced by the generation and reuse stages are not blindly trusted, but must survive independent execution and
+  security review before deployment~\citep{han2025alignment,shao2025misevovle}. This stage is realized through two tightly coupled components: ExecutorAgent provides the evidence, and AuditorAgent delivers the verdict.
+
+  \noindent\textbf{ExecutorAgent: Evidence Production.} ExecutorAgent operates within a strictly isolated sandbox environment, executing both the guardrail tool and the agent's intended actions to produce verifiable
+  execution evidence:
+  \begin{equation}
+      \text{Sandbox Execution} : \left( \mathcal{Q}, \mathcal{A}^*, \mathcal{C}, \mathcal{G}' \right) \rightarrow \left( \mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\mathcal{A}^*} \right).
+  \end{equation}
+  The sandbox isolation ensures that neither guardrail tools nor protected operations produce irreversible side effects on the real environment, drawing on the LLM-simulated sandbox paradigm~\citep{ruan2023identifying}.
+  In practical deployments, Docker-based real execution environments are also supported for higher fidelity requirements.
+
+  \noindent\textbf{AuditorAgent: Independent Security Audit.} AuditorAgent reviews the evolved tool $\mathcal{G}'$ and its execution evidence from a vulnerability perspective, checking for ten categories of typical CWE
+  security vulnerabilities (Appendix~\ref{appendix:VGT}), and forming a binary audit conclusion $D \in \{0, 1\}$. This independence by design ensures that even if upstream modules introduce defects during tool generation
+   or optimization, the audit mechanism can intercept unsafe tools before they enter the library---suppressing the risk of misevolution caused by the Vulnerable Guardrail Tool (VGT) phenomenon we identify in this work.
+
+  \noindent\textbf{Final Security Decision.} Beyond tool auditing, AuditorAgent synthesizes full-pipeline signals---the guardrail tool execution result $\mathcal{E}_{\mathcal{G}'}$, the simulated agent action result
+  $\mathcal{E}_{\mathcal{A}^*}$, and the tool's logical integrity---to deliver the final security verdict $y$:
+  \begin{equation}
+      \text{Final Decision} : \left( \mathcal{Q}, \mathcal{A}^*, \mathcal{G}', \mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\mathcal{A}^*} \right) \rightarrow y.
+  \end{equation}
+
+
+  \subsection{Refinement: Iterative Repair and Adaptive Replanning}
+
+  Resilient systems do not merely detect failures, instead they learn from them. In engineering practice, a failed safety inspection triggers root-cause analysis and targeted repair rather than wholesale
+  rejection~\citep{argyris1997organizational}. EVOLVE's refinement stage embodies this corrective learning loop at two levels: repairing flawed tools and replanning unsafe actions.
+
+  \noindent\textbf{Tool Repair.} When a tool fails the audit ($D = 0$), AuditorAgent performs targeted repair based on specific audit findings, generating a repaired version $\mathcal{G}''$:
+  \begin{equation}
+      \text{Tool Repair} : (\mathcal{G}', D) \rightarrow \mathcal{G}''.
+  \end{equation}
+  This audit-repair cycle executes at most three rounds; tools that still fail are discarded. Only tools passing the audit are admitted to the lifelong tool library:
+  \begin{equation}
+      \text{Library Update} : \mathcal{K}_{\mathcal{G}} \leftarrow \mathcal{K}_{\mathcal{G}} \cup \{G' \mid D = 1\} \cup \{G'' \mid D = 1\}.
+  \end{equation}
+  This strict admission control ensures that the tool library's quality improves monotonically over time, preventing the accumulation of flawed artifacts that could compromise future defense decisions.
+
+  \noindent\textbf{RevisionAgent: Intent-Preserving Replanning (Optional).} When the final verdict is unsafe ($y = \text{unsafe}$), RevisionAgent extends the framework from binary rejection to proactive risk mitigation.
+  Drawing on the identified risk category $\mathcal{R}$ and the agent's action space, it replans the action sequence to preserve the user's core intent while eliminating hazardous operations:
+  \begin{equation}
+      \text{Revision} : (\mathcal{Q}, \mathcal{A}^*, \mathcal{R}) \rightarrow \mathcal{A}'.
+  \end{equation}
+  This mirrors how a human safety officer does not simply shut down a production line upon discovering a hazard, but redesigns the workflow to achieve the same goal safely. Experimental results in embodied environments validate this capability (Figure~\Fref{fig:embodied}): rewriting ``place the phone in the microwave'' as ``place the phone on the table'' eliminates the fire hazard while fulfilling the user's core intent.
+
+  In summary, EVOLVE's four-stage pipeline---generation, reuse, audit, and refinement---forms a continuously verified evolutionary loop. Each stage maps to a well-established principle of human adaptive systems:
+  contextual threat reasoning, cumulative knowledge reuse, independent oversight, and corrective learning. Together, they enable defense capabilities that grow stronger through interaction rather than degrading under
+  distributional shift.

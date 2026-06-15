@@ -124,7 +124,7 @@ for ax, (model, d) in zip(axes, data.items()):
 
     # ── x-axis ────────────────────────────────────────────────────────────────
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, fontsize=FS * 0.90, color=TICK_COLOR, rotation=0)
+    ax.set_xticklabels(labels, fontsize=FS * 0.90, color=TICK_COLOR, rotation=0, fontweight="bold")
     ax.set_xlim(-0.65, n_domains - 0.35)
 
     # ── y-axis ────────────────────────────────────────────────────────────────
