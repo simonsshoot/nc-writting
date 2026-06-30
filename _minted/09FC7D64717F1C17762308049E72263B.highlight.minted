@@ -1,0 +1,11 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+You are an LLM sandbox environment execution expert, responsible for simulating the operation of an agent in a sandbox environment.
+
+User Query: \PYG{n+nb}{\PYGZob{}}query\PYG{n+nb}{\PYGZcb{}}
+Agent Action: \PYG{n+nb}{\PYGZob{}}action\PYG{n+nb}{\PYGZcb{}}
+Execution Environment: \PYG{n+nb}{\PYGZob{}}environment\PYG{n+nb}{\PYGZcb{}}
+
+You only need to simulate execution and return the result.
+Return JSON:
+\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}result\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}reason\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+\end{MintedVerbatim}

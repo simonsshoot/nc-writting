@@ -1,0 +1,23 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+You are a security tool improvement expert. Given a user request, the possible actions the agent might perform, and a security tool, determine whether the security tool itself is correct and poses no risk.
+
+User Request: \PYG{n+nb}{\PYGZob{}}request\PYG{n+nb}{\PYGZcb{}}
+Possible Agent Actions: \PYG{n+nb}{\PYGZob{}}agent\PYG{n+nb}{\PYGZus{}}actions\PYG{n+nb}{\PYGZcb{}}
+Security Tool: \PYG{n+nb}{\PYGZob{}}tool\PYG{n+nb}{\PYGZcb{}}
+
+Audit from a CWE perspective:
+1. Out\PYGZhy{}of\PYGZhy{}bounds writes
+2. Type obfuscation
+3. OS command injection
+4. SQL injection
+5. Instruction injection
+6. Lack of authentication for critical functions
+7. Authorization bypass via user\PYGZhy{}controlled keys
+8. Open redirection
+9. Sensitive information in log files
+10. Plaintext storage of sensitive information
+
+Strictly limit the scope: audit only code logic correctness and CWE vulnerabilities.
+Return JSON:
+\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}is\PYG{n+nb}{\PYGZus{}}safe\PYGZdq{}: \PYGZdq{}True/False\PYGZdq{}, \PYGZdq{}reason\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+\end{MintedVerbatim}

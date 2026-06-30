@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+You are a security tool improvement expert. Given a user request, the possible actions the agent might perform, existing security tools, and optimized security tools, determine whether the optimized security tools are correct and risk\PYGZhy{}free.
+
+User Request: \PYG{n+nb}{\PYGZob{}}request\PYG{n+nb}{\PYGZcb{}}
+Possible Agent Actions: \PYG{n+nb}{\PYGZob{}}agent\PYG{n+nb}{\PYGZus{}}actions\PYG{n+nb}{\PYGZcb{}}
+Existing Security Tool: \PYG{n+nb}{\PYGZob{}}tool\PYG{n+nb}{\PYGZcb{}}
+Optimized Security Tool: \PYG{n+nb}{\PYGZob{}}optimized\PYG{n+nb}{\PYGZus{}}tool\PYG{n+nb}{\PYGZcb{}}
+
+Audit from a CWE perspective (same 10 categories as TOOL\PYG{n+nb}{\PYGZus{}}DOUBT\PYG{n+nb}{\PYGZus{}}PROMPT).
+
+Strictly limit the scope: audit only code logic correctness and CWE vulnerabilities. Avoid over\PYGZhy{}protection.
+Return JSON:
+\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}is\PYG{n+nb}{\PYGZus{}}safe\PYGZdq{}: \PYGZdq{}True/False\PYGZdq{}, \PYGZdq{}reason\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+\end{MintedVerbatim}

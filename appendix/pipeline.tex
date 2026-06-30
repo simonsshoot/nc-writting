@@ -1,19 +1,19 @@
 \section{EVOLVE Pipeline}
 \label{appendix:pipeline}
-To better understand the EVOLVE framework, we also provide pseudocode for the process, as shown in Algorithm~\ref{alg:defend_process}. The algorithm outlines the four main phases of EVOLVE: Simulation \& Risk Analysis, Tool Fusion \& Optimization, Sandbox Execution \& Auditing, and Final Decision \& Memory Update. Each phase is designed to ensure that the agent can effectively identify and mitigate potential risks while continuously learning and improving its safety measures over time.
+To better understand the EVOLVE framework, we also provide pseudocode for the process, as shown in Algorithm~\ref{alg:defend_process}. The algorithm outlines the four main phases of EVOLVE: Simulation \& Risk Analysis, Tool Fusion \& Optimization, Sandbox Execution \& Auditing, and Final Decision \& Memory Update. Each phase is designed to ensure that the agent can effectively identify and mitigate potential risks through continuously learning.
 \begin{algorithm}[t]
 \caption{The EVOLVE Framework Process}
 \label{alg:defend_process}
 \begin{algorithmic}[1]
 \Require User query $\mathcal{Q}$, Environment $\mathcal{C}$, Risk Library $\mathcal{K_R}$, Tool Library $\mathcal{K_G}$, Action Space $\mathcal{A}$
-\Ensure Final decision $y$, Revised action $\mathcal{A}'$, Updated $\mathcal{K_R}$, Updated $\mathcal{K_G}$
+\Ensure Final decision $y$, Revised trajectory $\tilde{\boldsymbol{\tau}}$, Updated $\mathcal{K_R}$, Updated $\mathcal{K_G}$
 
 \State \textbf{// Phase 1: Simulation \& Risk Analysis}
-\State $\mathcal{A}^* \gets f_{\mathrm{sim}}(\mathcal{Q})$ \Comment{SimulationAgent predicts intended actions}
-\State $(\mathcal{R}, \mathcal{N}) \gets f_{\mathrm{analysis}}(\mathcal{Q}, \mathcal{A}^*, \mathcal{C}, \mathcal{K_R})$ \Comment{AnalysisAgent identifies risks}
+\State $\boldsymbol{\tau} \gets f_{\mathrm{sim}}(\mathcal{Q})$ \Comment{SimulationAgent predicts intended actions}
+\State $(\mathcal{R}, z) \gets f_{\mathrm{analysis}}(\mathcal{Q}, \boldsymbol{\tau}, \mathcal{C}, \mathcal{K_R})$ \Comment{AnalysisAgent identifies risks}
 
-\If{$\mathcal{N} = 1$}
-    \State $\mathcal{G} \gets f_{\mathrm{gen}}(\mathcal{Q}, \mathcal{A}^*, \mathcal{R})$ \Comment{Generate targeted safety tool}
+\If{$z = 1$}
+    \State $\mathcal{G} \gets f_{\mathrm{gen}}(\mathcal{Q}, \boldsymbol{\tau}, \mathcal{C}, \mathcal{R})$ \Comment{Generate targeted safety tool}
 
     \State \textbf{// Phase 2: Tool Fusion \& Optimization}
     \State $\mathcal{M_R} \gets \{ T_i \in \mathcal{K_G} \mid R_i = \mathcal{R} \}$ \Comment{Quick retrieval by category}
@@ -27,13 +27,13 @@ To better understand the EVOLVE framework, we also provide pseudocode for the pr
 \EndIf
 
 \State \textbf{// Phase 3: Sandbox Execution \& Auditing}
-\State $(\mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\mathcal{A}^*}) \gets f_{\mathrm{exec}}(\mathcal{Q}, \mathcal{A}^*, \mathcal{C}, \mathcal{G}')$ \Comment{Isolated verification}
-\State $D \gets \text{AuditTool}(\mathcal{G}', \mathcal{E}_{\mathcal{G}'})$ \Comment{AuditorAgent audits tool security}
+\State $(\mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\boldsymbol{\tau}}) \gets f_{\mathrm{exec}}(\mathcal{Q}, \boldsymbol{\tau}, \mathcal{C}, \mathcal{G}')$ \Comment{Isolated verification}
+\State $(D, \mathcal{V}) \gets \text{AuditTool}(\mathcal{G}', \mathcal{E}_{\mathcal{G}'})$ \Comment{AuditorAgent audits tool security}
 
 \If{$D = 0$}
     \For{$trial = 1$ \textbf{to} $3$}
-        \State $\mathcal{G}'' \gets f_{\mathrm{repair}}(\mathcal{G}', D)$
-        \State $D \gets \text{AuditTool}(\mathcal{G}'')$
+        \State $\mathcal{G}'' \gets f_{\mathrm{repair}}(\mathcal{G}', \mathcal{V})$
+        \State $(D, \mathcal{V}) \gets \text{AuditTool}(\mathcal{G}'')$
         \If{$D = 1$}
             \State $\mathcal{G}' \gets \mathcal{G}''$; \textbf{break}
         \EndIf
@@ -41,10 +41,10 @@ To better understand the EVOLVE framework, we also provide pseudocode for the pr
 \EndIf
 
 \State \textbf{// Phase 4: Final Decision \& Memory Update}
-\State $y \gets f_{\mathrm{audit}}(\mathcal{Q}, \mathcal{A}^*, \mathcal{G}', \mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\mathcal{A}^*})$ \Comment{Decoupled safety judgment}
+\State $y \gets f_{\mathrm{audit}}(\mathcal{Q}, \boldsymbol{\tau}, \mathcal{G}', \mathcal{E}_{\mathcal{G}'}, \mathcal{E}_{\boldsymbol{\tau}})$ \Comment{Decoupled safety judgment}
 
 \If{$y = \text{unsafe}$}
-    \State $\mathcal{A}' \gets f_{\mathrm{revise}}(\mathcal{Q}, \mathcal{A}^*, \mathcal{R})$ \Comment{Optional: Generate safe mitigation}
+    \State $\tilde{\boldsymbol{\tau}} \gets f_{\mathrm{revise}}(\mathcal{Q}, \boldsymbol{\tau}, \mathcal{C}, \mathcal{R})$ \Comment{Optional: Generate safe mitigation}
 \EndIf
 
 \State \textbf{// Lifelong Learning}
@@ -55,6 +55,6 @@ To better understand the EVOLVE framework, we also provide pseudocode for the pr
     \State $\mathcal{K_G} \gets \mathcal{K_G} \cup \{ \mathcal{G}' \}$ \Comment{Update existing or add new validated tool}
 \EndIf
 
-\Return $y, \mathcal{A}', \mathcal{K_R}, \mathcal{K_G}$
+\Return $y, \tilde{\boldsymbol{\tau}}, \mathcal{K_R}, \mathcal{K_G}$
 \end{algorithmic}
 \end{algorithm}

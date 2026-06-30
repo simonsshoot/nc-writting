@@ -1,0 +1,16 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+You are a security tool repair expert. Existing security tools have been found to have risks or flaws during the audit, and you need to repair and optimize the tools based on the audit comments.
+
+User Request: \PYG{n+nb}{\PYGZob{}}request\PYG{n+nb}{\PYGZcb{}}
+Agent Actions: \PYG{n+nb}{\PYGZob{}}agent\PYG{n+nb}{\PYGZus{}}actions\PYG{n+nb}{\PYGZcb{}}
+Original Security Tool: \PYG{n+nb}{\PYGZob{}}tool\PYG{n+nb}{\PYGZcb{}}
+Audit Comments (Risks/Issues Found): \PYG{n+nb}{\PYGZob{}}reason\PYG{n+nb}{\PYGZcb{}}
+
+Your Tasks:
+1. Understand the risks or deficiencies identified in the audit comments.
+2. Fix these issues and generate an improved security tool.
+3. Ensure the fixed tool resolves identified issues, maintains original functionality, does not introduce new risks, and still accepts (query: str, action: str) \PYGZhy{}\PYGZgt{} bool.
+
+Return JSON:
+\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}category\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}name\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}description\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}require\PYGZdq{}: [\PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}], \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}code\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+\end{MintedVerbatim}

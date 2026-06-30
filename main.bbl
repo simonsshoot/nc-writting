@@ -273,7 +273,8 @@ arXiv preprint arXiv:2510.06445
 \bauthor{\bsnm{Boyd}, \binits{R.}},
 \bauthor{\bsnm{Richerson}, \binits{P.J.}}:
 \bbtitle{Culture and the Evolutionary Process}.
-\bpublisher{University of Chicago press}, \blocation{???}
+\bpublisher{University of Chicago press},
+\blocation{Chicago}
 (\byear{1988})
 \end{bbook}
 \endbibitem
@@ -284,7 +285,8 @@ arXiv preprint arXiv:2510.06445
 \bauthor{\bsnm{Henrich}, \binits{J.}}:
 \bctitle{The secret of our success: How culture is driving human evolution, domesticating our species, and making us smarter}.
 In: \bbtitle{The Secret of Our Success}.
-\bpublisher{princeton University press}, \blocation{???}
+\bpublisher{princeton University press},
+\blocation{Princeton, NJ}
 (\byear{2015})
 \end{bchapter}
 \endbibitem
@@ -295,7 +297,8 @@ In: \bbtitle{The Secret of Our Success}.
 \bauthor{\bsnm{Weick}, \binits{K.E.}},
 \bauthor{\bsnm{Sutcliffe}, \binits{K.M.}}:
 \bbtitle{Managing the Unexpected: Resilient Performance in an Age of Uncertainty}.
-\bpublisher{John Wiley \& Sons}, \blocation{???}
+\bpublisher{John Wiley \& Sons},
+\blocation{Hoboken, NJ}
 (\byear{2011})
 \end{bbook}
 \endbibitem
@@ -553,7 +556,8 @@ pp. \bfpage{1893}--\blpage{1902}
 \begin{bbook}
 \bauthor{\bsnm{Leveson}, \binits{N.G.}}:
 \bbtitle{Engineering a Safer World: Systems Thinking Applied to Safety}.
-\bpublisher{MIT press}, \blocation{???}
+\bpublisher{MIT press},
+\blocation{Cambridge, MA}
 (\byear{2016})
 \end{bbook}
 \endbibitem
@@ -739,7 +743,8 @@ The claude model card
 \begin{bbook}
 \bauthor{\bsnm{Tomasello}, \binits{M.}}:
 \bbtitle{The Cultural Origins of Human Cognition}.
-\bpublisher{Harvard university press}, \blocation{???}
+\bpublisher{Harvard university press},
+\blocation{Cambridge, MA}
 (\byear{2009})
 \end{bbook}
 \endbibitem

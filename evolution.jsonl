@@ -1,0 +1,9 @@
+{"step": 30, "window_acc": 86.67, "window_f1": 91.3, "cumul_acc": 86.67, "cumul_f1": 91.3, "risk_count": 4, "tool_count": 21, "reuse_rate": 55.77}
+{"step": 60, "window_acc": 90.0, "window_f1": 93.62, "cumul_acc": 88.33, "cumul_f1": 92.47, "risk_count": 4, "tool_count": 32, "reuse_rate": 69.44}
+{"step": 90, "window_acc": 90.0, "window_f1": 93.62, "cumul_acc": 88.89, "cumul_f1": 92.86, "risk_count": 4, "tool_count": 44, "reuse_rate": 76.19}
+{"step": 120, "window_acc": 96.67, "window_f1": 97.78, "cumul_acc": 90.83, "cumul_f1": 94.05, "risk_count": 6, "tool_count": 54, "reuse_rate": 85.71}
+{"step": 150, "window_acc": 96.67, "window_f1": 97.56, "cumul_acc": 92.0, "cumul_f1": 94.69, "risk_count": 15, "tool_count": 66, "reuse_rate": 79.38}
+{"step": 180, "window_acc": 100.0, "window_f1": 100.0, "cumul_acc": 93.33, "cumul_f1": 95.2, "risk_count": 15, "tool_count": 73, "reuse_rate": 79.23}
+{"step": 210, "window_acc": 96.67, "window_f1": 96.3, "cumul_acc": 93.81, "cumul_f1": 95.31, "risk_count": 17, "tool_count": 81, "reuse_rate": 80.47}
+{"step": 240, "window_acc": 96.67, "window_f1": 96.0, "cumul_acc": 94.17, "cumul_f1": 95.36, "risk_count": 17, "tool_count": 83, "reuse_rate": 82.0}
+{"step": 252, "window_acc": 96.67, "window_f1": 93.33, "cumul_acc": 94.44, "cumul_f1": 95.42, "risk_count": 17, "tool_count": 84, "reuse_rate": 81.86}

@@ -1,14 +1,19 @@
 \begin{appendices}
 % \input{appendix/setting.tex}
 \input{appendix/relatedwork.tex}
-\input{appendix/VGT.tex}
-\input{appendix/prompt.tex}
-\input{appendix/toolcase.tex}
-\input{appendix/pipeline.tex}
+% \input{appendix/VGT.tex}
+% \input{appendix/prompt.tex}
+% \input{appendix/toolcase.tex}
+% \input{appendix/pipeline.tex}
+\input{appendix/llm_bias.tex}
 
 % \smallskip
 % \noindent\footnotesize
-% \textsuperscript{$\dagger$}ShieldAgent is a training-based method that does not rely on a backbone LLM; its results are identical across all LLM groups.
+% \textsuperscript{$\dagger$}ShielnotdAgent is a training-based method that does not rely on a backbone LLM; its results are identical across all LLM groups.
+\section{Main Results}
+\label{appendix:main_results}
+Table~\ref{tab:main_results} reports the complete numerical results across three benchmarks and four backbone LLMs. EVOLVE achieves the highest F1 score in all 12 benchmark--model combinations, with average improvements of +9.0\% on RJudge, +7.4\% on ASSEBench, and +41.1\% on AgentHarm over the respective runner-up methods. Notably, EVOLVE maintains F1 scores stably between 0.86 and 0.92 regardless of the backbone choice, while baseline methods exhibit cross-benchmark fluctuations of up to 65\% (ShieldAgent on AgentHarm). ShieldAgent is a training-based method that does not rely on a backbone LLM; its results are identical across all LLM groups.
+
 \input{tables/main_result.tex}
 %  \begin{figure}
 %     \centering

@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+You are an expert in replanning agent actions. The current action sequence contains risks. Given a user request, the agent\PYGZsq{}s action sequence, and risk analysis, replan the actions to avoid these risks.
+
+user\PYG{n+nb}{\PYGZus{}}request: \PYG{n+nb}{\PYGZob{}}user\PYG{n+nb}{\PYGZus{}}request\PYG{n+nb}{\PYGZcb{}}
+agent\PYG{n+nb}{\PYGZus{}}actions: \PYG{n+nb}{\PYGZob{}}agent\PYG{n+nb}{\PYGZus{}}action\PYG{n+nb}{\PYGZcb{}}
+risk\PYG{n+nb}{\PYGZus{}}analysis: \PYG{n+nb}{\PYGZob{}}risk\PYG{n+nb}{\PYGZus{}}summary\PYG{n+nb}{\PYGZcb{}}
+
+Example:
+Original: Put the electronic device in the microwave to heat it.
+Revised: Pick up the electronic device, move it to the table, and place it on the table.
+
+Return JSON (actions separated by \PYG{n+nb}{\PYGZam{}\PYGZam{}}):
+\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}refined\PYG{n+nb}{\PYGZus{}}action\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+\end{MintedVerbatim}

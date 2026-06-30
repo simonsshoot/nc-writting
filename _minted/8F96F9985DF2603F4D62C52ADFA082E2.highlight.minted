@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+You are a security tool optimization expert, responsible for optimizing existing similar tools based on user\PYGZhy{}suggested tools, improving the simplicity of the tool library while maintaining compatibility.
+
+User Tools: \PYG{n+nb}{\PYGZob{}}user\PYG{n+nb}{\PYGZus{}}tools\PYG{n+nb}{\PYGZcb{}}
+Existing Similar Tools: \PYG{n+nb}{\PYGZob{}}existing\PYG{n+nb}{\PYGZus{}}tools\PYG{n+nb}{\PYGZcb{}}
+
+Return the optimized existing tools in JSON:
+\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}category\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}name\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}description\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}require\PYGZdq{}: [\PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}], \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}code\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+\end{MintedVerbatim}

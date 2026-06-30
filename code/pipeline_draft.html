@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EVOLVE Framework</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #fff; padding: 30px; }
+.container { width: 1200px; margin: 0 auto; }
+
+/* Top bar */
+.top-bar {
+  display: flex; justify-content: center; align-items: center;
+  background: #f8f9fa; border: 2px solid #333; border-radius: 12px;
+  padding: 12px 30px; margin-bottom: 30px; gap: 8px;
+}
+.top-bar .stage-box {
+  padding: 8px 16px; border-radius: 8px; color: #fff;
+  font-weight: 700; font-size: 14px; text-align: center;
+}
+.top-bar .stage-desc { font-size: 11px; color: #555; max-width: 140px; text-align: center; }
+.top-bar .arrow { font-size: 24px; color: #666; margin: 0 4px; }
+.stage-gen { background: #2563eb; }
+.stage-reuse { background: #16a34a; }
+.stage-audit { background: #ea580c; }
+.stage-refine { background: #7c3aed; }
+
+/* Main layout */
+.main { display: flex; gap: 20px; align-items: flex-start; }
+
+/* Side panels */
+.side-panel {
+  width: 180px; background: #f9fafb; border: 1.5px solid #e5e7eb;
+  border-radius: 10px; padding: 14px; flex-shrink: 0;
+}
+.side-panel h3 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #333; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+.side-panel .item { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 12px; color: #444; }
+.side-panel .icon { width: 20px; height: 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; flex-shrink: 0; }
+
+/* Center area */
+.center { flex: 1; position: relative; }
+
+/* Central repository */
+.repo {
+  background: radial-gradient(ellipse at center, #f0fdf4 0%, #ecfdf5 40%, #f8fafc 100%);
+  border: 2.5px solid #86efac; border-radius: 50%;
+  width: 320px; height: 320px; margin: 60px auto;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative;
+}
+.repo h3 { font-size: 14px; font-weight: 700; color: #166534; margin-bottom: 6px; }
+.repo .lib { font-size: 11px; color: #555; margin: 2px 0; }
+.repo .tools { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; justify-content: center; max-width: 240px; }
+.repo .tool-node {
+  background: #dcfce7; border: 1px solid #86efac; border-radius: 12px;
+  padding: 3px 8px; font-size: 10px; color: #166534;
+}
+
+/* Stage modules */
+.module {
+  position: absolute; width: 240px; padding: 14px;
+  border-radius: 12px; border: 2px solid; background: #fff;
+}
+.module h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.module p { font-size: 11px; color: #555; line-height: 1.4; }
+.module .agent-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 10px;
+  font-size: 10px; font-weight: 600; color: #fff; margin-right: 4px; margin-bottom: 4px;
+}
+.module .eq { font-family: 'Times New Roman', serif; font-style: italic; font-size: 12px; color: #333; margin-top: 6px; background: #f9fafb; padding: 4px 8px; border-radius: 4px; }
+
+/* Positions */
+.mod-gen { top: 40px; left: -10px; border-color: #2563eb; }
+.mod-gen h4 { color: #2563eb; }
+.mod-reuse { top: 40px; right: -10px; border-color: #16a34a; }
+.mod-reuse h4 { color: #16a34a; }
+.mod-audit { bottom: 40px; right: -10px; border-color: #ea580c; }
+.mod-audit h4 { color: #ea580c; }
+.mod-refine { bottom: 40px; left: -10px; border-color: #7c3aed; }
+.mod-refine h4 { color: #7c3aed; }
+
+/* Arrows between modules and center */
+.arrow-overlay {
+  position: absolute; pointer-events: none;
+}
+.arrow-label { font-size: 10px; color: #666; font-style: italic; }
+
+/* Legend */
+.legend {
+  margin-top: 20px; display: flex; gap: 20px; justify-content: center;
+  font-size: 11px; color: #555; flex-wrap: wrap;
+}
+.legend .leg-item { display: flex; align-items: center; gap: 5px; }
+.legend .dot { width: 12px; height: 12px; border-radius: 50%; }
+.legend .line-solid { width: 20px; height: 2px; background: #333; }
+.legend .line-dash { width: 20px; height: 2px; background: #333; border-top: 2px dashed #333; height: 0; }
+
+/* Caption */
+.caption { text-align: center; margin-top: 20px; font-size: 13px; color: #333; max-width: 900px; margin-left: auto; margin-right: auto; }
+.caption b { font-weight: 700; }
+
+/* SVG arrows */
+svg.arrows {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Top overview bar -->
+<div class="top-bar">
+  <div style="display:flex;align-items:center;gap:6px;flex-direction:column">
+    <div class="stage-box stage-gen">1 Generation</div>
+    <div class="stage-desc">Identify risks & create executable tools</div>
+  </div>
+  <div class="arrow">→</div>
+  <div style="display:flex;align-items:center;gap:6px;flex-direction:column">
+    <div class="stage-box stage-reuse">2 Reuse</div>
+    <div class="stage-desc">Retrieve, match & fuse existing tools</div>
+  </div>
+  <div class="arrow">→</div>
+  <div style="display:flex;align-items:center;gap:6px;flex-direction:column">
+    <div class="stage-box stage-audit">3 Audit</div>
+    <div class="stage-desc">Sandbox execute & independent verify</div>
+  </div>
+  <div class="arrow">→</div>
+  <div style="display:flex;align-items:center;gap:6px;flex-direction:column">
+    <div class="stage-box stage-refine">4 Refinement</div>
+    <div class="stage-desc">Repair tools & replan unsafe actions</div>
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="main">
+
+<!-- Left panel: Inputs -->
+<div class="side-panel">
+  <h3>📥 Input</h3>
+  <div class="item"><div class="icon" style="background:#2563eb">Q</div> User Query</div>
+  <div class="item"><div class="icon" style="background:#2563eb">A</div> Action Trajectory</div>
+  <div class="item"><div class="icon" style="background:#2563eb">C</div> Environment Context</div>
+  <h3 style="margin-top:14px">🎯 Scenarios</h3>
+  <div class="item"><div class="icon" style="background:#6b7280">💬</div> Text Agents</div>
+  <div class="item"><div class="icon" style="background:#6b7280">🤖</div> Embodied Agents</div>
+  <div class="item"><div class="icon" style="background:#6b7280">🔧</div> Tool-calling Agents</div>
+</div>
+
+<!-- Center -->
+<div class="center">
+  <!-- Stage modules -->
+  <div class="module mod-gen">
+    <h4>① Generation</h4>
+    <div><span class="agent-tag" style="background:#2563eb">AnalysisAgent</span><span class="agent-tag" style="background:#60a5fa">SimulationAgent</span></div>
+    <p>Open-ended risk reasoning over Q and A* with lifelong risk knowledge K<sub>R</sub></p>
+    <div class="eq">(R, N) = f<sub>analysis</sub>(Q, A*, C, K<sub>R</sub>)<br>G = f<sub>gen</sub>(Q, A*, R)</div>
+  </div>
+
+  <div class="module mod-reuse">
+    <h4>② Reuse</h4>
+    <div><span class="agent-tag" style="background:#16a34a">FusionAgent</span></div>
+    <p>Hierarchical retrieval by risk category, then functional-logic matching & fusion</p>
+    <div class="eq">(m, T<sub>sim</sub>) = f<sub>match</sub>(M<sub>R</sub>, G)<br>G' = f<sub>fuse</sub>(G, T<sub>sim</sub>, R)</div>
+  </div>
+
+  <div class="module mod-audit">
+    <h4>③ Audit</h4>
+    <div><span class="agent-tag" style="background:#ea580c">ExecutorAgent</span><span class="agent-tag" style="background:#fb923c">AuditorAgent</span></div>
+    <p>Sandbox execution + CWE vulnerability audit + final security verdict</p>
+    <div class="eq">y = f<sub>audit</sub>(Q, A*, G', E<sub>G'</sub>, E<sub>A*</sub>)</div>
+  </div>
+
+  <div class="module mod-refine">
+    <h4>④ Refinement</h4>
+    <div><span class="agent-tag" style="background:#7c3aed">AuditorAgent</span><span class="agent-tag" style="background:#a78bfa">RevisionAgent</span></div>
+    <p>Iterative tool repair (≤3 rounds) + intent-preserving action replanning</p>
+    <div class="eq">G'' = f<sub>repair</sub>(G', D)<br>A' = f<sub>revise</sub>(Q, A*, R)</div>
+  </div>
+
+  <!-- Central repository -->
+  <div class="repo">
+    <h3>Lifelong Security Repository</h3>
+    <div class="lib">K<sub>R</sub> : Risk Knowledge Library</div>
+    <div class="lib">K<sub>G</sub> : Guardrail Tool Library</div>
+    <div class="tools">
+      <span class="tool-node">Fraud detector</span>
+      <span class="tool-node">Injection checker</span>
+      <span class="tool-node">Privacy guard</span>
+      <span class="tool-node">Collision risk</span>
+      <span class="tool-node">Permission audit</span>
+      <span class="tool-node">Data leak filter</span>
+    </div>
+  </div>
+
+  <!-- SVG Arrows -->
+  <svg class="arrows" viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg">
+    <!-- Gen → Repo -->
+    <defs>
+      <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="#2563eb"/>
+      </marker>
+      <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="#16a34a"/>
+      </marker>
+      <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="#ea580c"/>
+      </marker>
+      <marker id="arrowPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="#7c3aed"/>
+      </marker>
+    </defs>
+    <!-- Gen to center -->
+    <path d="M 200 160 Q 280 200 320 220" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+    <text x="220" y="185" fill="#2563eb" font-size="10">new tool G</text>
+    <!-- Reuse to center -->
+    <path d="M 560 160 Q 480 200 440 220" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+    <text x="470" y="185" fill="#16a34a" font-size="10">fused G'</text>
+    <!-- Center to Audit -->
+    <path d="M 440 300 Q 480 320 560 340" stroke="#ea580c" stroke-width="2" fill="none" marker-end="url(#arrowOrange)"/>
+    <text x="470" y="330" fill="#ea580c" font-size="10">execute & verify</text>
+    <!-- Refine back to center -->
+    <path d="M 200 340 Q 280 320 320 300" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrowPurple)"/>
+    <text x="210" y="330" fill="#7c3aed" font-size="10">repaired G''</text>
+    <!-- Audit pass back to repo -->
+    <path d="M 540 380 Q 460 400 420 340" stroke="#16a34a" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arrowGreen)"/>
+    <text x="470" y="390" fill="#16a34a" font-size="9">✓ admitted</text>
+    <!-- Audit fail to Refine -->
+    <path d="M 520 400 Q 400 430 240 400" stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arrowPurple)"/>
+    <text x="370" y="435" fill="#7c3aed" font-size="9">✗ repair loop</text>
+  </svg>
+</div>
+
+<!-- Right panel: Outputs -->
+<div class="side-panel">
+  <h3>📤 Output</h3>
+  <div class="item"><div class="icon" style="background:#16a34a">✓</div> Safe / Unsafe verdict</div>
+  <div class="item"><div class="icon" style="background:#7c3aed">↻</div> Revised action plan</div>
+  <div class="item"><div class="icon" style="background:#ea580c">🛡</div> Audited guardrail tools</div>
+  <div class="item"><div class="icon" style="background:#2563eb">📚</div> Accumulated risk knowledge</div>
+  <h3 style="margin-top:14px">📊 Evolution Indicators</h3>
+  <div class="item"><div class="icon" style="background:#059669">↑</div> Tool reuse rate</div>
+  <div class="item"><div class="icon" style="background:#059669">↑</div> Audit optimization rate</div>
+  <div class="item"><div class="icon" style="background:#059669">↑</div> Cumulative accuracy</div>
+</div>
+
+</div><!-- end main -->
+
+<!-- Legend -->
+<div class="legend">
+  <div class="leg-item"><div class="dot" style="background:#2563eb"></div> Generation</div>
+  <div class="leg-item"><div class="dot" style="background:#16a34a"></div> Reuse</div>
+  <div class="leg-item"><div class="dot" style="background:#ea580c"></div> Audit</div>
+  <div class="leg-item"><div class="dot" style="background:#7c3aed"></div> Refinement</div>
+  <div class="leg-item"><div class="line-solid"></div> Data flow</div>
+  <div class="leg-item"><div class="line-dash"></div> Feedback loop</div>
+</div>
+
+<!-- Caption -->
+<div class="caption">
+  <b>Figure 9</b> &nbsp; EVOLVE's framework. The four-stage pipeline—generation, reuse, audit, and refinement—forms a continuously verified evolutionary loop. Security knowledge is externalized into executable guardrail tools, accumulated in a lifelong repository through cross-scenario fusion, and governed by independent auditing.
+</div>
+
+</div>
+</body>
+</html>

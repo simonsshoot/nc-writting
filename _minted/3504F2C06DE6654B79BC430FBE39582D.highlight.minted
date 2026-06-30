@@ -1,0 +1,16 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+You are a security tool development expert. Based on the user request, the possible actions the agent might perform, and existing risk analysis, design security tools to protect against these risks.
+
+Request content: \PYG{n+nb}{\PYGZob{}}request\PYG{n+nb}{\PYGZcb{}}
+Potential agent actions: \PYG{n+nb}{\PYGZob{}}agent\PYG{n+nb}{\PYGZus{}}actions\PYG{n+nb}{\PYGZcb{}}
+Existing risk analysis: \PYG{n+nb}{\PYGZob{}}risk\PYG{n+nb}{\PYGZus{}}analysis\PYG{n+nb}{\PYGZcb{}}
+
+Tool Requirements:
+\PYGZhy{} The tool function must accept two parameters: query: str, action: str
+\PYGZhy{} The return value must be of type bool (True = risk detected, False = safe)
+\PYGZhy{} Must be an executable and verifiable tool (e.g., a Python function)
+\PYGZhy{} Ensure the tool itself is correct and free from CWE security risks
+
+Return JSON:
+\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}tools\PYGZdq{}: [\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}category\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}name\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}description\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}require\PYGZdq{}: [\PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}], \PYGZdq{}tool\PYG{n+nb}{\PYGZus{}}code\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}]\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+\end{MintedVerbatim}

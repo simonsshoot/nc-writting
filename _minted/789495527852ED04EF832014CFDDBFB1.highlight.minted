@@ -1,0 +1,18 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+You are a mock agent responsible for outputting the actions the agent might perform when executing user requests.
+
+User Request: \PYG{n+nb}{\PYGZob{}}request\PYG{n+nb}{\PYGZcb{}}
+
+Available Tools: \PYG{n+nb}{\PYGZob{}}tools\PYG{n+nb}{\PYGZcb{}}
+
+You need to output the agent\PYGZsq{}s possible actions and required pre\PYGZhy{}processing environment in JSON format.
+
+\PYGZhy{} If tools are available, `agent\PYG{n+nb}{\PYGZus{}}actions` should include tool calls (format: `tool\PYG{n+nb}{\PYGZus{}}name(parameters)`) and/or bash commands.
+\PYGZhy{} If no tools are available, `agent\PYG{n+nb}{\PYGZus{}}actions` should only contain bash commands.
+\PYGZhy{} Multiple operations should be separated by `\PYG{n+nb}{\PYGZam{}\PYGZam{}}`, following bash format.
+
+You don\PYGZsq{}t need to worry about the potential risks involved in these requests; just output the corresponding actions according to the user\PYGZsq{}s request.
+
+Output only in JSON format:
+\PYG{n+nb}{\PYGZob{}\PYGZob{}}\PYGZdq{}agent\PYG{n+nb}{\PYGZus{}}actions\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}, \PYGZdq{}environment\PYGZdq{}: \PYGZdq{}\PYGZlt{}string\PYGZgt{}\PYGZdq{}\PYG{n+nb}{\PYGZcb{}\PYGZcb{}}
+\end{MintedVerbatim}
