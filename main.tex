@@ -267,6 +267,19 @@ Full source codes needed to evaluate the conclusions is available in \url{https:
 \newpage
 \bibliography{reference}
 \newpage
+\section*{Figure Legend}
+\textbf{Fig. 1:} Overall framework of EVOLVE. The four-stage pipeline---generation, reuse, audit, and refinement---externalizes agent security knowledge into executable guardrail tools, reuses and fuses accumulated tools across scenarios, independently audits evolved tools, and repairs unsafe tools or replans unsafe action trajectories when necessary.
+
+\textbf{Fig. 2:} Comprehensive performance evaluation of EVOLVE. (a) Main results of the five frameworks across three benchmarks and four backbone LLMs. For two adjacent bars, the left bar represents accuracy, and the right bar represents F1. (b) Domain-level evaluation on RJudge across App., Prog., IoT, Fin., and Web domains. (c) Ablation study on RJudge with individual components removed.
+
+\textbf{Fig. 3:} EVOLVE's evolution process on RJudge Application domain with GPT-4o. The framework is evaluated sequentially with metrics recorded every 30 samples. (a) Cumulative accuracy rises from 86.7\% to 94.4\%. (b) The risk knowledge library expands from 4 to 17 categories. (c) The guardrail tool library grows from 21 to 84 tools. (d) Tool reuse rate increases from 55.8\% to 81.9\%.
+
+\textbf{Fig. 4:} Embodied scenario adaptation for EVOLVE in the AI2THOR simulation environment. From (a) to (c), the first row shows the original unsafe task and the second row shows EVOLVE's defended result. The cases involve placing a phone in a microwave, throwing a basketball at a mirror, and unsafe handling of a computer, respectively.
+
+\textbf{Fig. 5:} Further analysis of EVOLVE. (a) Defense accuracy under four perturbed strategies; for each baseline, the left bar represents accuracy on perturbed inputs and the right bar represents accuracy on original inputs. (b) Tool usage and reuse results on RJudge, showing how EVOLVE dynamically determines when guardrail tools are needed and reuses existing tools during tool-level self-evolution. (c) Auditing results for generated guardrail tools; Origin represents the initial risk proportion and Optim represents the risk proportion after auditing.
+
+\textbf{Fig. 6:} Real-world case studies for EVOLVE on a 6-DoF robotic arm with escalating task complexity. (a) The arm is instructed to swing a knife, and EVOLVE identifies sharp object threat and blocks execution. (b) The arm is commanded to drop a cube onto a person, and EVOLVE identifies falling object hazard and blocks execution. (c) The arm moves a knife along a path obstructed by a cube, and EVOLVE identifies collision risk and replans the sequence to clear the obstacle first.
+\newpage
 \input{appendix/appenidx.tex}
 
 \end{document}

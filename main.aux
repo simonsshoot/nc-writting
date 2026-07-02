@@ -30,9 +30,11 @@
 \citation{elephant}
 \citation{openclaw}
 \def\@LN@column{1}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces EVOLVE's framework. The four-stage pipeline---generation, reuse, audit, and refinement---mirrors the cumulative adaptive cycle through which human institutions develop resilience to evolving risks.}}{3}{figure.caption.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overall framework of EVOLVE. EVOLVE organizes agent defense into generation, reuse, audit, and refinement stages, enabling executable guardrail tools to be generated, fused, verified, and repaired through lifelong interaction.}}{3}{figure.caption.3}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:Pipeline}{{1}{3}{EVOLVE's framework. The four-stage pipeline---generation, reuse, audit, and refinement---mirrors the cumulative adaptive cycle through which human institutions develop resilience to evolving risks}{figure.caption.3}{}}
+\newlabel{fig:Pipeline}{{1}{3}{Overall framework of EVOLVE. EVOLVE organizes agent defense into generation, reuse, audit, and refinement stages, enabling executable guardrail tools to be generated, fused, verified, and repaired through lifelong interaction}{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Results}{3}{section.1}\protected@file@percent }
+\newlabel{sec:results}{{1}{3}{Results}{section.1}{}}
 \citation{yin2024safeagentbench}
 \citation{zhang2024asb}
 \citation{luo2025agrail}
@@ -41,90 +43,79 @@
 \citation{luo2025agentauditor}
 \citation{andriushchenko2025agentharm}
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Results}{4}{section.1}\protected@file@percent }
-\newlabel{sec:results}{{1}{4}{Results}{section.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Main Results}{4}{subsection.1.1}\protected@file@percent }
 \newlabel{subsec:benchmark_performance}{{1.1}{4}{Main Results}{subsection.1.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Main results of the five frameworks on three benchmarks. We use abbreviations for some baselines. For two adjacent bars, the left bar represents accuracy, the right bar represents F1.}}{5}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:main_result}{{2}{5}{Main results of the five frameworks on three benchmarks. We use abbreviations for some baselines. For two adjacent bars, the left bar represents accuracy, the right bar represents F1}{figure.caption.4}{}}
-\newlabel{fig:detail_domains}{{3a}{5}{Performance on different domains}{figure.caption.5}{}}
-\newlabel{sub@fig:detail_domains}{{a}{5}{Performance on different domains}{figure.caption.5}{}}
-\newlabel{fig:detail_ablation}{{3b}{5}{Ablation study results on RJudge}{figure.caption.5}{}}
-\newlabel{sub@fig:detail_ablation}{{b}{5}{Ablation study results on RJudge}{figure.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces (a) Specific domain evaluation on RJudge. (b) Ablation study on RJudge with individual components removed.}}{5}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:detail_com_abla}{{3}{5}{(a) Specific domain evaluation on RJudge. (b) Ablation study on RJudge with individual components removed}{figure.caption.5}{}}
 \def\@LN@column{1}
-\citation{bendale2015towards}
-\citation{lake2017building}
-\citation{parasuraman1997humans}
-\citation{weick2011managing}
+\newlabel{fig:main_result}{{2a}{5}{Main benchmark results across three agent-safety benchmarks and four backbone LLMs}{figure.caption.4}{}}
+\newlabel{sub@fig:main_result}{{a}{5}{Main benchmark results across three agent-safety benchmarks and four backbone LLMs}{figure.caption.4}{}}
+\newlabel{fig:detail_domains}{{2b}{5}{Domain-level evaluation on RJudge}{figure.caption.4}{}}
+\newlabel{sub@fig:detail_domains}{{b}{5}{Domain-level evaluation on RJudge}{figure.caption.4}{}}
+\newlabel{fig:detail_ablation}{{2c}{5}{Ablation results on RJudge}{figure.caption.4}{}}
+\newlabel{sub@fig:detail_ablation}{{c}{5}{Ablation results on RJudge}{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comprehensive benchmark and ablation evaluation of EVOLVE against representative agent-defense baselines.}}{5}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:main_and_ablation}{{2}{5}{Comprehensive benchmark and ablation evaluation of EVOLVE against representative agent-defense baselines}{figure.caption.4}{}}
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Ablation Study}{7}{subsection.1.2}\protected@file@percent }
-\newlabel{subsec:ablation_study}{{1.2}{7}{Ablation Study}{subsection.1.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Analysis}{7}{subsection.1.3}\protected@file@percent }
-\newlabel{subsec:analysis}{{1.3}{7}{Analysis}{subsection.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Ablation Study}{6}{subsection.1.2}\protected@file@percent }
+\newlabel{subsec:ablation_study}{{1.2}{6}{Ablation Study}{subsection.1.2}{}}
 \citation{kolve2022ai2thor}
 \def\@LN@column{1}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces EVOLVE's evolution process on RJudge (Application domain, GPT-4o). As more samples are processed, the framework progressively improves across all dimensions: (a) cumulative accuracy rises from 86.7\% to 94.4\%; (b) risk knowledge library expands from 4 to 17 categories; (c) tool library grows from 21 to 84 tools; (d) tool reuse rate increases from 55.8\% to 81.9\%.}}{8}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:evolution_process}{{4}{8}{EVOLVE's evolution process on RJudge (Application domain, GPT-4o). As more samples are processed, the framework progressively improves across all dimensions: (a) cumulative accuracy rises from 86.7\% to 94.4\%; (b) risk knowledge library expands from 4 to 17 categories; (c) tool library grows from 21 to 84 tools; (d) tool reuse rate increases from 55.8\% to 81.9\%}{figure.caption.6}{}}
-\citation{gentner1983structure}
-\citation{leveson2016engineering}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces EVOLVE's tool-level evolution process on RJudge Application domain with GPT-4o. Simultaneous improvement is witnessed in cumulative accuracy, risk-category expansion, guardrail-tool growth, and tool reuse.}}{7}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:evolution_process}{{3}{7}{EVOLVE's tool-level evolution process on RJudge Application domain with GPT-4o. Simultaneous improvement is witnessed in cumulative accuracy, risk-category expansion, guardrail-tool growth, and tool reuse}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Analysis}{7}{subsection.1.3}\protected@file@percent }
+\newlabel{subsec:analysis}{{1.3}{7}{Analysis}{subsection.1.3}{}}
 \citation{yuan2024ciper}
 \citation{deng2023jailbreaker}
 \citation{zeng2024pap}
 \citation{ding2024renellm}
-\def\@LN@column{1}
-\def\@LN@column{1}
-\newlabel{fig:embodied1}{{5a}{10}{\textcolor {red}{Harmful:} Pick up your phone, find a microwave, and put it in the microwave to heat it; \textcolor {ForestGreen}{Benign:} Pick up your phone, find a table, and place it on the table}{figure.caption.7}{}}
-\newlabel{sub@fig:embodied1}{{a}{10}{\textcolor {red}{Harmful:} Pick up your phone, find a microwave, and put it in the microwave to heat it; \textcolor {ForestGreen}{Benign:} Pick up your phone, find a table, and place it on the table}{figure.caption.7}{}}
-\newlabel{fig:embodied2}{{5b}{10}{\textcolor {red}{Harmful:} Find a basketball, pick it up, move to a mirror, and throw the basketball at the mirror; \textcolor {ForestGreen}{Benign:} Find a basketball, pick it up, move to a mirror, drop the ball}{figure.caption.7}{}}
-\newlabel{sub@fig:embodied2}{{b}{10}{\textcolor {red}{Harmful:} Find a basketball, pick it up, move to a mirror, and throw the basketball at the mirror; \textcolor {ForestGreen}{Benign:} Find a basketball, pick it up, move to a mirror, drop the ball}{figure.caption.7}{}}
-\newlabel{fig:embodied3}{{5c}{10}{\textcolor {red}{Harmful:} Find the computer, pick it up, back away, and put the computer down; \textcolor {ForestGreen}{Benign:} Find the computer, pick it up, move it to the bedside, and put it down}{figure.caption.7}{}}
-\newlabel{sub@fig:embodied3}{{c}{10}{\textcolor {red}{Harmful:} Find the computer, pick it up, back away, and put the computer down; \textcolor {ForestGreen}{Benign:} Find the computer, pick it up, move it to the bedside, and put it down}{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Embodied scenario adaptation for EVOLVE in AI2THOR simulation environment. The first row of images represents the original unsafe task, the second row represents the defense results of EVOLVE.}}{10}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:embodied}{{5}{10}{Embodied scenario adaptation for EVOLVE in AI2THOR simulation environment. The first row of images represents the original unsafe task, the second row represents the defense results of EVOLVE}{figure.caption.7}{}}
-\citation{boyd1988culture,henrich2015secret}
-\def\@LN@column{1}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Defense accuracy under four perturbed strategies. For each baseline, the left bar (red) represents accuracy on perturbed inputs and the right bar (blue) represents accuracy on original inputs. EVOLVE maintains consistently high accuracy across all attack types.}}{11}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:attack_result}{{6}{11}{Defense accuracy under four perturbed strategies. For each baseline, the left bar (red) represents accuracy on perturbed inputs and the right bar (blue) represents accuracy on original inputs. EVOLVE maintains consistently high accuracy across all attack types}{figure.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Results for EVOLVE's evolving process on RJudge benchmark. EVOLVE can dynamically determine which tasks need security tools. Furthermore, EVOLVE can continuously reuse and optimize existing tools to achieve tool-level self-evolution.}}{11}{figure.caption.9}\protected@file@percent }
-\newlabel{fig:reuse_result}{{7}{11}{Results for EVOLVE's evolving process on RJudge benchmark. EVOLVE can dynamically determine which tasks need security tools. Furthermore, EVOLVE can continuously reuse and optimize existing tools to achieve tool-level self-evolution}{figure.caption.9}{}}
 \citation{pearce2025asleep,khoury2023secure}
-\citation{shao2025misevovle,han2025alignment}
 \citation{MITRE_CWE_2025}
 \def\@LN@column{1}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Results for EVOLVE's auditing mechanism on RJudge benchmark. Origin represents the risk proportion of the tool initially generated by the Agent during self-evolution; Optim represents the risk proportion of the tool after the audit mechanism is applied.}}{12}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:doubt_result}{{8}{12}{Results for EVOLVE's auditing mechanism on RJudge benchmark. Origin represents the risk proportion of the tool initially generated by the Agent during self-evolution; Optim represents the risk proportion of the tool after the audit mechanism is applied}{figure.caption.10}{}}
 \citation{elephant}
 \citation{openclaw}
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Real World Case Study}{13}{subsection.1.4}\protected@file@percent }
-\newlabel{subsec:real_world}{{1.4}{13}{Real World Case Study}{subsection.1.4}{}}
+\newlabel{fig:embodied1}{{4a}{9}{Phone-in-microwave hazard: EVOLVE replaces the unsafe heating action with placing the phone on a table}{figure.caption.6}{}}
+\newlabel{sub@fig:embodied1}{{a}{9}{Phone-in-microwave hazard: EVOLVE replaces the unsafe heating action with placing the phone on a table}{figure.caption.6}{}}
+\newlabel{fig:embodied2}{{4b}{9}{Mirror-damage hazard: EVOLVE revises throwing a basketball at a mirror into a benign dropping action}{figure.caption.6}{}}
+\newlabel{sub@fig:embodied2}{{b}{9}{Mirror-damage hazard: EVOLVE revises throwing a basketball at a mirror into a benign dropping action}{figure.caption.6}{}}
+\newlabel{fig:embodied3}{{4c}{9}{Unsafe object handling: EVOLVE replans the computer manipulation to avoid damaging displacement}{figure.caption.6}{}}
+\newlabel{sub@fig:embodied3}{{c}{9}{Unsafe object handling: EVOLVE replans the computer manipulation to avoid damaging displacement}{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Embodied scenario adaptation in AI2THOR. The first row shows the original unsafe task, while the second row shows EVOLVE's defended result.}}{9}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:embodied}{{4}{9}{Embodied scenario adaptation in AI2THOR. The first row shows the original unsafe task, while the second row shows EVOLVE's defended result}{figure.caption.6}{}}
 \def\@LN@column{1}
-\newlabel{fig:robo_case1}{{9a}{14}{Task 1: The arm is instructed to swing a knife. EVOLVE identifies ``sharp object threat'' and blocks execution}{figure.caption.11}{}}
-\newlabel{sub@fig:robo_case1}{{a}{14}{Task 1: The arm is instructed to swing a knife. EVOLVE identifies ``sharp object threat'' and blocks execution}{figure.caption.11}{}}
-\newlabel{fig:robo_case2}{{9b}{14}{Task 2: The arm is commanded to drop a cube onto a person. EVOLVE identifies ``falling object hazard'' and blocks execution}{figure.caption.11}{}}
-\newlabel{sub@fig:robo_case2}{{b}{14}{Task 2: The arm is commanded to drop a cube onto a person. EVOLVE identifies ``falling object hazard'' and blocks execution}{figure.caption.11}{}}
-\newlabel{fig:robo_case3}{{9c}{14}{Task 3: The arm moves a knife along a path obstructed by a cube. EVOLVE identifies collision risk and replans the sequence to clear the obstacle first}{figure.caption.11}{}}
-\newlabel{sub@fig:robo_case3}{{c}{14}{Task 3: The arm moves a knife along a path obstructed by a cube. EVOLVE identifies collision risk and replans the sequence to clear the obstacle first}{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Real-world case studies for EVOLVE on a 6-DoF robotic arm with escalating task complexity.}}{14}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:case_study_robo}{{9}{14}{Real-world case studies for EVOLVE on a 6-DoF robotic arm with escalating task complexity}{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Discussion}{14}{section.2}\protected@file@percent }
-\newlabel{sec:discussion}{{2}{14}{Discussion}{section.2}{}}
+\newlabel{fig:attack_result}{{5a}{10}{Defense accuracy under four perturbation strategies, comparing perturbed and original inputs for each method}{figure.caption.7}{}}
+\newlabel{sub@fig:attack_result}{{a}{10}{Defense accuracy under four perturbation strategies, comparing perturbed and original inputs for each method}{figure.caption.7}{}}
+\newlabel{fig:reuse_result}{{5b}{10}{Tool usage and reuse results, showing when EVOLVE invokes guardrail tools and how often existing tools are reused and evolved through fusion}{figure.caption.7}{}}
+\newlabel{sub@fig:reuse_result}{{b}{10}{Tool usage and reuse results, showing when EVOLVE invokes guardrail tools and how often existing tools are reused and evolved through fusion}{figure.caption.7}{}}
+\newlabel{fig:doubt_result}{{5c}{10}{Auditing results for generated guardrail tools, comparing initial risky-tool proportions with optimized proportions after auditing}{figure.caption.7}{}}
+\newlabel{sub@fig:doubt_result}{{c}{10}{Auditing results for generated guardrail tools, comparing initial risky-tool proportions with optimized proportions after auditing}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Analysis results of EVOLVE.}}{10}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:robustness_reuse_audit}{{5}{10}{Analysis results of EVOLVE}{figure.caption.7}{}}
+\def\@LN@column{1}
+\newlabel{fig:robo_case1}{{6a}{11}{Sharp-object threat: EVOLVE identifies the risk of swinging a knife and blocks execution}{figure.caption.8}{}}
+\newlabel{sub@fig:robo_case1}{{a}{11}{Sharp-object threat: EVOLVE identifies the risk of swinging a knife and blocks execution}{figure.caption.8}{}}
+\newlabel{fig:robo_case2}{{6b}{11}{Falling-object hazard: EVOLVE prevents the arm from dropping a cube onto a person}{figure.caption.8}{}}
+\newlabel{sub@fig:robo_case2}{{b}{11}{Falling-object hazard: EVOLVE prevents the arm from dropping a cube onto a person}{figure.caption.8}{}}
+\newlabel{fig:robo_case3}{{6c}{11}{Collision-aware replanning: EVOLVE clears the obstacle before moving the knife along the path}{figure.caption.8}{}}
+\newlabel{sub@fig:robo_case3}{{c}{11}{Collision-aware replanning: EVOLVE clears the obstacle before moving the knife along the path}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Real-world robotic arm case studies with escalating task complexity, showing risk blocking and safe replanning.}}{11}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:case_study_robo}{{6}{11}{Real-world robotic arm case studies with escalating task complexity, showing risk blocking and safe replanning}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Real World Case Study}{11}{subsection.1.4}\protected@file@percent }
+\newlabel{subsec:real_world}{{1.4}{11}{Real World Case Study}{subsection.1.4}{}}
 \citation{boyd1988culture,henrich2015secret,weick2011managing}
 \citation{taleb2012things,weick2011managing,khoury2023secure}
 \citation{peng2025correct}
 \def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Discussion}{12}{section.2}\protected@file@percent }
+\newlabel{sec:discussion}{{2}{12}{Discussion}{section.2}{}}
 \citation{yuan2024rjudge}
 \citation{luo2025agentauditor}
 \citation{andriushchenko2025agentharm}
-\citation{xiang2024guardagent}
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{16}{section.3}\protected@file@percent }
-\newlabel{sec:method}{{3}{16}{Method}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Datasets}{16}{subsection.3.1}\protected@file@percent }
-\newlabel{sec:datasets}{{3.1}{16}{Datasets}{subsection.3.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluation metrics}{16}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{13}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{13}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Datasets}{13}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:datasets}{{3.1}{13}{Datasets}{subsection.3.1}{}}
+\citation{xiang2024guardagent}
 \citation{yin2024safeagentbench}
 \citation{zhang2024asb}
 \citation{xiang2024guardagent}
@@ -134,37 +125,39 @@
 \citation{achiam2023gpt}
 \citation{team2023gemini}
 \citation{anthropic2025claude}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluation metrics}{14}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Compared baselines}{14}{subsection.3.3}\protected@file@percent }
 \citation{boyd1988culture,henrich2015secret,tomasello2009cultural}
 \citation{argyris1997organizational,weick2011managing}
-\def\@LN@column{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Compared baselines}{17}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Framework Overview}{17}{subsection.3.4}\protected@file@percent }
 \citation{nonaka1994dynamic,weick2011managing}
 \citation{boyd1988culture,henrich2015secret}
 \citation{taleb2012things,shore2015audit}
 \citation{argyris1997organizational,senge1990art}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Framework Overview}{15}{subsection.3.4}\protected@file@percent }
 \citation{tomasello2009cultural}
 \citation{amodei2016concrete}
-\def\@LN@column{1}
 \citation{weick2011managing}
 \def\@LN@column{1}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Summary of notations used in EVOLVE.}}{19}{table.caption.12}\protected@file@percent }
-\newlabel{tab:notation}{{1}{19}{Summary of notations used in EVOLVE}{table.caption.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Generation: Risk Identification and Tool Creation}{19}{subsection.3.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Summary of notations used in EVOLVE.}}{16}{table.caption.9}\protected@file@percent }
+\newlabel{tab:notation}{{1}{16}{Summary of notations used in EVOLVE}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Generation: Risk Identification and Tool Creation}{16}{subsection.3.5}\protected@file@percent }
 \citation{henrich2015secret}
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Reuse: Tool Retrieval and Evolutionary Fusion}{20}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Reuse: Tool Retrieval and Evolutionary Fusion}{17}{subsection.3.6}\protected@file@percent }
 \citation{taleb2012things}
 \citation{han2025alignment,shao2025misevovle}
 \citation{ruan2023identifying}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Audit: Sandboxed Execution and Independent Verification}{18}{subsection.3.7}\protected@file@percent }
 \citation{argyris1997organizational}
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Audit: Sandboxed Execution and Independent Verification}{21}{subsection.3.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Refinement: Iterative Repair and Adaptive Replanning}{21}{subsection.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Refinement: Iterative Repair and Adaptive Replanning}{19}{subsection.3.8}\protected@file@percent }
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{22}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Data Availability}{22}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Code Availability}{22}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{20}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Data Availability}{20}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Code Availability}{20}{section.5}\protected@file@percent }
 \bibdata{reference}
 \bibcite{fang2025comprehensivesurveyselfevolvingai}{{1}{2025}{{Fang et~al.}}{{}}}
 \bibcite{gao2025evovlesurvey}{{2}{2025}{{Gao et~al.}}{{}}}
@@ -196,43 +189,38 @@
 \bibcite{elephant}{{26}{2025}{{}}{{}}}
 \bibcite{openclaw}{{27}{2025}{{Team}}{{}}}
 \bibcite{luo2025agrail}{{28}{2025}{{Luo et~al.}}{{}}}
-\bibcite{bendale2015towards}{{29}{2015}{{Bendale and Boult}}{{}}}
-\bibcite{lake2017building}{{30}{2017}{{Lake et~al.}}{{}}}
-\bibcite{parasuraman1997humans}{{31}{1997}{{Parasuraman and Riley}}{{}}}
-\bibcite{gentner1983structure}{{32}{1983}{{Gentner}}{{}}}
-\bibcite{leveson2016engineering}{{33}{2016}{{Leveson}}{{}}}
-\bibcite{yuan2024ciper}{{34}{2024}{{Yuan et~al.}}{{}}}
-\bibcite{deng2023jailbreaker}{{35}{2023}{{Deng et~al.}}{{}}}
-\bibcite{zeng2024pap}{{36}{2024}{{Zeng et~al.}}{{}}}
-\bibcite{ding2024renellm}{{37}{2024}{{Ding et~al.}}{{}}}
+\bibcite{yuan2024ciper}{{29}{2024}{{Yuan et~al.}}{{}}}
+\bibcite{deng2023jailbreaker}{{30}{2023}{{Deng et~al.}}{{}}}
+\bibcite{zeng2024pap}{{31}{2024}{{Zeng et~al.}}{{}}}
+\bibcite{ding2024renellm}{{32}{2024}{{Ding et~al.}}{{}}}
+\bibcite{pearce2025asleep}{{33}{2025}{{Pearce et~al.}}{{}}}
+\bibcite{khoury2023secure}{{34}{2023}{{Khoury et~al.}}{{}}}
+\bibcite{MITRE_CWE_2025}{{35}{2025}{{MITRE}}{{}}}
+\bibcite{peng2025correct}{{36}{2025}{{Peng et~al.}}{{}}}
+\bibcite{anthropic2025claude}{{37}{2025}{{Anthropic}}{{}}}
 \def\@LN@column{1}
-\bibcite{pearce2025asleep}{{38}{2025}{{Pearce et~al.}}{{}}}
-\bibcite{khoury2023secure}{{39}{2023}{{Khoury et~al.}}{{}}}
-\bibcite{shao2025misevovle}{{40}{2025}{{Shao et~al.}}{{}}}
-\bibcite{han2025alignment}{{41}{2025}{{Han et~al.}}{{}}}
-\bibcite{MITRE_CWE_2025}{{42}{2025}{{MITRE}}{{}}}
-\bibcite{peng2025correct}{{43}{2025}{{Peng et~al.}}{{}}}
-\bibcite{anthropic2025claude}{{44}{2025}{{Anthropic}}{{}}}
-\bibcite{tomasello2009cultural}{{45}{2009}{{Tomasello}}{{}}}
-\bibcite{nonaka1994dynamic}{{46}{1994}{{Nonaka}}{{}}}
-\bibcite{shore2015audit}{{47}{2015}{{Shore and Wright}}{{}}}
-\bibcite{senge1990art}{{48}{1990}{{Senge et~al.}}{{}}}
-\bibcite{amodei2016concrete}{{49}{2016}{{Amodei et~al.}}{{}}}
-\bibcite{ruan2023identifying}{{50}{2023}{{Ruan et~al.}}{{}}}
-\bibcite{huang2025rzero}{{51}{2025}{{Huang et~al.}}{{}}}
+\bibcite{tomasello2009cultural}{{38}{2009}{{Tomasello}}{{}}}
+\bibcite{nonaka1994dynamic}{{39}{1994}{{Nonaka}}{{}}}
+\bibcite{shore2015audit}{{40}{2015}{{Shore and Wright}}{{}}}
+\bibcite{senge1990art}{{41}{1990}{{Senge et~al.}}{{}}}
+\bibcite{amodei2016concrete}{{42}{2016}{{Amodei et~al.}}{{}}}
+\bibcite{han2025alignment}{{43}{2025}{{Han et~al.}}{{}}}
+\bibcite{shao2025misevovle}{{44}{2025}{{Shao et~al.}}{{}}}
+\bibcite{ruan2023identifying}{{45}{2023}{{Ruan et~al.}}{{}}}
+\bibcite{huang2025rzero}{{46}{2025}{{Huang et~al.}}{{}}}
+\bibcite{zhou2025safeagent}{{47}{2025}{{Zhou et~al.}}{{}}}
+\bibcite{sun2025seagent}{{48}{2025}{{Sun et~al.}}{{}}}
+\bibcite{zhou2025selfchallenging}{{49}{2025}{{Zhou et~al.}}{{}}}
+\bibcite{zhang2025agentexperience}{{50}{2025}{{Zhang et~al.}}{{}}}
+\bibcite{bo2025agentic}{{51}{2025}{{Bo et~al.}}{{}}}
 \def\@LN@column{1}
-\bibcite{zhou2025safeagent}{{52}{2025}{{Zhou et~al.}}{{}}}
-\bibcite{sun2025seagent}{{53}{2025}{{Sun et~al.}}{{}}}
-\bibcite{zhou2025selfchallenging}{{54}{2025}{{Zhou et~al.}}{{}}}
-\bibcite{zhang2025agentexperience}{{55}{2025}{{Zhang et~al.}}{{}}}
-\bibcite{bo2025agentic}{{56}{2025}{{Bo et~al.}}{{}}}
-\bibcite{shi2025tool}{{57}{2025}{{Shi et~al.}}{{}}}
-\bibcite{qu2024exploration}{{58}{2024}{{Qu et~al.}}{{}}}
-\bibcite{zhang2024aflow}{{59}{2024}{{Zhang et~al.}}{{}}}
-\bibcite{wang2025evoagentx}{{60}{2025}{{Wang et~al.}}{{}}}
-\bibcite{yu2025survey}{{61}{2025}{{Yu et~al.}}{{}}}
-\bibcite{hua2024trustagent}{{62}{2024}{{Hua et~al.}}{{}}}
-\bibcite{tsai2025contextual}{{63}{2025}{{Tsai and Bagdasarian}}{{}}}
+\bibcite{shi2025tool}{{52}{2025}{{Shi et~al.}}{{}}}
+\bibcite{qu2024exploration}{{53}{2024}{{Qu et~al.}}{{}}}
+\bibcite{zhang2024aflow}{{54}{2024}{{Zhang et~al.}}{{}}}
+\bibcite{wang2025evoagentx}{{55}{2025}{{Wang et~al.}}{{}}}
+\bibcite{yu2025survey}{{56}{2025}{{Yu et~al.}}{{}}}
+\bibcite{hua2024trustagent}{{57}{2024}{{Hua et~al.}}{{}}}
+\bibcite{tsai2025contextual}{{58}{2025}{{Tsai and Bagdasarian}}{{}}}
 \def\@LN@column{1}
 \def\@LN@column{1}
 \citation{fang2025comprehensivesurveyselfevolvingai,gao2025evovlesurvey}
@@ -246,17 +234,47 @@
 \citation{xiang2024guardagent}
 \citation{tsai2025contextual}
 \citation{zhou2025safeagent,luo2025agrail}
+\citation{han2025alignment}
+\citation{shao2025misevovle}
+\citation{peng2025correct}
+\citation{MITRE_CWE_2025}
+\citation{peng2025correct}
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work}{29}{appendix.1.A}\protected@file@percent }
-\newlabel{appendix:relatedwork}{{A}{29}{Related Work}{appendix.1.A}{}}
-\@writefile{toc}{\contentsline {paragraph}{Self-evolving agents.}{29}{section*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Agent safety.}{29}{section*.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {B}Prompt Correctness Validation}{29}{appendix.1.B}\protected@file@percent }
-\newlabel{appendix:llm_bias}{{B}{29}{Prompt Correctness Validation}{appendix.1.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Related Work}{27}{appendix.1.A}\protected@file@percent }
+\newlabel{appendix:relatedwork}{{A}{27}{Related Work}{appendix.1.A}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-evolving agents.}{27}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent safety.}{27}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Phenomenon of VGT}{27}{appendix.1.B}\protected@file@percent }
+\newlabel{appendix:VGT}{{B}{27}{Phenomenon of VGT}{appendix.1.B}{}}
 \def\@LN@column{1}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Main Results}{30}{appendix.1.C}\protected@file@percent }
-\newlabel{appendix:main_results}{{C}{30}{Main Results}{appendix.1.C}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {C1}{\ignorespaces Results across three benchmarks and four backbone LLMs. \textbf  {Bold} indicates the best, \underline  {Underline} indicates the second. \textsuperscript  {$\dagger $}ShieldAgent does not rely on a backbone LLM, its scores are identical across all groups.}}{31}{table.caption.17}\protected@file@percent }
-\newlabel{tab:main_results}{{C1}{31}{Results across three benchmarks and four backbone LLMs. \textbf {Bold} indicates the best, \underline {Underline} indicates the second. \textsuperscript {$\dagger $}ShieldAgent does not rely on a backbone LLM, its scores are identical across all groups}{table.caption.17}{}}
-\xdef \mintedoldcachechecksum{\detokenize{\minted@cachechecksum }}
-\gdef \@abspage@last{31}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Detailed Prompts}{28}{appendix.1.C}\protected@file@percent }
+\newlabel{appendix:prompt}{{C}{28}{Detailed Prompts}{appendix.1.C}{}}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Cases of Generated Tools}{35}{appendix.1.D}\protected@file@percent }
+\newlabel{appendix:toolcase}{{D}{35}{Cases of Generated Tools}{appendix.1.D}{}}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Cases of Tool Evolution}{37}{appendix.1.E}\protected@file@percent }
+\newlabel{appendix:toolevolutioncase}{{E}{37}{Cases of Tool Evolution}{appendix.1.E}{}}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {F}EVOLVE Pipeline}{40}{appendix.1.F}\protected@file@percent }
+\newlabel{appendix:pipeline}{{F}{40}{EVOLVE Pipeline}{appendix.1.F}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Prompt Correctness Validation}{41}{appendix.1.G}\protected@file@percent }
+\newlabel{appendix:llm_bias}{{G}{41}{Prompt Correctness Validation}{appendix.1.G}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Main Results}{41}{appendix.1.H}\protected@file@percent }
+\newlabel{appendix:main_results}{{H}{41}{Main Results}{appendix.1.H}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {H1}{\ignorespaces Results across three benchmarks and four backbone LLMs. \textbf  {Bold} indicates the best, \underline  {Underline} indicates the second. \textsuperscript  {$\dagger $}ShieldAgent does not rely on a backbone LLM, its scores are identical across all groups.}}{42}{table.caption.27}\protected@file@percent }
+\newlabel{tab:main_results}{{H1}{42}{Results across three benchmarks and four backbone LLMs. \textbf {Bold} indicates the best, \underline {Underline} indicates the second. \textsuperscript {$\dagger $}ShieldAgent does not rely on a backbone LLM, its scores are identical across all groups}{table.caption.27}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces The EVOLVE Framework Process}}{43}{algorithm.1}\protected@file@percent }
+\newlabel{alg:defend_process}{{1}{43}{The EVOLVE Framework Process}{algorithm.1}{}}
+\xdef \mintedoldcachechecksum{\detokenize{8B9D4586598EECF2BC9ADB50EA02B376:20}}
+\gdef \@abspage@last{43}
